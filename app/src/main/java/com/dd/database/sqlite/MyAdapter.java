@@ -33,9 +33,12 @@ public class MyAdapter extends ArrayAdapter<Product> {
 
         TextView textView1 = (TextView) view.findViewById(R.id.text1);
 
-        String s1 = product.getTextView1() ;
+        String s1 = product.getTextView1();
 
         textView1.setText(s1.replaceAll("\\\\n", "\n"));
+
+
+
 
         return view;
     }

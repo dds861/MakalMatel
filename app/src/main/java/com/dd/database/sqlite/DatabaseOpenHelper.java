@@ -10,7 +10,7 @@ import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
 public class DatabaseOpenHelper extends SQLiteAssetHelper {
 
-    private static final String DATABASE_NAME = "m1.db";
+    private static final String DATABASE_NAME = "makal.db";
     private static final int DATABASE_VERSION = 1;
 
 
