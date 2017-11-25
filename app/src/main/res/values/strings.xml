@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">Makal Matel</string>
-    <string name="tvMain">Ат жақсысын мақта,\nАдам жақсысын жақта.</string>
+    <string name="app_name">Мақал-Мәтелдер жинағы</string>
+    <string name="hint_search">Іздеу</string>
 </resources>
