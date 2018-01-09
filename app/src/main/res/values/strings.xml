@@ -2,4 +2,7 @@
     <string name="app_name">Мақал-Мәтелдер жинағы</string>
     <string name="hint_search">Іздеу</string>
     <string name="banner_ad_unit_id">ca-app-pub-3941279894802307/6996348575</string>
+
+    <string name="share_using">Share using?</string>
+    <string name="TextCopied">Text copied</string>
 </resources>

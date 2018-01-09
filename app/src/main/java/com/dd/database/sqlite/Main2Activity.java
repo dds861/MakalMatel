@@ -14,23 +14,45 @@ public class Main2Activity extends AppCompatActivity {
     ListView listView;
     private AdView mAdView;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        mAdView = (AdView) findViewById(R.id.adView);
+
+        //реклама от google
+        mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
+        //получаем доступ к базе
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
+
+        //открываем соединение
         databaseAccess.open();
 
+        //инициализируем listview
+        listView = findViewById(R.id.listview2);
+
+        //получаем из предыдущего activity какую позицию выбрали
         int position = getIntent().getIntExtra("position", 0);
 
-        listView = (ListView) findViewById(R.id.listview2);
+        //из базы данных получаем список данных по полученной позиции
         List<Product> products = databaseAccess.getList(position + 1);
-        MyAdapter myAdapter = new MyAdapter(getApplicationContext(), products);
+
+        //саздаем и инициализируем адаптер
+        MyAdapter2 myAdapter = new MyAdapter2(getApplicationContext(), products);
+
+        //присваем адаптер к listview
         listView.setAdapter(myAdapter);
+
+
+
+//
+//
+
     }
+
+
 }

@@ -29,11 +29,12 @@ public class MyAdapter extends ArrayAdapter<Product> {
 
         View view = LayoutInflater.from(getContext()).inflate(R.layout.items, parent, false);
 
+        TextView textView1 = view.findViewById(R.id.text1);
+
         Product product = getItem(position);
 
-        TextView textView1 = (TextView) view.findViewById(R.id.text1);
-
         String s1 = product.getTextView1();
+
 
         textView1.setText(s1.replaceAll("\\\\n", "\n"));
 
