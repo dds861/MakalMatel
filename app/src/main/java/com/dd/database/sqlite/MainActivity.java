@@ -16,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
 
     ListView listView;
     private AdView mAdView;
+    MyAdapter myAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +41,17 @@ public class MainActivity extends AppCompatActivity {
         //из базы данных получаем список данных
         List<Product> products = databaseAccess.getList(0);
 
+
+
         //саздаем и инициализируем адаптер
-        MyAdapter myAdapter = new MyAdapter(getApplicationContext(), products);
+        myAdapter = new MyAdapter(getApplicationContext(), products);
+
+
+        
 
         //присваем адаптер к listview
         listView.setAdapter(myAdapter);
+
 
         //создаем Кликер на item-ы в listview
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -61,5 +69,9 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
     }
+
+
 }

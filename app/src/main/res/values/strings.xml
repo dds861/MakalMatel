@@ -5,4 +5,7 @@
 
     <string name="share_using">Бөлісу</string>
     <string name="TextCopied">Көшірілді</string>
+    <string name="app_label">label</string>
+    <string name="search_hint">Макал табу</string>
+    <string name="search_title">search title</string>
 </resources>

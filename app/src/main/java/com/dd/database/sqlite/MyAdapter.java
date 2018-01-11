@@ -38,9 +38,9 @@ public class MyAdapter extends ArrayAdapter<Product> {
 
         textView1.setText(s1.replaceAll("\\\\n", "\n"));
 
-
-
-
         return view;
     }
+
+
+
 }

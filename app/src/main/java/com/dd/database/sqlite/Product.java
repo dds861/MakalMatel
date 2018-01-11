@@ -5,7 +5,8 @@ package com.dd.database.sqlite;
  */
 
 public class Product {
-    String textView1, ivCopy, ivShare;
+    String textView1;
+
 
     public String getTextView1() {
         return textView1;
@@ -21,23 +22,5 @@ public class Product {
 
     public Product(String textView1, String ivCopy, String ivShare) {
         this.textView1 = textView1;
-        this.ivCopy = ivCopy;
-        this.ivShare = ivShare;
-    }
-
-    public String getIvCopy() {
-        return ivCopy;
-    }
-
-    public void setIvCopy(String ivCopy) {
-        this.ivCopy = ivCopy;
-    }
-
-    public String getIvShare() {
-        return ivShare;
-    }
-
-    public void setIvShare(String ivShare) {
-        this.ivShare = ivShare;
     }
 }
