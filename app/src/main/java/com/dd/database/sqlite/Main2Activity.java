@@ -27,10 +27,10 @@ public class Main2Activity extends AppCompatActivity {
         mAdView.loadAd(adRequest);
 
         //получаем доступ к базе
-        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
+//        DatabaseAccess databaseAccess = DatabaseAccess.getDatabaseAccess(this);
 
         //открываем соединение
-        databaseAccess.open();
+//        databaseAccess.open();
 
         //инициализируем listview
         listView = findViewById(R.id.listview2);
@@ -39,7 +39,7 @@ public class Main2Activity extends AppCompatActivity {
         int position = getIntent().getIntExtra("position", 0);
 
         //из базы данных получаем список данных по полученной позиции
-        List<Product> products = databaseAccess.getList(position + 1);
+        List<Product> products = DatabaseAccess.getListOfMakal(position + 1, getApplicationContext());
 
         //саздаем и инициализируем адаптер
         MyAdapter2 myAdapter = new MyAdapter2(getApplicationContext(), products);
