@@ -1,4 +1,4 @@
-package com.dd.database.sqlite;
+package com.dd.database.sqlite.makalMatel;
 
 import android.content.Context;
 

@@ -1,4 +1,4 @@
-package com.dd.database.sqlite;
+package com.dd.database.sqlite.makalMatel;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -9,16 +9,18 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.dd.database.sqlite.R;
+
 import java.util.List;
 
 /**
  * Created by dds86 on 23-Nov-17.
  */
 
-public class MyAdapter extends ArrayAdapter<Product> {
-    private List<Product> objects;
+public class AdapterMakalMatel extends ArrayAdapter<ModelMakalMatel> {
+    private List<ModelMakalMatel> objects;
 
-    public MyAdapter(@NonNull Context context, @NonNull List<Product> objects) {
+    public AdapterMakalMatel(@NonNull Context context, @NonNull List<ModelMakalMatel> objects) {
         super(context, 0, objects);
         this.objects = objects;
     }
@@ -31,7 +33,7 @@ public class MyAdapter extends ArrayAdapter<Product> {
 
         TextView textView1 = view.findViewById(R.id.text1);
 
-        Product product = getItem(position);
+        ModelMakalMatel product = getItem(position);
 
         String s1 = product.getTextView1();
 

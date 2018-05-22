@@ -1,4 +1,4 @@
-package com.dd.database.sqlite;
+package com.dd.database.sqlite.makalMatel;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -8,10 +8,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
 
+import com.dd.database.sqlite.R;
+
 /**
  * Implementation of App Widget functionality.
  */
-public class NewAppWidget extends AppWidgetProvider {
+public class WidgetMakalMatel extends AppWidgetProvider {
 
 
     private static final String SYNC_CLICKED = "automaticWidgetSyncButtonClick";
@@ -30,7 +32,7 @@ public class NewAppWidget extends AppWidgetProvider {
             ComponentName watchWidget;
 
             remoteViews = new RemoteViews(context.getPackageName(), R.layout.new_app_widget);
-            watchWidget = new ComponentName(context, NewAppWidget.class);
+            watchWidget = new ComponentName(context, WidgetMakalMatel.class);
 
             remoteViews.setTextViewText(R.id.appwidget_text, DatabaseAccess.getRandomMakalFromDatabase(context));
 

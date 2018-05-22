@@ -1,15 +1,16 @@
-package com.dd.database.sqlite;
+package com.dd.database.sqlite.makalMatel;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
+import com.dd.database.sqlite.R;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 import java.util.List;
 
-public class Main2Activity extends AppCompatActivity {
+public class ActivityMakalMatel2 extends AppCompatActivity {
 
     ListView listView;
     private AdView mAdView;
@@ -18,8 +19,10 @@ public class Main2Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.makal_list);
 
+        //Go Back button (also see in onSupportNavigateUp())
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //реклама от google
         mAdView = findViewById(R.id.adView);
@@ -39,14 +42,13 @@ public class Main2Activity extends AppCompatActivity {
         int position = getIntent().getIntExtra("position", 0);
 
         //из базы данных получаем список данных по полученной позиции
-        List<Product> products = DatabaseAccess.getListOfMakal(position + 1, getApplicationContext());
+        List<ModelMakalMatel> products = DatabaseAccess.getListOfMakal(position + 1, getApplicationContext());
 
         //саздаем и инициализируем адаптер
-        MyAdapter2 myAdapter = new MyAdapter2(getApplicationContext(), products);
+        AdapterMakalMatel2 myAdapter = new AdapterMakalMatel2(getApplicationContext(), products);
 
         //присваем адаптер к listview
         listView.setAdapter(myAdapter);
-
 
 
 //
@@ -54,5 +56,10 @@ public class Main2Activity extends AppCompatActivity {
 
     }
 
-
+    //Go Back button (also see in onCreate())
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
+    }
 }
