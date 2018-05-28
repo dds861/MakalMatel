@@ -16,15 +16,14 @@ import java.util.Random;
 
 public class DatabaseAccess extends AppCompatActivity {
 
-    private static SQLiteDatabase database;
 
     //делаем запрос в базу и возвращаем Cursor
     private static Cursor getDatabaseCursor(Context context, String tableName) {
 
         //формируем запрос, здесь мы получаем все данные из таблицы "makal"
         SQLiteOpenHelper openHelper = new DatabaseOpenHelper(context);
-        database = openHelper.getWritableDatabase();
-        Cursor cursor = database.rawQuery("SELECT * FROM "+tableName, null);
+        SQLiteDatabase database = openHelper.getWritableDatabase();
+        Cursor cursor = database.rawQuery("SELECT * FROM " + tableName, null);
 
         //возвращаем Cursor
         return cursor;
@@ -67,17 +66,17 @@ public class DatabaseAccess extends AppCompatActivity {
 
         //закрываем курсор и базу чтоб не было утечки памяти
         cursor.close();
-        database.close();
 
         //возврашаем список
         return list;
     }
 
+
     //метод возвращает случайный макалМател
     public static String getRandomItemFromTableSql(Context context) {
 
         //из базы данных получаем список данных по полученной позиции
-        List<ModelMakalMatel> listOfMakalFromDatabase = getColumnListFromTableSql(-1, context,context.getString(R.string.tableMakal));
+        List<ModelMakalMatel> listOfMakalFromDatabase = getColumnListFromTableSql(-1, context, context.getString(R.string.tableMakal));
 
         //получаем случайное число
         int randomNum = new Random().nextInt(listOfMakalFromDatabase.size());
@@ -86,5 +85,22 @@ public class DatabaseAccess extends AppCompatActivity {
         String randomMakal = listOfMakalFromDatabase.get(randomNum).getTextView1().replaceAll("\\\\n", "\n");
 
         return randomMakal;
+    }
+
+
+    public List<String> getListOfMakalMatelsCategory(Context context) {
+
+        List<String> stringList = new ArrayList<>();
+
+        Cursor cursor = getDatabaseCursor(context, getString(R.string.tableMakal));
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            stringList.add(cursor.getString(1));
+            cursor.moveToNext();
+        }
+        cursor.close();
+
+        return stringList;
     }
 }

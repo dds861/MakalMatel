@@ -17,4 +17,6 @@ public class DatabaseOpenHelperZhaniltpashtar extends SQLiteAssetHelper {
     public DatabaseOpenHelperZhaniltpashtar(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
+
+
 }

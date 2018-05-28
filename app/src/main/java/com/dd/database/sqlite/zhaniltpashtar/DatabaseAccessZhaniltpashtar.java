@@ -23,6 +23,7 @@ public class DatabaseAccessZhaniltpashtar extends AppCompatActivity {
         this.context = context;
     }
 
+    //
     public static DatabaseAccessZhaniltpashtar getInstance(Context context) {
         if (instance == null) {
             instance = new DatabaseAccessZhaniltpashtar(context);
@@ -30,20 +31,31 @@ public class DatabaseAccessZhaniltpashtar extends AppCompatActivity {
         return instance;
     }
 
+    //открываем соедединение с базой
     public void open() {
         this.database = openHelper.getWritableDatabase();
     }
 
+    //закрываем соедединение с базой
     public void close() {
         if (database != null) {
             this.database.close();
         }
     }
 
-    public List<String> getListSkazkiCategory() {
+    private Cursor getCursor(String tableName){
+
+        Cursor cursor;
+        String sqlQueryText = "SELECT * FROM " + tableName;
+        cursor = database.rawQuery(sqlQueryText, null);
+
+        return cursor;
+    }
+
+    public List<String> getListSkazki() {
         List<String> list = new ArrayList<>();
-        String sqlQueryText = "SELECT * FROM " + context.getString(R.string.tableZhaniltpashtar);
-        Cursor cursor = database.rawQuery(sqlQueryText, null);
+
+        Cursor cursor = getCursor(context.getString(R.string.tableZhaniltpashtar));
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             if (!cursor.getString(0).equals("")) {
@@ -56,44 +68,21 @@ public class DatabaseAccessZhaniltpashtar extends AppCompatActivity {
         return list;
     }
 
-//    public List<String> getNames(String tableName) {
-//
-//
-//        String sqlQueryText = "SELECT " + tableName + " FROM names";
-//        Log.i("autolog", "sqlQueryText: " + sqlQueryText);
-//
-//        List<String> list = new ArrayList<>();
-//        Cursor cursor = database.rawQuery(sqlQueryText, null);
-//        cursor.moveToFirst();
-//        while (!cursor.isAfterLast()) {
-//            if (!cursor.getString(0).equals("")) {
-//
-//                list.add(cursor.getString(0));
-//            }
-//            cursor.moveToNext();
-//        }
-//        cursor.close();
-//        return list;
-//    }
+    public List<String> getListMakal() {
+        List<String> list = new ArrayList<>();
 
-//    public List<String> getTable(String tableSelect, String tableMain) {
-//
-//
-//        String sqlQueryText = "SELECT " + tableSelect + " FROM " + tableMain;
-//        Log.i("autolog", "sqlQueryText: " + sqlQueryText);
-//
-//        List<String> list = new ArrayList<>();
-//        Cursor cursor = database.rawQuery(sqlQueryText, null);
-//        cursor.moveToFirst();
-//        while (!cursor.isAfterLast()) {
-//            if (!cursor.getString(0).equals("")) {
-//
-//                list.add(cursor.getString(0));
-//            }
-//            cursor.moveToNext();
-//        }
-//        cursor.close();
-//        return list;
-//    }
+        Cursor cursor = getCursor(context.getString(R.string.tableMakal));
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            if (!cursor.getString(0).equals("")) {
+
+                list.add(cursor.getString(0));
+            }
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return list;
+    }
+
 
 }
