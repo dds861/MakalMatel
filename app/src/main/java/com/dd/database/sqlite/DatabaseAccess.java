@@ -1,4 +1,4 @@
-package com.dd.database.sqlite.makalMatel;
+package com.dd.database.sqlite;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -28,11 +28,11 @@ public class DatabaseAccess extends AppCompatActivity {
     }
 
     //метод возвращаем список МакалМател по определенной колонке
-    public static List<ModelMakalMatel> getListOfMakal(int columnPosition, Context context) {
+    public static List<Product> getListOfMakal(int columnPosition, Context context) {
 
 
         //создаем список чтобы возвратить его
-        List<ModelMakalMatel> list = new ArrayList<>();
+        List<Product> list = new ArrayList<>();
 
         //Получаем Cursor из базы
         Cursor cursor = getDatabaseCursor(context);
@@ -55,7 +55,7 @@ public class DatabaseAccess extends AppCompatActivity {
             if (!getMakal.equals("")) {
 
                 //добавляем в список чтоб потом отправить этот список
-                list.add(new ModelMakalMatel(getMakal));
+                list.add(new Product(getMakal));
             }
 
             //перемещаемся на следующую строку в таблице
@@ -74,7 +74,7 @@ public class DatabaseAccess extends AppCompatActivity {
     public static String getRandomMakalFromDatabase(Context context) {
 
         //из базы данных получаем список данных по полученной позиции
-        List<ModelMakalMatel> listOfMakalFromDatabase = getListOfMakal(-1, context);
+        List<Product> listOfMakalFromDatabase = getListOfMakal(-1, context);
 
         //получаем случайное число
         int randomNum = new Random().nextInt(listOfMakalFromDatabase.size());

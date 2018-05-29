@@ -1,37 +1,34 @@
-package com.dd.database.sqlite.makalMatel;
+package com.dd.database.sqlite;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.dd.database.sqlite.R;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 import java.util.List;
 
-public class FragmentMakalCategory extends Fragment {
+public class MainActivity extends AppCompatActivity {
 
     ListView listView;
     private AdView mAdView;
-    AdapterMakalMatel myAdapter;
+    MyAdapter myAdapter;
 
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-        View view = inflater.inflate(R.layout.makal_category, null);
+
+
 
         //реклама
-        mAdView = view.findViewById(R.id.adView);
+        mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
@@ -42,15 +39,18 @@ public class FragmentMakalCategory extends Fragment {
 //        databaseAccess.open();
 
         //инициализируем listview
-        listView = view.findViewById(R.id.listview1);
+        listView = findViewById(R.id.listview1);
 
         //из базы данных получаем список данных
-        List<ModelMakalMatel> products = DatabaseAccess.getListOfMakal(0, view.getContext());
+        List<Product> products = DatabaseAccess.getListOfMakal(0, getApplicationContext());
+
 
 
         //саздаем и инициализируем адаптер
-        myAdapter = new AdapterMakalMatel(view.getContext(), products);
+        myAdapter = new MyAdapter(getApplicationContext(), products);
 
+
+        
 
         //присваем адаптер к listview
         listView.setAdapter(myAdapter);
@@ -62,7 +62,7 @@ public class FragmentMakalCategory extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
                 //создаем и инициализируем Intent
-                Intent intent = new Intent(view.getContext(), ActivityMakalMatel2.class);
+                Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
 
                 //добавляем дополнительный параметр, позицию которуб Кликнули
                 intent.putExtra("position", position);
@@ -73,7 +73,7 @@ public class FragmentMakalCategory extends Fragment {
             }
         });
 
-        return view;
+
     }
 
 
