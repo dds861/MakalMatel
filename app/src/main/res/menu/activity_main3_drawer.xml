@@ -7,15 +7,15 @@
         <item
             android:id="@+id/nav_item0"
             android:icon="@drawable/ic_action_items"
-            android:title="@string/makal_matel_zhinagi" />
+            android:title="@string/item1" />
         <item
             android:id="@+id/nav_item1"
             android:icon="@drawable/ic_action_items"
-            android:title="@string/kazakh_skazki" />
+            android:title="@string/item2" />
         <item
             android:id="@+id/nav_item2"
             android:icon="@drawable/ic_action_items"
-            android:title="@string/zhaniltpashtar" />
+            android:title="@string/item3" />
         <item
             android:id="@+id/nav_item3"
             android:icon="@drawable/ic_action_items"
@@ -27,7 +27,6 @@
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
-
                 android:title="Share" />
             <item
                 android:id="@+id/nav_send"

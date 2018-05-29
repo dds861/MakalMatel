@@ -31,15 +31,29 @@ public class ActivityMakalList extends AppCompatActivity {
         //Go Back button in onCreate() method
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
+        //реклама от google
+//        mAdView = view.findViewById(R.id.adView);
+//        AdRequest adRequest = new AdRequest.Builder().build();
+//        mAdView.loadAd(adRequest);
+
+        //получаем доступ к базе
+//        DatabaseAccess databaseAccess = DatabaseAccess.getDatabaseAccess(this);
+
+        //открываем соединение
+//        databaseAccess.open();
+
         //инициализируем listview
         listView = findViewById(R.id.listview2);
 
         //получаем из предыдущего activity какую позицию выбрали
         int position = getIntent().getIntExtra("position", 0);
+//        Bundle bundle = this.getArguments();
+//        int position = 1;
+//        if (bundle != null) {
+//            position = bundle.getInt("position", 1);
+//        }
 
-        //Setting Title to ActionBar
-        String itemName = getIntent().getStringExtra("itemName");
-        getSupportActionBar().setTitle(itemName);
 
         //из базы данных получаем список данных по полученной позиции
         List<ModelMakalMatel> products = DatabaseAccess.getColumnListFromTableSql(position + 1, getApplicationContext(), getString(R.string.tableMakal));

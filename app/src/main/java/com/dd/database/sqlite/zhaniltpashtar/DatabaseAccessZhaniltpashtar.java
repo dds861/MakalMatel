@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.support.v7.app.AppCompatActivity;
 
 import com.dd.database.sqlite.R;
-import com.dd.database.sqlite.SqlAccess.DatabaseOpenHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +19,7 @@ public class DatabaseAccessZhaniltpashtar extends AppCompatActivity {
 
 
     private DatabaseAccessZhaniltpashtar(Context context) {
-        this.openHelper = new DatabaseOpenHelper(context);
+        this.openHelper = new DatabaseOpenHelperZhaniltpashtar(context);
         this.context = context;
     }
 

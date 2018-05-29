@@ -21,11 +21,8 @@
                 android:resource="@xml/new_app_widget_info" />
         </receiver>
 
-        <activity
-            android:name=".ertegiler.ActivityFairyTaleText"
-            android:parentActivityName=".ertegiler.ActivityListFairyTales" />
+        <activity android:name=".ertegiler.ActivityFairyTaleText" />
         <activity android:name=".ertegiler.ActivityListFairyTales" />
-        <activity android:name=".makalMatel.ActivityMakalList" />
 
         <activity
             android:name=".Main3Activity"
