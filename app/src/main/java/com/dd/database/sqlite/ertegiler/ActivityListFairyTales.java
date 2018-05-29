@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.dd.database.sqlite.R;
+import com.dd.database.sqlite.SqlAccess.DatabaseAccess;
 
 import java.util.List;
 
@@ -65,7 +66,7 @@ public class ActivityListFairyTales extends AppCompatActivity {
         }
 
         //Logo and app name on action bar
-//        setLogoAndAppName(selectedSkazkiCategoryName);
+        setLogoAndAppName(selectedSkazkiCategoryName);
 
 
         //получаем список категории на латинице
@@ -108,11 +109,11 @@ public class ActivityListFairyTales extends AppCompatActivity {
     }
 
     //Logo and app name on action bar
-//    private void setLogoAndAppName(String selectedSkazkiCategoryName) {
+    private void setLogoAndAppName(String selectedSkazkiCategoryName) {
 //        getSupportActionBar().setDisplayShowHomeEnabled(true);
 //        getSupportActionBar().setLogo(R.mipmap.ic_launcher_aldar_kose);
 //        getSupportActionBar().setDisplayUseLogoEnabled(true);
-//        getSupportActionBar().setTitle(selectedSkazkiCategoryName);
-//
-//    }
+        getSupportActionBar().setTitle(selectedSkazkiCategoryName);
+
+    }
 }

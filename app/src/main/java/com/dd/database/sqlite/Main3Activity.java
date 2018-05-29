@@ -1,5 +1,7 @@
 package com.dd.database.sqlite;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;
@@ -17,7 +19,7 @@ import com.dd.database.sqlite.makalMatel.FragmentMainMakal;
 import com.dd.database.sqlite.zhaniltpashtar.FragmentMainZhaniltpashtar;
 
 public class Main3Activity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, FragmentMainMakal.onSomeEventListener {
+        implements NavigationView.OnNavigationItemSelectedListener {
 
 
     //Фрагменты
@@ -35,12 +37,8 @@ public class Main3Activity extends AppCompatActivity
         fTrans.replace(R.id.fragmentContent, frag1);
         fTrans.commit();
 
-
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -91,7 +89,7 @@ public class Main3Activity extends AppCompatActivity
                 break;
 
             case android.R.id.home:
-                Toast.makeText(getApplicationContext(),"Back button clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Back button clicked", Toast.LENGTH_SHORT).show();
                 break;
             default:
                 return super.onOptionsItemSelected(item);
@@ -134,8 +132,24 @@ public class Main3Activity extends AppCompatActivity
             case R.id.nav_item3:
                 break;
             case R.id.nav_share:
+                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+
+                String shareBody = "https://play.google.com/store/apps/details?id=" + getPackageName();
+                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, getString(R.string.app_name));
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+                startActivity(Intent.createChooser(sharingIntent, "Share via"));
                 break;
             case R.id.nav_send:
+
+                Intent email = new Intent(Intent.ACTION_SENDTO);
+                email.setData(Uri.parse("mailto:" + getString(R.string.nav_header_subtitle_email)));
+                email.putExtra(Intent.EXTRA_SUBJECT, "Feedback for " + getString(R.string.app_name));
+                if (email.resolveActivity(getPackageManager()) != null) {
+                    startActivity(email);
+                }
+
+
                 break;
 
             default:
@@ -148,47 +162,5 @@ public class Main3Activity extends AppCompatActivity
 
         return true;
     }
-
-
-
-    @Override
-    public void someEvent(String position) {
-
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
-
-//        ActivityMakalList frag1 = new ActivityMakalList();
-//        Bundle bundle = new Bundle();
-//        bundle.putInt("position", Integer.parseInt(position));
-//        frag1.setArguments(bundle);
-//        fTrans = getSupportFragmentManager().beginTransaction();
-//        fTrans.replace(R.id.frgmCont, frag1);
-//        fTrans.addToBackStack(null);
-
-
-//        getSupportFragmentManager().addOnBackStackChangedListener(
-//                new FragmentManager.OnBackStackChangedListener() {
-//                    public void onBackStackChanged() {
-//                        // Update your UI here.
-////                        ActionBar ab = getActionBar().ac;
-////                        ab.NavigationMode(ActionBar.DISPLAY_HOME_AS_UP);
-////                        ab.setDisplayHomeAsUpEnabled(true);
-////                        ab.setDisplayShowHomeEnabled(true);
-////                        boolean canback = getSupportFragmentManager().getBackStackEntryCount() > 0;
-////                        getSupportActionBar().setDisplayHomeAsUpEnabled(canback);
-//
-////                        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-////                        toggle.syncState();
-//
-//                    }
-//                });
-//
-//        fTrans.commit();
-
-
-    }
-
-
 }
 
