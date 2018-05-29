@@ -3,9 +3,7 @@ package com.dd.database.sqlite.zhaniltpashtar;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ListFragment;
-import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import java.util.List;
 
@@ -19,19 +17,13 @@ public class FragmentMainZhaniltpashtar extends ListFragment {
     List<String> stringList;
 
     @Override
-    public void onListItemClick(ListView l, View v, int position, long id) {
-        super.onListItemClick(l, v, position, id);
-
-    }
-
-    @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
         DatabaseAccessZhaniltpashtar databaseAccess = DatabaseAccessZhaniltpashtar.getInstance(getContext());
         databaseAccess.open();
 
-        stringList = databaseAccess.getListSkazki();
+        stringList = databaseAccess.getListSkazkiCategory();
 //        arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, stringList);
 //        listView.setAdapter(arrayAdapter);
 //        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -48,9 +40,6 @@ public class FragmentMainZhaniltpashtar extends ListFragment {
         setListAdapter(adapter);
 
         databaseAccess.close();
-
-
-
     }
 
 //    @Override
