@@ -19,11 +19,4 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="item1">Мақал-Мәтелдер жинағы</string>
-    <string name="item2">Ертегілер</string>
-    <string name="item3">Жаңылтпаштар</string>
-    <string name="about_zhaniltspash">Жаңылтпаш — қазақ ауыз әдебиетінің шағын жанры. Жаңылтпаш ойын-сауыққа жиналған жұртты күлдіру; жас ұрпақтың тілін ұстартып, әр түрлі сөзді шапшаң айтуға үйрету мақсатымен пайда болған. Жаңылтпаштың сөздері адамды жаңылдыратындай қиын, көбінесе, ұяң және қатаң дауыссыз дыбыстардан құралады, қара сөз немесе өлең түрінде болады.</string>
-
-    <!--Table Names-->
-    <string name="tableMakal">makal</string>
-    <string name="tableZhaniltpashtar">zhaniltpashtar</string>
 </resources>

@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.widget.RemoteViews;
 
 import com.dd.database.sqlite.R;
-import com.dd.database.sqlite.SqlAccess.DatabaseAccess;
 
 /**
  * Implementation of App Widget functionality.
@@ -35,7 +34,7 @@ public class WidgetMakalMatel extends AppWidgetProvider {
             remoteViews = new RemoteViews(context.getPackageName(), R.layout.new_app_widget);
             watchWidget = new ComponentName(context, WidgetMakalMatel.class);
 
-            remoteViews.setTextViewText(R.id.appwidget_text, DatabaseAccess.getRandomItemFromTableSql(context));
+            remoteViews.setTextViewText(R.id.appwidget_text, DatabaseAccess.getRandomMakalFromDatabase(context));
 
             appWidgetManager.updateAppWidget(watchWidget, remoteViews);
 
@@ -53,7 +52,7 @@ public class WidgetMakalMatel extends AppWidgetProvider {
 
 
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.new_app_widget); // Construct the RemoteViews object
-        views.setTextViewText(R.id.appwidget_text, DatabaseAccess.getRandomItemFromTableSql(context));         //setting text to widget TextView
+        views.setTextViewText(R.id.appwidget_text, DatabaseAccess.getRandomMakalFromDatabase(context));         //setting text to widget TextView
 
         views.setOnClickPendingIntent(R.id.appwidget_text, getPendingSelfIntent(context, SYNC_CLICKED));
 
