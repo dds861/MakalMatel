@@ -1,10 +1,10 @@
-package com.dd.database.sqlite.makalMatel;
+package com.dd.database.sqlite;
 
 /**
  * Created by dds86 on 23-Nov-17.
  */
 
-public class ModelMakalMatel {
+public class Product {
     String textView1;
 
 
@@ -16,11 +16,11 @@ public class ModelMakalMatel {
         this.textView1 = textView1;
     }
 
-    public ModelMakalMatel(String textView1) {
+    public Product(String textView1) {
         this.textView1 = textView1;
     }
 
-    public ModelMakalMatel(String textView1, String ivCopy, String ivShare) {
+    public Product(String textView1, String ivCopy, String ivShare) {
         this.textView1 = textView1;
     }
 }

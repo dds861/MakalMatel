@@ -1,4 +1,4 @@
-package com.dd.database.sqlite.makalMatel;
+package com.dd.database.sqlite;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
-import com.dd.database.sqlite.R;
 
 import java.util.List;
 
@@ -24,12 +23,12 @@ import java.util.List;
  * Created by dds86 on 23-Nov-17.
  */
 
-public class AdapterMakalMatel2 extends ArrayAdapter<ModelMakalMatel> {
-    private List<ModelMakalMatel> objects;
+public class MyAdapter2 extends ArrayAdapter<Product> {
+    private List<Product> objects;
     private Context context;
 
 
-    public AdapterMakalMatel2(@NonNull Context context, @NonNull List<ModelMakalMatel> objects) {
+    public MyAdapter2(@NonNull Context context, @NonNull List<Product> objects) {
         super(context, 0, objects);
         this.objects = objects;
         this.context = context;
@@ -43,7 +42,7 @@ public class AdapterMakalMatel2 extends ArrayAdapter<ModelMakalMatel> {
 
         final TextView textView1 = view.findViewById(R.id.text2);
 
-        ModelMakalMatel product = getItem(position);
+        Product product = getItem(position);
 
         String s1 = product.getTextView1();
 

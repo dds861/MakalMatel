@@ -1,4 +1,4 @@
-package com.dd.database.sqlite.makalMatel;
+package com.dd.database.sqlite;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -8,13 +8,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
 
-import com.dd.database.sqlite.R;
-import com.dd.database.sqlite.SqlAccess.DatabaseAccess;
-
 /**
  * Implementation of App Widget functionality.
  */
-public class WidgetMakalMatel extends AppWidgetProvider {
+public class NewAppWidget extends AppWidgetProvider {
 
 
     private static final String SYNC_CLICKED = "automaticWidgetSyncButtonClick";
@@ -33,9 +30,9 @@ public class WidgetMakalMatel extends AppWidgetProvider {
             ComponentName watchWidget;
 
             remoteViews = new RemoteViews(context.getPackageName(), R.layout.new_app_widget);
-            watchWidget = new ComponentName(context, WidgetMakalMatel.class);
+            watchWidget = new ComponentName(context, NewAppWidget.class);
 
-            remoteViews.setTextViewText(R.id.appwidget_text, DatabaseAccess.getRandomItemFromTableSql(context));
+            remoteViews.setTextViewText(R.id.appwidget_text, DatabaseAccess.getRandomMakalFromDatabase(context));
 
             appWidgetManager.updateAppWidget(watchWidget, remoteViews);
 
@@ -53,7 +50,7 @@ public class WidgetMakalMatel extends AppWidgetProvider {
 
 
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.new_app_widget); // Construct the RemoteViews object
-        views.setTextViewText(R.id.appwidget_text, DatabaseAccess.getRandomItemFromTableSql(context));         //setting text to widget TextView
+        views.setTextViewText(R.id.appwidget_text, DatabaseAccess.getRandomMakalFromDatabase(context));         //setting text to widget TextView
 
         views.setOnClickPendingIntent(R.id.appwidget_text, getPendingSelfIntent(context, SYNC_CLICKED));
 

@@ -1,4 +1,4 @@
-package com.dd.database.sqlite.SqlAccess;
+package com.dd.database.sqlite;
 
 import android.content.Context;
 
@@ -15,7 +15,6 @@ public class DatabaseOpenHelper extends SQLiteAssetHelper {
 
 
     public DatabaseOpenHelper(Context context) {
-            super(context, DATABASE_NAME, null, DATABASE_VERSION);
-
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 }

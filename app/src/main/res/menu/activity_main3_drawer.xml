@@ -16,10 +16,10 @@
             android:id="@+id/nav_item2"
             android:icon="@drawable/ic_action_items"
             android:title="@string/zhaniltpashtar" />
-        <!--<item-->
-            <!--android:id="@+id/nav_item3"-->
-            <!--android:icon="@drawable/ic_action_items"-->
-            <!--android:title="Tools" />-->
+        <item
+            android:id="@+id/nav_item3"
+            android:icon="@drawable/ic_action_items"
+            android:title="Tools" />
     </group>
 
     <item android:title="Communicate">

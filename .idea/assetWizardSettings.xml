@@ -13,55 +13,13 @@
                       <PersistentState>
                         <option name="children">
                           <map>
-                            <entry key="actionbar">
-                              <value>
-                                <PersistentState>
-                                  <option name="values">
-                                    <map>
-                                      <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="C:\Users\dds86\Downloads\98338089_large_4712021_g_kaz_uzor001.png" />
-                                      <entry key="outputName" value="ic_action_items" />
-                                    </map>
-                                  </option>
-                                </PersistentState>
-                              </value>
-                            </entry>
                             <entry key="launcher">
                               <value>
                                 <PersistentState>
-                                  <option name="children">
-                                    <map>
-                                      <entry key="backgroundImage">
-                                        <value>
-                                          <PersistentState>
-                                            <option name="values">
-                                              <map>
-                                                <entry key="trimmed" value="true" />
-                                              </map>
-                                            </option>
-                                          </PersistentState>
-                                        </value>
-                                      </entry>
-                                      <entry key="foregroundImage">
-                                        <value>
-                                          <PersistentState>
-                                            <option name="values">
-                                              <map>
-                                                <entry key="trimmed" value="true" />
-                                              </map>
-                                            </option>
-                                          </PersistentState>
-                                        </value>
-                                      </entry>
-                                    </map>
-                                  </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="backgroundImage" value="C:\Users\dds86\Downloads\MakalMatel2\app\src\main\res\drawable\bg.png" />
-                                      <entry key="backgroundLayerName" value="ic_launcher_background_aldar_kose2" />
-                                      <entry key="foregroundImage" value="C:\Users\dds86\Downloads\aldar_kose2.png" />
-                                      <entry key="foregroundLayerName" value="ic_launcher_foreground_widget_aldar_kose2" />
-                                      <entry key="outputName" value="ic_launcher_aldar_kose2" />
+                                      <entry key="foregroundImage" value="C:\Users\dds86\Downloads\pic1.png" />
+                                      <entry key="foregroundLayerName" value="ic_launcher_foreground_widget" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -73,6 +31,7 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
+                                      <entry key="iconShape" value="NONE" />
                                       <entry key="imageAsset" value="C:\Users\dds86\Downloads\pic1.png" />
                                       <entry key="outputName" value="ic_launcher_foreground_widget" />
                                     </map>
