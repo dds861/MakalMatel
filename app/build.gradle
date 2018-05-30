@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.dd.database.sqlite"
+        applicationId "com.dd.kazakh.portal"
         minSdkVersion 15
 
         targetSdkVersion 27
