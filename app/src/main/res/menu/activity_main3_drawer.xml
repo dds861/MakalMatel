@@ -6,19 +6,19 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_item0"
-            android:icon="@drawable/ic_action_items"
+            android:icon="@drawable/ic_action_copy"
             android:title="@string/makal_matel_zhinagi" />
         <item
             android:id="@+id/nav_item1"
-            android:icon="@drawable/ic_action_items"
+            android:icon="@drawable/ic_action_copy"
             android:title="@string/kazakh_skazki" />
         <item
             android:id="@+id/nav_item2"
-            android:icon="@drawable/ic_action_items"
+            android:icon="@drawable/ic_action_copy"
             android:title="@string/zhaniltpashtar" />
         <item
             android:id="@+id/nav_item3"
-            android:icon="@drawable/ic_action_items"
+            android:icon="@drawable/ic_action_copy"
             android:title="Tools" />
     </group>
 
@@ -26,12 +26,12 @@
         <menu>
             <item
                 android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
+                android:icon="@drawable/ic_action_copy"
 
                 android:title="Share" />
             <item
                 android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/ic_action_copy"
                 android:title="Send" />
         </menu>
     </item>
