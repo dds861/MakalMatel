@@ -1,4 +1,4 @@
-package com.dd.database.sqlite.Presenter;
+package com.dd.database.sqlite.Activity1.Presenter;
 
 public interface IPresenter {
 

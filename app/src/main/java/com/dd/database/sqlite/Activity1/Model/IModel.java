@@ -1,4 +1,4 @@
-package com.dd.database.sqlite.Model;
+package com.dd.database.sqlite.Activity1.Model;
 
 import java.util.List;
 

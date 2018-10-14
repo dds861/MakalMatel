@@ -1,4 +1,4 @@
-package com.dd.database.sqlite.View;
+package com.dd.database.sqlite.Activity1.View;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,9 +7,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.dd.database.sqlite.Main2Activity;
-import com.dd.database.sqlite.Presenter.IPresenter;
-import com.dd.database.sqlite.Presenter.Presenter;
+import com.dd.database.sqlite.Activity2.View.View2;
+import com.dd.database.sqlite.Activity1.Presenter.IPresenter;
+import com.dd.database.sqlite.Activity1.Presenter.Presenter;
 import com.dd.database.sqlite.R;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -42,7 +42,7 @@ public class View extends AppCompatActivity implements IView {
             public void onItemClick(AdapterView<?> adapterView, android.view.View view, int position, long l) {
 
                 //создаем и инициализируем Intent
-                Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
+                Intent intent = new Intent(getApplicationContext(), View2.class);
 
                 //добавляем дополнительный параметр, позицию которуб Кликнули
                 intent.putExtra("position", position);

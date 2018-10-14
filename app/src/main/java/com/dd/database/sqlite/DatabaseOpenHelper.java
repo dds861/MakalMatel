@@ -1,4 +1,4 @@
-package com.dd.database.sqlite.View;
+package com.dd.database.sqlite;
 
 import android.content.Context;
 

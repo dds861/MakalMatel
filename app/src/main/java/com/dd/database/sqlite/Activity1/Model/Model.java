@@ -1,12 +1,12 @@
-package com.dd.database.sqlite.Model;
+package com.dd.database.sqlite.Activity1.Model;
 
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.dd.database.sqlite.View.DatabaseOpenHelper;
-import com.dd.database.sqlite.View.IView;
+import com.dd.database.sqlite.DatabaseOpenHelper;
+import com.dd.database.sqlite.Activity1.View.IView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +18,7 @@ public class Model implements IModel {
     public Model(IView iView) {
         database = new DatabaseOpenHelper((Context) iView).getWritableDatabase();
     }
+
 
     @Override
     public List<String> getListFromDatabase() {
