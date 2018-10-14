@@ -5,4 +5,7 @@ import java.util.List;
 public interface IModel2 {
 
     List<String> getListFromDatabase();
+
+    //метод возвращаем список МакалМател по определенной колонке
+    List<String> getListOfMakal(int columnPosition);
 }

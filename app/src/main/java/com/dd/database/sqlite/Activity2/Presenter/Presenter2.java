@@ -20,13 +20,13 @@ public class Presenter2 implements IPresenter2 {
 
     @Override
     public void setDataToListview() {
-        List<String> list = iModel2.getListFromDatabase();
+        List<String> list = iModel2.getListOfMakal(iView2.getClickedPosition());
 
         List<String> stringList = new ArrayList<>();
 
         for (String s : list) {
             if (!s.isEmpty()) {
-                stringList.add(s);
+                stringList.add(s.replaceAll("\\\\n", "\n"));
             }
         }
 

@@ -10,7 +10,6 @@ import com.dd.database.sqlite.DatabaseOpenHelper;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Model2 implements IModel2 {
     private SQLiteDatabase database;
@@ -38,7 +37,8 @@ public class Model2 implements IModel2 {
     }
 
     //метод возвращаем список МакалМател по определенной колонке
-    public List<String> getListOfMakal(int columnPosition, Context context) {
+    @Override
+    public List<String> getListOfMakal(int columnPosition) {
 
 
         //создаем список чтобы возвратить его
@@ -51,15 +51,15 @@ public class Model2 implements IModel2 {
         //перемещаем курсор на первую строку в таблице чтобы перебирать
         cursor.moveToFirst();
 
-        if (columnPosition == -1) {
-            columnPosition = new Random().nextInt((cursor.getColumnCount()) + 1);
-        }
+//        if (columnPosition == -1) {
+//            columnPosition = new Random().nextInt((cursor.getColumnCount()) + 1);
+//        }
 
         //перебираем все строки колонки в таблице до последнего
         while (!cursor.isAfterLast()) {
 
             //получаем очередной макал мател из колонки
-            String getMakal = cursor.getString(columnPosition);
+            String getMakal = cursor.getString(columnPosition+1);
 
             //проверяем не пустая ли ячейка в колонке
             if (!getMakal.equals("")) {
