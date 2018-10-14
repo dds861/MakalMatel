@@ -1,65 +1,45 @@
-package com.dd.database.sqlite;
+package com.dd.database.sqlite.View;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.dd.database.sqlite.Main2Activity;
+import com.dd.database.sqlite.Presenter.IPresenter;
+import com.dd.database.sqlite.Presenter.Presenter;
+import com.dd.database.sqlite.R;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class View extends AppCompatActivity implements IView {
 
-    ListView listView;
+    private IPresenter iPresenter;
+    private ListView mListview1;
     private AdView mAdView;
-    MyAdapter myAdapter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initView();
 
-
-
-
-        //реклама
+        //реклама от google
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
-        //получаем доступ к базе
-//        DatabaseAccess databaseAccess = DatabaseAccess.getDatabaseAccess(this);
-
-        //открываем соединение
-//        databaseAccess.open();
-
-        //инициализируем listview
-        listView = findViewById(R.id.listview1);
-
-        //из базы данных получаем список данных
-        List<Product> products = DatabaseAccess.getListOfMakal(0, getApplicationContext());
-
-
-
-        //саздаем и инициализируем адаптер
-        myAdapter = new MyAdapter(getApplicationContext(), products);
-
-
-        
-
-        //присваем адаптер к listview
-        listView.setAdapter(myAdapter);
-
+        iPresenter = new Presenter(this);
+        iPresenter.setDataToListview();
 
         //создаем Кликер на item-ы в listview
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mListview1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+            public void onItemClick(AdapterView<?> adapterView, android.view.View view, int position, long l) {
 
                 //создаем и инициализируем Intent
                 Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
@@ -72,9 +52,16 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
 
+    private void initView() {
+        mAdView = (AdView) findViewById(R.id.adView);
+        mListview1 = (ListView) findViewById(R.id.listview1);
+    }
 
+    @Override
+    public void setDataToListview(List<String> stringList) {
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, stringList);
+        mListview1.setAdapter(arrayAdapter);
+    }
 }

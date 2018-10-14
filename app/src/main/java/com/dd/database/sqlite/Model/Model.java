@@ -1,41 +1,51 @@
-package com.dd.database.sqlite;
+package com.dd.database.sqlite.Model;
+
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+
+import com.dd.database.sqlite.View.DatabaseOpenHelper;
+import com.dd.database.sqlite.View.IView;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class DatabaseAccess extends AppCompatActivity {
+public class Model implements IModel {
+    private SQLiteDatabase database;
 
-    private static SQLiteDatabase database;
+    public Model(IView iView) {
+        database = new DatabaseOpenHelper((Context) iView).getWritableDatabase();
+    }
 
-    //делаем запрос в базу и возвращаем Cursor
-    private static Cursor getDatabaseCursor(Context context) {
+    @Override
+    public List<String> getListFromDatabase() {
 
-        //формируем запрос, здесь мы получаем все данные из таблицы "makal"
-        SQLiteOpenHelper openHelper = new DatabaseOpenHelper(context);
-        database = openHelper.getWritableDatabase();
-        Cursor cursor = database.rawQuery("SELECT * FROM makal", null);
+        String sqlQueryText = "SELECT * FROM makal";
+        Cursor cursor = database.rawQuery(sqlQueryText, null);
+        cursor.moveToFirst();
 
-        //возвращаем Cursor
-        return cursor;
+        List<String> list = new ArrayList<>();
+        while (!cursor.isAfterLast()) {
+            list.add(cursor.getString(0));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        database.close();
+        return list;
     }
 
     //метод возвращаем список МакалМател по определенной колонке
-    public static List<Product> getListOfMakal(int columnPosition, Context context) {
+    public List<String> getListOfMakal(int columnPosition, Context context) {
 
 
         //создаем список чтобы возвратить его
-        List<Product> list = new ArrayList<>();
+        List<String> list = new ArrayList<>();
 
         //Получаем Cursor из базы
-        Cursor cursor = getDatabaseCursor(context);
+        String sqlQueryText = "SELECT * FROM makal";
+        Cursor cursor = database.rawQuery(sqlQueryText, null);
 
         //перемещаем курсор на первую строку в таблице чтобы перебирать
         cursor.moveToFirst();
@@ -49,13 +59,11 @@ public class DatabaseAccess extends AppCompatActivity {
 
             //получаем очередной макал мател из колонки
             String getMakal = cursor.getString(columnPosition);
-            Log.i("autolog", "columnPosition: " + columnPosition);
 
             //проверяем не пустая ли ячейка в колонке
             if (!getMakal.equals("")) {
-
                 //добавляем в список чтоб потом отправить этот список
-                list.add(new Product(getMakal));
+                list.add(getMakal);
             }
 
             //перемещаемся на следующую строку в таблице
@@ -71,17 +79,17 @@ public class DatabaseAccess extends AppCompatActivity {
     }
 
     //метод возвращает случайный макалМател
-    public static String getRandomMakalFromDatabase(Context context) {
-
-        //из базы данных получаем список данных по полученной позиции
-        List<Product> listOfMakalFromDatabase = getListOfMakal(-1, context);
-
-        //получаем случайное число
-        int randomNum = new Random().nextInt(listOfMakalFromDatabase.size());
-
-        //getting random makal matel from list and replace all new lines (/n)
-        String randomMakal = listOfMakalFromDatabase.get(randomNum).getTextView1().replaceAll("\\\\n", "\n");
-
-        return randomMakal;
-    }
+//    public String getRandomMakalFromDatabase(Context context) {
+//
+//        //из базы данных получаем список данных по полученной позиции
+//        List<String> listOfMakalFromDatabase = getListOfMakal(-1, context);
+//
+//        //получаем случайное число
+//        int randomNum = new Random().nextInt(listOfMakalFromDatabase.size());
+//
+//        //getting random makal matel from list and replace all new lines (/n)
+//        String randomMakal = listOfMakalFromDatabase.get(randomNum).getTextView1().replaceAll("\\\\n", "\n");
+//
+//        return randomMakal;
+//    }
 }
