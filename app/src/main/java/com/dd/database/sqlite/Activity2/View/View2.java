@@ -11,7 +11,6 @@ import com.dd.database.sqlite.R;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class View2 extends AppCompatActivity implements IView2 {
@@ -37,21 +36,6 @@ public class View2 extends AppCompatActivity implements IView2 {
         iPresenter2 = new Presenter2(this);
         iPresenter2.setDataToListview();
 
-        //получаем из предыдущего activity какую позицию выбрали
-
-
-        //из базы данных получаем список данных по полученной позиции
-//        List<Product> products = DatabaseAccess2.getListOfMakal(position + 1, getApplicationContext());
-//
-//        саздаем и инициализируем адаптер
-
-
-        //присваем адаптер к listview
-//        listView.setAdapter(myAdapter);
-
-
-//
-//
 
     }
 
@@ -70,10 +54,7 @@ public class View2 extends AppCompatActivity implements IView2 {
     @Override
     public void setDataToAdapter(List<String> stringList) {
 
-        List<Product> productList = new ArrayList<>();
-        for(String s:stringList){
-            productList.add(new Product(s));
-        }
+
 
 
 
@@ -81,7 +62,7 @@ public class View2 extends AppCompatActivity implements IView2 {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         mRecyclerview2.setLayoutManager(linearLayoutManager);
 
-        MyAdapter2 myAdapter = new MyAdapter2(this,productList);
+        MyAdapter2 myAdapter = new MyAdapter2(this,stringList);
         mRecyclerview2.setAdapter(myAdapter);
 
 
@@ -89,4 +70,6 @@ public class View2 extends AppCompatActivity implements IView2 {
 //        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, stringList);
 //        mListview2.setAdapter(arrayAdapter);
     }
+
+
 }
