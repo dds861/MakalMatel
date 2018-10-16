@@ -31,7 +31,7 @@ public class Presenter2 implements IPresenter2 {
         }
 
 
-        iView2.setDataToListview(stringList);
+        iView2.setDataToAdapter(stringList);
     }
 
     @Override

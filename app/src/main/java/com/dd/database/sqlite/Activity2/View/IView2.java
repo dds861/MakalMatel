@@ -6,5 +6,5 @@ public interface IView2 {
 
     int getClickedPosition();
 
-    void setDataToListview(List<String> categoriesToList);
+    void setDataToAdapter(List<String> categoriesToList);
 }
