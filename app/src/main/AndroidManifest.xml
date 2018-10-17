@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_pen"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity1.View.View">
+        <activity
+            android:name=".Activity1.View.View"
+            android:launchMode="singleTop">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

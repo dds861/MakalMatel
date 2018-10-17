@@ -32,7 +32,6 @@ public class Model2 implements IModel2 {
             cursor.moveToNext();
         }
         cursor.close();
-        database.close();
         return list;
     }
 
@@ -73,11 +72,11 @@ public class Model2 implements IModel2 {
 
         //закрываем курсор и базу чтоб не было утечки памяти
         cursor.close();
-        database.close();
 
         //возврашаем список
         return list;
     }
+
 
     //метод возвращает случайный макалМател
 //    public String getRandomMakalFromDatabase(Context context) {

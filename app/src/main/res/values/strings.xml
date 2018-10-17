@@ -2,14 +2,14 @@
     <string name="app_name">Мақал-Мәтелдер жинағы</string>
     <string name="hint_search">Іздеу</string>
     <!--real banner id-->
-    <!--<string name="banner_ad_unit_id" translatable="false">ca-app-pub-3941279894802307/6996348575</string>-->
+    <string name="banner_ad_unit_id" translatable="false">ca-app-pub-3941279894802307/6996348575</string>
     <!--test banner id-->
-    <string name="banner_ad_unit_id" translatable="false">	ca-app-pub-3940256099942544/6300978111</string>
+    <!--<string name="banner_ad_unit_id" translatable="false">	ca-app-pub-3940256099942544/6300978111</string>-->
 
     <string name="share_using">Бөлісу</string>
     <string name="TextCopied">Көшірілді</string>
     <string name="app_label">label</string>
-    <string name="search_hint">Макал табу</string>
+    <string name="search_hint">Мақал іздеу</string>
     <string name="search_title">search title</string>
     <string name="appwidget_text">Мақал-Мәтелдер жинағы</string>
     <string name="add_widget">Add widget</string>

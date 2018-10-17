@@ -33,7 +33,6 @@ public class Model implements IModel {
             cursor.moveToNext();
         }
         cursor.close();
-        database.close();
         return list;
     }
 

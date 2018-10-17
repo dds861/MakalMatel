@@ -15,7 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
-import com.daimajia.androidanimations.library.YoYo;
+import com.dd.database.sqlite.MakeAnimation;
 import com.dd.database.sqlite.R;
 
 import java.util.ArrayList;
@@ -83,8 +83,8 @@ public class MyAdapter2 extends RecyclerView.Adapter<MyAdapter2.ViewHolder> {
                 case R.id.ivCopyAll:
 
                     //эффект нажатия на кнопку
-                    makeAnimationOnView(R.id.ivCopyAll, Techniques.FadeOut, 150, 0, view);
-                    makeAnimationOnView(R.id.ivCopyAll, Techniques.FadeIn, 350, 0, view);
+                    MakeAnimation.makeAnimationOnView(R.id.ivCopyAll, Techniques.FadeOut, 150, 0, view);
+                    MakeAnimation.makeAnimationOnView(R.id.ivCopyAll, Techniques.FadeIn, 350, 0, view);
 
                     // Gets a handle to the clipboard service.
                     ClipboardManager clipboard2 = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
@@ -101,8 +101,8 @@ public class MyAdapter2 extends RecyclerView.Adapter<MyAdapter2.ViewHolder> {
 
                 case R.id.ivShare:
 
-                    makeAnimationOnView(R.id.ivShare, Techniques.FadeOut, 150, 0, view);
-                    makeAnimationOnView(R.id.ivShare, Techniques.FadeIn, 350, 0, view);
+                    MakeAnimation.makeAnimationOnView(R.id.ivShare, Techniques.FadeOut, 150, 0, view);
+                    MakeAnimation.makeAnimationOnView(R.id.ivShare, Techniques.FadeIn, 350, 0, view);
 
                     Intent sharingIntent = new Intent(Intent.ACTION_SEND);
                     sharingIntent.setType("text/plain");
@@ -116,11 +116,5 @@ public class MyAdapter2 extends RecyclerView.Adapter<MyAdapter2.ViewHolder> {
         }
     }
 
-    void makeAnimationOnView(int resourceId, Techniques techniques, int duration, int repeat, View view) {
-        YoYo.with(techniques)
-                .duration(duration)
-                .repeat(repeat)
-                .playOn(view.findViewById(resourceId));
 
-    }
 }

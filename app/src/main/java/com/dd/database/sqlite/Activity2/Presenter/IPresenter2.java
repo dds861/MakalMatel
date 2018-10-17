@@ -4,5 +4,9 @@ public interface IPresenter2 {
 
    void setDataToListview();
 
-   int getClickedPosition();
+//    void setDataToListview(String searchText);
+
+    void setDataToListviewSearch(String searchText);
+
+    String getClickedPosition();
 }

@@ -13,18 +13,32 @@ public class Presenter2 implements IPresenter2 {
     private IView2 iView2;
     private IModel2 iModel2;
 
+
     public Presenter2(IView2 iView2) {
         this.iView2 = iView2;
         iModel2 = new Model2(iView2);
+
     }
 
     @Override
     public void setDataToListview() {
-        List<String> list = iModel2.getListOfMakal(iView2.getClickedPosition());
+
+        String clickedTextName = iView2.getClickedItemName();
+        List<String> list = iModel2.getListFromDatabase();
+        int position = 0;
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).equals(clickedTextName)) {
+                position = i;
+                break;
+            }
+
+        }
+
+        List<String> list2 = iModel2.getListOfMakal(position);
 
         List<String> stringList = new ArrayList<>();
 
-        for (String s : list) {
+        for (String s : list2) {
             if (!s.isEmpty()) {
                 stringList.add(s.replaceAll("\\\\n", "\n"));
             }
@@ -34,8 +48,77 @@ public class Presenter2 implements IPresenter2 {
         iView2.setDataToAdapter(stringList);
     }
 
+
+
     @Override
-    public int getClickedPosition() {
-        return iView2.getClickedPosition();
+    public void setDataToListviewSearch(String searchText) {
+
+        String clickedTextName = iView2.getClickedItemName();
+        List<String> list = iModel2.getListFromDatabase();
+        int position = 0;
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).equals(clickedTextName)) {
+                position = i;
+                break;
+            }
+
+        }
+
+        List<String> listFromDatabase = iModel2.getListOfMakal(position);
+        List<String> listFromDatabaseWithoutEmptyCells = new ArrayList<>();
+        List<String> searchList = new ArrayList<>();
+
+        for (String s : listFromDatabase) {
+            if (!s.isEmpty()) {
+                listFromDatabaseWithoutEmptyCells.add(s);
+            }
+        }
+        for (String s : listFromDatabaseWithoutEmptyCells) {
+            if (s.toLowerCase().contains(searchText.toLowerCase())) {
+                searchList.add(s.replaceAll("\\\\n", "\n"));
+            }
+        }
+
+
+        iView2.setDataToAdapter(searchList);
     }
+
+    @Override
+    public String getClickedPosition() {
+        return iView2.getClickedItemName();
+    }
+
+
+    //    @Override
+//    public void setDataToListview(String searchText) {
+//        String clickedTextName = iView2.getClickedItemName();
+//        List<String> list2 = iModel2.getListFromDatabase();
+//        int position = 0;
+//        for (int i = 0; i < list2.size(); i++) {
+//            if (list2.get(i).equals(clickedTextName)) {
+//                position = i;
+//                break;
+//            }
+//
+//        }
+//        List<String> list = iModel2.getListOfMakal(position);
+//
+//        List<String> stringList = new ArrayList<>();
+//        List<String> searchList = new ArrayList<>();
+//
+//        for (String s : list) {
+//            if (!s.isEmpty()) {
+//                stringList.add(s.replaceAll("\\\\n", "\n"));
+//            }
+//        }
+//
+//        for (String curVal : stringList) {
+//            if (curVal.contains(searchText)) {
+//                searchList.add(curVal);
+//            }
+//        }
+//
+//
+//        iView2.setDataToAdapter(searchList);
+//    }
 }
