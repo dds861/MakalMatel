@@ -31,11 +31,9 @@ public class Presenter2 implements IPresenter2 {
                 position = i;
                 break;
             }
-
         }
 
         List<String> list2 = iModel2.getListOfMakal(position);
-
         List<String> stringList = new ArrayList<>();
 
         for (String s : list2) {
@@ -43,8 +41,6 @@ public class Presenter2 implements IPresenter2 {
                 stringList.add(s.replaceAll("\\\\n", "\n"));
             }
         }
-
-
         iView2.setDataToAdapter(stringList);
     }
 
@@ -61,7 +57,6 @@ public class Presenter2 implements IPresenter2 {
                 position = i;
                 break;
             }
-
         }
 
         List<String> listFromDatabase = iModel2.getListOfMakal(position);
@@ -88,37 +83,4 @@ public class Presenter2 implements IPresenter2 {
         return iView2.getClickedItemName();
     }
 
-
-    //    @Override
-//    public void setDataToListview(String searchText) {
-//        String clickedTextName = iView2.getClickedItemName();
-//        List<String> list2 = iModel2.getListFromDatabase();
-//        int position = 0;
-//        for (int i = 0; i < list2.size(); i++) {
-//            if (list2.get(i).equals(clickedTextName)) {
-//                position = i;
-//                break;
-//            }
-//
-//        }
-//        List<String> list = iModel2.getListOfMakal(position);
-//
-//        List<String> stringList = new ArrayList<>();
-//        List<String> searchList = new ArrayList<>();
-//
-//        for (String s : list) {
-//            if (!s.isEmpty()) {
-//                stringList.add(s.replaceAll("\\\\n", "\n"));
-//            }
-//        }
-//
-//        for (String curVal : stringList) {
-//            if (curVal.contains(searchText)) {
-//                searchList.add(curVal);
-//            }
-//        }
-//
-//
-//        iView2.setDataToAdapter(searchList);
-//    }
 }
