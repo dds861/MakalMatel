@@ -1,12 +1,11 @@
 package com.dd.database.sqlite.Widget.Model;
 
 
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.dd.database.sqlite.DatabaseOpenHelper;
-import com.dd.database.sqlite.Widget.View.IViewWidget;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +14,8 @@ import java.util.Random;
 public class ModelWidget implements IModelWidget {
     private SQLiteDatabase database;
 
-    public ModelWidget(IViewWidget iViewWidget) {
-        database = new DatabaseOpenHelper((Context) iViewWidget).getWritableDatabase();
+    public ModelWidget(DatabaseOpenHelper openHelper) {
+        database = openHelper.getWritableDatabase();
     }
 
     //метод возвращает случайный макалМател
@@ -24,7 +23,10 @@ public class ModelWidget implements IModelWidget {
     public String getRandomMakalFromDatabase() {
 
         Random rand = new Random();
-        int columnPosition = rand.nextInt(136) + 1;
+        int max = 136;
+        int min = 1;
+        int columnPosition = rand.nextInt(max - min + 1) + min;
+        Log.i("autolog", "random columnPosition: " + columnPosition);
 
 
         //создаем список чтобы возвратить его
@@ -33,6 +35,7 @@ public class ModelWidget implements IModelWidget {
         //Получаем Cursor из базы
         String sqlQueryText = "SELECT * FROM makal";
         Cursor cursor = database.rawQuery(sqlQueryText, null);
+        Log.i("autolog", "cursor size: " + cursor.getCount());
 
         //перемещаем курсор на первую строку в таблице чтобы перебирать
         cursor.moveToFirst();
@@ -45,7 +48,7 @@ public class ModelWidget implements IModelWidget {
         while (!cursor.isAfterLast()) {
 
             //получаем очередной макал мател из колонки
-            String getMakal = cursor.getString(columnPosition + 1);
+            String getMakal = cursor.getString(columnPosition);
 
             //проверяем не пустая ли ячейка в колонке
             if (!getMakal.equals("")) {
@@ -61,8 +64,15 @@ public class ModelWidget implements IModelWidget {
         cursor.close();
 
 
-        int randomMakal = rand.nextInt(list.size()) + 1;
+//
+//        int max2 = list.size();
+//        int min2 = 0;
+//        int randomMakal = rand.nextInt(max2 - min2 + 1) + min2;
 
+        int randomMakal = rand.nextInt(list.size());
+
+        Log.i("autolog", "random item #: " + randomMakal);
+        Log.i("autolog", "list.size(): " + list.size());
         //возврашаем список
         return list.get(randomMakal);
     }

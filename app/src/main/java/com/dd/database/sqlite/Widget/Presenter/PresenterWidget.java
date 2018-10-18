@@ -1,6 +1,7 @@
 package com.dd.database.sqlite.Widget.Presenter;
 
 
+import com.dd.database.sqlite.DatabaseOpenHelper;
 import com.dd.database.sqlite.Widget.Model.IModelWidget;
 import com.dd.database.sqlite.Widget.Model.ModelWidget;
 import com.dd.database.sqlite.Widget.View.IViewWidget;
@@ -10,9 +11,9 @@ public class PresenterWidget implements IPresenterWidget {
     private IViewWidget iViewWidget;
     private IModelWidget iModelWidget;
 
-    public PresenterWidget(IViewWidget iViewWidget) {
+    public PresenterWidget(IViewWidget iViewWidget,DatabaseOpenHelper openHelper) {
         this.iViewWidget = iViewWidget;
-        this.iModelWidget = new ModelWidget(iViewWidget);
+        this.iModelWidget = new ModelWidget(openHelper);
     }
 
 
