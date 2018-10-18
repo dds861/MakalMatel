@@ -64,11 +64,6 @@ public class ModelWidget implements IModelWidget {
         cursor.close();
 
 
-//
-//        int max2 = list.size();
-//        int min2 = 0;
-//        int randomMakal = rand.nextInt(max2 - min2 + 1) + min2;
-
         int randomMakal = rand.nextInt(list.size());
 
         Log.i("autolog", "random item #: " + randomMakal);
