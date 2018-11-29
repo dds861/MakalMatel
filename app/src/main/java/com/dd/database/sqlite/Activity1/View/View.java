@@ -1,11 +1,14 @@
 package com.dd.database.sqlite.Activity1.View;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -126,4 +129,35 @@ public class View extends AppCompatActivity implements IView, android.view.View.
         getSupportActionBar().setLogo(R.mipmap.ic_launcher_pen);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    // handle button activities
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.telegramOpenButton) {
+            //Open Telegram channel
+            startActivity(iPresenter.OnTelegramChannelView());
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean isTelegramAppAvailable(String appName) {
+        PackageManager pm = getApplicationContext().getPackageManager();
+        try {
+            pm.getPackageInfo(appName, PackageManager.GET_ACTIVITIES);
+            return true;
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
+    }
+
 }

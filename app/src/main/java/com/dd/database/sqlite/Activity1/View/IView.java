@@ -5,4 +5,6 @@ import java.util.List;
 public interface IView {
 
     void setDataToListview(List<String> categoriesToList);
+
+    boolean isTelegramAppAvailable(String appName);
 }
