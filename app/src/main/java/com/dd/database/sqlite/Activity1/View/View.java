@@ -19,6 +19,8 @@ import com.daimajia.androidanimations.library.Techniques;
 import com.dd.database.sqlite.Activity1.Presenter.IPresenter;
 import com.dd.database.sqlite.Activity1.Presenter.Presenter;
 import com.dd.database.sqlite.Activity2.View.View2;
+import com.dd.database.sqlite.Analytics.AnalyticsConstants;
+import com.dd.database.sqlite.Analytics.AnalyticsManager;
 import com.dd.database.sqlite.MakeAnimation;
 import com.dd.database.sqlite.R;
 import com.google.android.gms.ads.AdRequest;
@@ -41,6 +43,12 @@ public class View extends AppCompatActivity implements IView, android.view.View.
         setContentView(R.layout.activity_main);
         initView();
 
+        //Initialize FirebaseAnalytics
+        AnalyticsManager.getInstance(getApplicationContext());
+
+        //Analytics: TAG_APP_OPEN
+        AnalyticsManager.registerEvent(AnalyticsConstants.TAG_APP_OPEN,null);
+
         // Show “Logo” in action bar:
         setLogoAndAppName();
 
@@ -51,8 +59,6 @@ public class View extends AppCompatActivity implements IView, android.view.View.
 
         iPresenter = new Presenter(this);
         iPresenter.setDataToListviewSearch();
-
-        Log.i("autolog", "Activity1 loaded");
 
         //создаем Кликер на item-ы в listview
         mListview1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -91,6 +97,13 @@ public class View extends AppCompatActivity implements IView, android.view.View.
             }
         });
 
+        mSearchEt.setOnClickListener(new android.view.View.OnClickListener() {
+            @Override
+            public void onClick(android.view.View v) {
+                //Analytics: search_clicked
+                AnalyticsManager.registerEvent(AnalyticsConstants.TAG_SEARCH_CLICKED,null);
+            }
+        });
     }
 
     private void initView() {

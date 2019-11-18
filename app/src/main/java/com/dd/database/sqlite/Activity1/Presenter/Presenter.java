@@ -7,6 +7,8 @@ import android.net.Uri;
 import com.dd.database.sqlite.Activity1.Model.IModel;
 import com.dd.database.sqlite.Activity1.Model.Model;
 import com.dd.database.sqlite.Activity1.View.IView;
+import com.dd.database.sqlite.Analytics.AnalyticsConstants;
+import com.dd.database.sqlite.Analytics.AnalyticsManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,6 +67,10 @@ public class Presenter implements IPresenter {
         } else {
             intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.t.me/maqal7"));
         }
+
+        //Analytics: open_telegram
+        AnalyticsManager.registerEvent(AnalyticsConstants.TAG_OPEN_TELEGRAM,null);
+
         return intent;
     }
 

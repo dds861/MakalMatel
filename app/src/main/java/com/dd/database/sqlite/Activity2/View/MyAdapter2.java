@@ -15,6 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
+import com.dd.database.sqlite.Analytics.AnalyticsConstants;
+import com.dd.database.sqlite.Analytics.AnalyticsManager;
 import com.dd.database.sqlite.MakeAnimation;
 import com.dd.database.sqlite.R;
 
@@ -82,6 +84,9 @@ public class MyAdapter2 extends RecyclerView.Adapter<MyAdapter2.ViewHolder> {
             switch (view.getId()) {
                 case R.id.ivCopyAll:
 
+                    //Analytics: copy_clicked
+                    AnalyticsManager.registerEvent(AnalyticsConstants.TAG_COPY_CLICKED,null);
+
                     //эффект нажатия на кнопку
                     MakeAnimation.makeAnimationOnView(R.id.ivCopyAll, Techniques.FadeOut, 150, 0, view);
                     MakeAnimation.makeAnimationOnView(R.id.ivCopyAll, Techniques.FadeIn, 350, 0, view);
@@ -100,6 +105,9 @@ public class MyAdapter2 extends RecyclerView.Adapter<MyAdapter2.ViewHolder> {
                     break;
 
                 case R.id.ivShare:
+
+                    //Analytics: copy_clicked
+                    AnalyticsManager.registerEvent(AnalyticsConstants.TAG_SHARE_CLICKED,null);
 
                     MakeAnimation.makeAnimationOnView(R.id.ivShare, Techniques.FadeOut, 150, 0, view);
                     MakeAnimation.makeAnimationOnView(R.id.ivShare, Techniques.FadeIn, 350, 0, view);
