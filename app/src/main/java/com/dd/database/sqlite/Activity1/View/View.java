@@ -3,10 +3,9 @@ package com.dd.database.sqlite.Activity1.View;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
@@ -107,10 +106,10 @@ public class View extends AppCompatActivity implements IView, android.view.View.
     }
 
     private void initView() {
-        mAdView = (AdView) findViewById(R.id.adView);
-        mListview1 = (ListView) findViewById(R.id.listview1);
-        mSearchEt = (EditText) findViewById(R.id.et_search);
-        mDeleteSearchTextIv = (ImageView) findViewById(R.id.iv_clearSearch);
+        mAdView = findViewById(R.id.adView);
+        mListview1 = findViewById(R.id.listview1);
+        mSearchEt = findViewById(R.id.et_search);
+        mDeleteSearchTextIv = findViewById(R.id.iv_clearSearch);
         mDeleteSearchTextIv.setOnClickListener(this);
     }
 

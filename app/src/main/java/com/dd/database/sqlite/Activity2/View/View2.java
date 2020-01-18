@@ -1,9 +1,9 @@
 package com.dd.database.sqlite.Activity2.View;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -73,10 +73,10 @@ public class View2 extends AppCompatActivity implements IView2, View.OnClickList
     }
 
     private void initView() {
-        mAdView = (AdView) findViewById(R.id.adView);
-        mRecyclerview2 = (RecyclerView) findViewById(R.id.recyclerview2);
-        mSearchEt = (EditText) findViewById(R.id.et_search);
-        mClearSearch2Iv = (ImageView) findViewById(R.id.iv_clearSearch2);
+        mAdView = findViewById(R.id.adView);
+        mRecyclerview2 = findViewById(R.id.recyclerview2);
+        mSearchEt = findViewById(R.id.et_search);
+        mClearSearch2Iv = findViewById(R.id.iv_clearSearch2);
         mClearSearch2Iv.setOnClickListener(this);
     }
 

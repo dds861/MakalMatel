@@ -4,8 +4,9 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,7 +70,7 @@ public class MyAdapter2 extends RecyclerView.Adapter<MyAdapter2.ViewHolder> {
 
         public ViewHolder(View itemView) {
             super(itemView);
-            this.mTextView = (TextView) itemView.findViewById(R.id.text2);
+            this.mTextView = itemView.findViewById(R.id.text2);
             this.imageViewShare = itemView.findViewById(R.id.ivShare);
             this.imageViewCopy = itemView.findViewById(R.id.ivCopyAll);
 
