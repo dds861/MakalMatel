@@ -41,6 +41,9 @@ rootProject.ext {
     ]
 
     appDependencies = [
+            ema       : "com.github.carlosmateo89.Ema:ema-android:" + ema.versionName,
+            kotlin    : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:" + project.kotlin_version,
+            coroutines: 'org.jetbrains.kotlinx:kotlinx-coroutines-android:' + project.coroutinesVersion
     ]
 
     dataDependencies = [
@@ -49,7 +52,7 @@ rootProject.ext {
     ]
 
     domainDependencies = [
-            ema       : "com.github.carlosmateo89.Ema:ema-android:" + ema.versionName,
+            ema       : "com.github.carlosmateo89.Ema:ema-android:" + ema.versionName
     ]
 
     commonDependencies = [
