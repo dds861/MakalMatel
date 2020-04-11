@@ -6,9 +6,9 @@
       <module fileurl="file://$PROJECT_DIR$/app/AndroidProjects-MakalMatel-app.iml" filepath="$PROJECT_DIR$/app/AndroidProjects-MakalMatel-app.iml" group="MakalMatel/app" />
       <module fileurl="file://$PROJECT_DIR$/Documents-AndroidProjects-MakalMatel.iml" filepath="$PROJECT_DIR$/Documents-AndroidProjects-MakalMatel.iml" group="MakalMatel" />
       <module fileurl="file://$PROJECT_DIR$/Gitkraken-MakalMatel.iml" filepath="$PROJECT_DIR$/Gitkraken-MakalMatel.iml" group="MakalMatel" />
-      <module fileurl="file://$PROJECT_DIR$/MakalMatel.iml" filepath="$PROJECT_DIR$/MakalMatel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MakalMatel.iml" filepath="$PROJECT_DIR$/MakalMatel.iml" group="MakalMatel" />
       <module fileurl="file://$PROJECT_DIR$/app/MakalMatel-app.iml" filepath="$PROJECT_DIR$/app/MakalMatel-app.iml" group="MakalMatel" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="MakalMatel" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="MakalMatel/app" />
       <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" group="MakalMatel/common" />
       <module fileurl="file://$PROJECT_DIR$/data/data.iml" filepath="$PROJECT_DIR$/data/data.iml" group="MakalMatel/data" />
       <module fileurl="file://$PROJECT_DIR$/domain/domain.iml" filepath="$PROJECT_DIR$/domain/domain.iml" group="MakalMatel/domain" />

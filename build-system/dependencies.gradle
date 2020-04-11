@@ -28,7 +28,16 @@ rootProject.ext {
 
     espressoVersion = "3.2.0"
 
+    appcompat = "1.0.0"
 
+    firebase_appindexing = "16.0.2"
+    sqliteassethelper = "2.0.1"
+    cardview = "1.0.0"
+    easing = "2.0@aar"
+    androidanimations = "2.3@aar"
+    firebase_core = "16.0.4"
+    firebase_ads = "16.0.1"
+    recyclerview = "1.0.0"
 
 
     ema = [
@@ -41,9 +50,22 @@ rootProject.ext {
     ]
 
     appDependencies = [
-            ema       : "com.github.carlosmateo89.Ema:ema-android:" + ema.versionName,
-            kotlin    : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:" + project.kotlin_version,
-            coroutines: 'org.jetbrains.kotlinx:kotlinx-coroutines-android:' + project.coroutinesVersion
+            ema                 : "com.github.carlosmateo89.Ema:ema-android:" + ema.versionName,
+            emaCore             : "com.github.carlosmateo89.Ema:ema-core:" + ema.versionName,
+            kotlin              : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:" + project.kotlin_version,
+            coroutines          : 'org.jetbrains.kotlinx:kotlinx-coroutines-android:' + project.coroutinesVersion,
+
+            appcompat           : "androidx.appcompat:appcompat:" + project.appcompat,
+            firebase_appindexing: "com.google.firebase:firebase-appindexing:" + project.firebase_appindexing,
+            sqliteassethelper   : "com.readystatesoftware.sqliteasset:sqliteassethelper:" + project.sqliteassethelper,
+            cardview            : "androidx.cardview:cardview:" + project.cardview,
+
+            //https://github.com/daimajia/AndroidViewAnimations библиотека анимации
+            easing              : "com.daimajia.easing:library:" + project.easing,
+            androidanimations   : "com.daimajia.androidanimations:library:" + project.androidanimations,
+            firebase_core       : "com.google.firebase:firebase-core:" + project.firebase_core,
+            firebase_ads        : "com.google.firebase:firebase-ads:" + project.firebase_ads,
+            recyclerview        : "androidx.recyclerview:recyclerview:" + project.recyclerview
     ]
 
     dataDependencies = [
@@ -52,7 +74,8 @@ rootProject.ext {
     ]
 
     domainDependencies = [
-            ema       : "com.github.carlosmateo89.Ema:ema-android:" + ema.versionName
+            emaCore: "com.github.carlosmateo89.Ema:ema-core:" + ema.versionName,
+            kotlin : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:" + project.kotlin_version,
     ]
 
     commonDependencies = [
