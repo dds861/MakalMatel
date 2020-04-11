@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import com.carmabs.ema.android.extension.getFormattedString
 import com.carmabs.ema.android.ui.EmaRecyclerAdapter
 import com.dd.database.sqlite.R
+import kotlinx.android.synthetic.main.item_left.view.*
+import kotlinx.android.synthetic.main.item_right.view.*
 
 /**
  *

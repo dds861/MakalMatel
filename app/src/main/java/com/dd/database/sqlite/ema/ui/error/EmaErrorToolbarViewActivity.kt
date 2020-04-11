@@ -3,7 +3,6 @@ package com.dd.database.sqlite.ema.ui.error
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
-import com.carmabs.ema.R
 import com.carmabs.ema.android.extension.*
 import com.carmabs.ema.android.ui.EmaActivity
 import com.carmabs.ema.core.state.EmaExtraData
@@ -11,6 +10,7 @@ import com.dd.database.sqlite.ema.injection.activityInjection
 import com.dd.database.sqlite.R
 import org.kodein.di.Kodein
 import org.kodein.di.generic.instance
+import kotlin.math.roundToInt
 
 
 /**

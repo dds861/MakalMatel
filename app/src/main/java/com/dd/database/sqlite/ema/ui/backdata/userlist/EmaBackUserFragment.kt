@@ -6,6 +6,8 @@ import com.carmabs.ema.android.extension.checkVisibility
 import com.carmabs.ema.core.state.EmaExtraData
 import com.dd.database.sqlite.ema.base.BaseFragment
 import com.dd.database.sqlite.ema.ui.backdata.EmaBackNavigator
+import kotlinx.android.synthetic.main.fragment_back.*
+import org.kodein.di.generic.instance
 
 /**
  *<p>

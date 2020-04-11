@@ -1,7 +1,6 @@
 package com.dd.database.sqlite.ema.dialog.simple
 
 import android.view.View
-import com.carmabs.ema.R
 import com.carmabs.ema.android.ui.dialog.EmaBaseDialog
 import kotlinx.android.synthetic.main.dialog_simple.view.*
 

@@ -3,6 +3,7 @@ package com.dd.database.sqlite.ema.ui.backdata.userlist
 import android.view.View
 import com.carmabs.ema.android.ui.EmaRecyclerAdapter
 import com.dd.database.sqlite.ema.ui.backdata.userlist.EmaBackUserModel
+import kotlinx.android.synthetic.main.item_back_user.view.*
 
 /**
  *<p>

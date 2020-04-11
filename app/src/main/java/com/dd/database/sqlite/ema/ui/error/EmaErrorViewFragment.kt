@@ -3,6 +3,7 @@ package com.dd.database.sqlite.ema.ui.error
 import android.view.View
 import com.carmabs.ema.core.state.EmaExtraData
 import com.dd.database.sqlite.ema.base.BaseFragment
+import kotlinx.android.synthetic.main.fragment_error.*
 import org.kodein.di.generic.instance
 
 class EmaErrorViewFragment : BaseFragment<EmaErrorState, EmaErrorViewModel, EmaErrorNavigator.Navigation>() {

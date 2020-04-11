@@ -1,7 +1,6 @@
 package com.dd.database.sqlite.ema.ui.backdata
 
 import androidx.navigation.NavController
-import com.carmabs.ema.R
 import com.carmabs.ema.android.navigation.EmaNavigator
 import com.carmabs.ema.core.navigator.EmaBaseNavigator
 import com.carmabs.ema.core.navigator.EmaNavigationState

@@ -2,9 +2,11 @@ package com.dd.database.sqlite.ema.ui.backdata.creation
 
 import android.widget.Toast
 import com.carmabs.ema.android.extra.EmaTextWatcher
+import com.carmabs.ema.core.extension.checkNull
 import com.carmabs.ema.core.state.EmaExtraData
 import com.dd.database.sqlite.ema.base.BaseFragment
 import com.dd.database.sqlite.ema.ui.backdata.EmaBackNavigator
+import kotlinx.android.synthetic.main.fragment_back_result.*
 import org.kodein.di.generic.instance
 
 /**

@@ -10,6 +10,8 @@ import com.carmabs.ema.core.state.EmaExtraData
 import com.dd.database.sqlite.ema.base.BaseFragment
 import com.dd.database.sqlite.ema.ui.home.EmaHomeToolbarViewModel
 import com.dd.database.sqlite.R
+import kotlinx.android.synthetic.main.fragment_user.*
+import kotlinx.android.synthetic.main.layout_ema_header.*
 import org.kodein.di.generic.instance
 
 

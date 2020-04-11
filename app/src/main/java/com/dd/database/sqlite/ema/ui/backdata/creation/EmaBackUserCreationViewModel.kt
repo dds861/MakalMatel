@@ -1,6 +1,5 @@
 package com.dd.database.sqlite.ema.ui.backdata.creation
 
-import com.carmabs.domain.manager.ResourceManager
 import com.carmabs.ema.core.state.EmaExtraData
 import com.dd.database.sqlite.ema.base.BaseViewModel
 import com.dd.database.sqlite.ema.ui.backdata.EmaBackNavigator

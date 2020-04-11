@@ -3,11 +3,9 @@ package com.dd.database.sqlite.ema.ui.home
 import android.app.Activity
 import android.content.Intent
 import androidx.navigation.NavController
-import com.carmabs.ema.R
 import com.carmabs.ema.android.navigation.EmaNavigator
 import com.carmabs.ema.core.navigator.EmaBaseNavigator
 import com.carmabs.ema.core.navigator.EmaNavigationState
-import com.carmabs.domain.model.User
 import com.dd.database.sqlite.ema.ui.error.EmaErrorToolbarViewActivity
 import com.dd.database.sqlite.R
 import com.dd.database.sqlite.ema.ui.user.EmaUserState

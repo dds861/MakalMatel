@@ -17,8 +17,12 @@ import com.dd.database.sqlite.ema.dialog.simple.SimpleDialogData
 import com.dd.database.sqlite.ema.dialog.simple.SimpleDialogListener
 import com.dd.database.sqlite.ema.dialog.simple.SimpleDialogProvider
 import com.dd.database.sqlite.R
+import com.dd.domain.exception.LoginException
 import com.dd.domain.exception.PasswordEmptyException
 import com.dd.domain.exception.UserEmptyException
+import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.layout_password.*
+import kotlinx.android.synthetic.main.layout_user.*
 import org.kodein.di.generic.instance
 
 /**
