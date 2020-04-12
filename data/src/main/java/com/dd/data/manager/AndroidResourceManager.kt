@@ -33,6 +33,10 @@ class AndroidResourceManager(private val context: Context) : ResourceManager {
     }
 
     override fun getNumberPeople(number: Int): String {
-        return String.format(context.getString(R.string.user_number_people),number)
+        return String.format(context.getString(R.string.user_number_people), number)
+    }
+
+    override fun getCategoryList(): List<String> {
+        return listOf("a", "b", "d", "e", "f", "g", "h", "i")
     }
 }

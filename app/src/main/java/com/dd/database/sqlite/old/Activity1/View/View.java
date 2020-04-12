@@ -107,7 +107,7 @@ public class View extends AppCompatActivity implements IView, android.view.View.
 
     private void initView() {
         mAdView = findViewById(R.id.adView);
-        mListview1 = findViewById(R.id.listview1);
+        mListview1 = findViewById(R.id.rvCategory);
         mSearchEt = findViewById(R.id.et_search);
         mDeleteSearchTextIv = findViewById(R.id.iv_clearSearch);
         mDeleteSearchTextIv.setOnClickListener(this);

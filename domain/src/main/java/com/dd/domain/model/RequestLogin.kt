@@ -1,7 +1,5 @@
 package com.dd.domain.model
 
-import java.io.Serializable
-
 /**
  *  *<p>
  * Copyright (c) 2020, Carmabs. All rights reserved.
@@ -11,4 +9,4 @@ import java.io.Serializable
  * @author <a href=“mailto:apps.carmabs@gmail.com”>Carlos Mateo</a>
  */
 
-data class User(val name: String = "", val surname: String = "") : Serializable
+data class RequestLogin(val name: String = "", val password: String = "")

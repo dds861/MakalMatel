@@ -43,7 +43,7 @@ public class MyAdapter2 extends RecyclerView.Adapter<MyAdapter2.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.items2, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_makal, parent, false);
 
         return new ViewHolder(view);
     }

@@ -16,7 +16,8 @@ import com.dd.domain.manager.ResourceManager
  * Date: 2019-11-07
  */
 
-class EmaBackUserCreationViewModel(private val resourceManager: ResourceManager) : BaseViewModel<EmaBackUserCreationState, EmaBackNavigator.Navigation>() {
+class EmaBackUserCreationViewModel(private val resourceManager: ResourceManager) :
+        BaseViewModel<EmaBackUserCreationState, EmaBackNavigator.Navigation>() {
 
     companion object {
         const val RESULT_USER = 0

@@ -11,6 +11,7 @@ import com.dd.database.sqlite.ui.backdata.creation.EmaBackUserCreationViewModel
 import com.dd.database.sqlite.ui.backdata.userlist.EmaBackUserViewModel
 import com.dd.database.sqlite.ui.category.CategoryViewModel
 import com.dd.database.sqlite.ui.home.EmaHomeViewModel
+import com.dd.database.sqlite.ui.makals.MakalViewModel
 import com.dd.database.sqlite.ui.user.EmaUserViewModel
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
@@ -48,5 +49,7 @@ fun fragmentInjection(fragment: Fragment) = Kodein.Module(name = "FragmentModule
 
 
 
-    bind<CategoryViewModel>() with provider { CategoryViewModel(instance(), instance()) }
+    bind<CategoryViewModel>() with provider { CategoryViewModel(instance()) }
+
+    bind<MakalViewModel>() with provider { MakalViewModel(instance(), instance()) }
 }

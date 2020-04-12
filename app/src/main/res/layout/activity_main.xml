@@ -68,7 +68,7 @@
     </androidx.cardview.widget.CardView>
 
     <ListView
-        android:id="@+id/listview1"
+        android:id="@+id/rvCategory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/adView"

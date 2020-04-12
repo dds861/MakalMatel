@@ -1,12 +1,14 @@
 package com.dd.database.sqlite.ui.category
 
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.carmabs.ema.core.state.EmaExtraData
 import com.dd.database.sqlite.R
 import com.dd.database.sqlite.base.BaseFragment
+import kotlinx.android.synthetic.main.fragment_category.*
 import org.kodein.di.generic.instance
 
-class CategoryViewFragment
-    : BaseFragment<CategoryState, CategoryViewModel, CategoryNavigator.Navigation>() {
+class CategoryViewFragment : BaseFragment<CategoryState, CategoryViewModel, CategoryNavigator.Navigation>() {
 
     /**
      * Default variables
@@ -19,28 +21,48 @@ class CategoryViewFragment
     override val viewModelSeed: CategoryViewModel by instance()
 
     /**
+     * Custom variables
+     */
+
+
+    /**
      * Default functions
      */
 
-    override fun onAlternative(data: EmaExtraData) {
+    override fun onInitialized(viewModel: CategoryViewModel) {
+        setupRecycler()
     }
-
-    override fun onNormal(data: CategoryState) {
-    }
-
-    override fun onError(error: Throwable){
-
-    }
-
 
     override fun onSingleEvent(data: EmaExtraData) {
     }
 
     override fun onSingle(data: EmaExtraData) {
-        TODO("Not yet implemented")
     }
 
-    override fun onInitialized(viewModel: CategoryViewModel) {
+    override fun onAlternative(data: EmaExtraData) {
     }
 
+    override fun onNormal(data: CategoryState) {
+        loadRecyclerViews(data)
+    }
+
+    override fun onError(error: Throwable) {
+
+    }
+
+    /**
+     * Custom functions
+     */
+
+    private fun setupRecycler() {
+        rvCategory.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+    }
+
+    private fun loadRecyclerViews(data: CategoryState) {
+        rvCategory.adapter = data.listCategories.toMutableList().let { it ->
+            CategoryAdapter(listItems = it) {
+                viewModelSeed.onActionCategoryClick(it)
+            }
+        }
+    }
 }

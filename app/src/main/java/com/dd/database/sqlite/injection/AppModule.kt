@@ -1,6 +1,7 @@
 package com.dd.database.sqlite.injection
 
 import android.app.Application
+import com.dd.domain.usecase.GetMakalUseCase
 import com.dd.domain.usecase.GetCategoryUseCase
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
@@ -24,5 +25,6 @@ fun appInjection(application: Application) = Kodein.Module(name = "AppModule") {
 
 
     bind<GetCategoryUseCase>() with provider { GetCategoryUseCase(instance()) }
+    bind<GetMakalUseCase>() with provider { GetMakalUseCase(instance()) }
 
 }

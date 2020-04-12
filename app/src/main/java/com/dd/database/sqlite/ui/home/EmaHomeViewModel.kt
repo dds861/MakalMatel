@@ -6,7 +6,7 @@ import com.dd.database.sqlite.base.BaseViewModel
 import com.dd.database.sqlite.ui.user.EmaUserState
 import com.dd.domain.exception.UserEmptyException
 import com.dd.domain.manager.ResourceManager
-import com.dd.domain.model.LoginRequest
+import com.dd.domain.model.RequestLogin
 import com.dd.domain.usecase.LoginUseCase
 
 /**
@@ -57,7 +57,7 @@ class EmaHomeViewModel(
             executeUseCaseWithException(
                     {
                         updateToAlternativeState()
-                        val user = loginUseCase.execute(LoginRequest(it.userName, it.userPassword))
+                        val user = loginUseCase.execute(RequestLogin(it.userName, it.userPassword))
                         updateToNormalState()
                         notifySingleEvent(EmaExtraData(EVENT_MESSAGE, resourceManager.getCongratulations()))
                         navigate(

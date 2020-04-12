@@ -11,16 +11,6 @@ import org.kodein.di.generic.instance
 import org.kodein.di.generic.provider
 import org.kodein.di.generic.singleton
 
-/**
- *  *<p>
- * Copyright (c) 2020, Carmabs. All rights reserved.
- * </p>
- *
- * @author <a href=“mailto:apps.carmabs@gmail.com”>Carlos Mateo Benito</a>
- *
- * Created by: Carlos Mateo Benito on 20/1/19.
- */
-
 fun appDataInjection() = Kodein.Module(name = "AppDataModule") {
 
    bind<Repository>() with singleton { MockRepository() }

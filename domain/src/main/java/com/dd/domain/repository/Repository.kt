@@ -1,9 +1,11 @@
 package com.dd.domain.repository
 
-import com.dd.domain.model.LoginRequest
+import com.dd.domain.model.RequestMakalModel
+import com.dd.domain.model.ResponseMakalModel
+import com.dd.domain.model.RequestLogin
 import com.dd.domain.model.RequestCategoryModel
 import com.dd.domain.model.ResponseCategoryModel
-import com.dd.domain.model.User
+import com.dd.domain.model.ResponseUser
 
 /**
  *  *<p>
@@ -16,7 +18,9 @@ import com.dd.domain.model.User
 
 interface Repository {
 
-    suspend fun login(loginRequest: LoginRequest): User
+    suspend fun login(requestLogin: RequestLogin): ResponseUser
 
     suspend fun getCategory(requestCategoryModel: RequestCategoryModel): ResponseCategoryModel
+
+    suspend fun getMakal(requestMakalModel: RequestMakalModel): ResponseMakalModel
 }
