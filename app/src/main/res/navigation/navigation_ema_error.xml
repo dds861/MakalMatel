@@ -6,6 +6,6 @@
     app:startDestination="@id/emaErrorViewFragment">
     <fragment
         android:id="@+id/emaErrorViewFragment"
-        android:name="com.dd.database.sqlite.ema.ui.error.EmaErrorViewFragment"
+        android:name="com.dd.database.sqlite.ui.error.EmaErrorViewFragment"
         tools:layout="@layout/fragment_error"/>
 </navigation>

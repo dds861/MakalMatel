@@ -2,6 +2,8 @@ package com.dd.data.repository
 
 
 import com.dd.domain.model.LoginRequest
+import com.dd.domain.model.RequestCategoryModel
+import com.dd.domain.model.ResponseCategoryModel
 import com.dd.domain.model.User
 import com.dd.domain.repository.Repository
 import kotlinx.coroutines.delay
@@ -24,5 +26,12 @@ class MockRepository : Repository {
         if (loginRequest.name.equals("Admin", true) && loginRequest.password == "1234")
             return User("Admin", "EMA based on MVVM Architecture, powered by Carmabs")
         else throw LoginException()
+    }
+
+
+    override suspend fun getCategory(requestCategoryModel: RequestCategoryModel): ResponseCategoryModel {
+        return ResponseCategoryModel(
+                result = "AnyText"
+        )
     }
 }

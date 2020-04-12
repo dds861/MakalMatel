@@ -1,6 +1,8 @@
 package com.dd.domain.repository
 
 import com.dd.domain.model.LoginRequest
+import com.dd.domain.model.RequestCategoryModel
+import com.dd.domain.model.ResponseCategoryModel
 import com.dd.domain.model.User
 
 /**
@@ -15,4 +17,6 @@ import com.dd.domain.model.User
 interface Repository {
 
     suspend fun login(loginRequest: LoginRequest): User
+
+    suspend fun getCategory(requestCategoryModel: RequestCategoryModel): ResponseCategoryModel
 }

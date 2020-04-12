@@ -31,6 +31,23 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
+
+    flavorDimensions 'environment'
+
+    productFlavors {
+        mock {
+            dimension 'environment'
+            buildConfigField 'String', 'DB_NAME', '"MockDatabase"'
+            buildConfigField 'String', 'URL_LDA', '"https://www.site.com"'
+        }
+
+        pro {
+            dimension 'environment'
+            buildConfigField 'String', 'DB_NAME', '"LocalLdaDatabase"'
+            buildConfigField 'String', 'URL_LDA', '"https://www.site.com"'
+        }
+
+    }
 }
 
 dependencies {
@@ -41,4 +58,6 @@ dependencies {
     //Kotlin
     implementation dataDependencies.kotlin
     implementation dataDependencies.coroutines
+    implementation dataDependencies.retrofit
+    implementation dataDependencies.converter_gson
 }

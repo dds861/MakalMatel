@@ -34,6 +34,19 @@ android {
         exclude 'META-INF/LICENSE'
         exclude 'META-INF/DEPENDENCIES'
     }
+
+    flavorDimensions 'environment'
+
+    productFlavors {
+        mock {
+            dimension 'environment'
+        }
+
+        pro {
+            dimension 'environment'
+        }
+
+    }
 }
 
 dependencies {
@@ -58,7 +71,9 @@ dependencies {
     api appDependencies.firebase_core
     api appDependencies.firebase_ads
     api appDependencies.recyclerview
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 }
 
 
 //apply plugin: 'com.google.gms.google-services'
+

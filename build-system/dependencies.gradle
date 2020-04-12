@@ -31,13 +31,24 @@ rootProject.ext {
     appcompat = "1.0.0"
 
     firebase_appindexing = "16.0.2"
+
     sqliteassethelper = "2.0.1"
+
     cardview = "1.0.0"
+
     easing = "2.0@aar"
+
     androidanimations = "2.3@aar"
+
     firebase_core = "16.0.4"
+
     firebase_ads = "16.0.1"
+
     recyclerview = "1.0.0"
+
+    retrofit = "2.8.1"
+
+    converter_gson = "2.1.0"
 
 
     ema = [
@@ -70,7 +81,9 @@ rootProject.ext {
 
     dataDependencies = [
             kotlin    : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:" + project.kotlin_version,
-            coroutines: 'org.jetbrains.kotlinx:kotlinx-coroutines-android:' + project.coroutinesVersion
+            coroutines: 'org.jetbrains.kotlinx:kotlinx-coroutines-android:' + project.coroutinesVersion,
+            retrofit  : 'com.squareup.retrofit2:retrofit:' + project.retrofit,
+            converter_gson  : 'com.squareup.retrofit2:converter-gson:' + project.converter_gson
     ]
 
     domainDependencies = [
@@ -85,32 +98,4 @@ rootProject.ext {
             kodein       : "org.kodein.di:kodein-di-generic-jvm:" + project.kodeinVersion,
             kodeinAndroid: "org.kodein.di:kodein-di-framework-android-x:" + project.kodeinVersion,
     ]
-//
-//    emaCore = [
-//            kotlin    : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:" + project.kotlin_version,
-//            coroutines: 'org.jetbrains.kotlinx:kotlinx-coroutines-android:' + project.coroutinesVersion
-//    ]
-//
-//    emaTesting = [
-//            espresso   : "androidx.test.espresso:espresso-core:" + project.espressoVersion,
-//            core       : "androidx.test:core:" + project.coreVersion,
-//            coreKotlin : "androidx.test:core-ktx:" + project.coreVersion,
-//            junit      : "androidx.test.ext:junit:" + project.extJUnitVersion,
-//            rules      : "androidx.test:rules:" + project.rulesVersion,
-//            junitKotlin: "androidx.test.ext:junit-ktx:" + project.extJUnitVersion,
-//            mockito    : "org.mockito:mockito-core:" + project.mockitoVersion,
-//            archTesting: "android.arch.core:core-testing:" + project.archTesting
-//    ]
-//
-//    emaAndroid = [
-//            navigationFragment: "androidx.navigation:navigation-fragment-ktx:" + project.navigationVersion,
-//            navigationUI      : "androidx.navigation:navigation-ui-ktx:" + project.navigationVersion,
-//            constraint        : "androidx.constraintlayout:constraintlayout:" + project.constraintVersion,
-//            design            : "com.android.support:design:" + project.designVersion,
-//            material          : "com.google.android.material:material:" + project.materialVersion,
-//            lifecycle         : "androidx.lifecycle:lifecycle-extensions:" + project.lifecycleVersion,
-//            kodein            : "org.kodein.di:kodein-di-generic-jvm:" + project.kodeinVersion,
-//            kodeinAndroid     : "org.kodein.di:kodein-di-framework-android-x:" + project.kodeinVersion,
-//    ]
-
 }

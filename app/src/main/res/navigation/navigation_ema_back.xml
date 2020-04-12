@@ -6,12 +6,12 @@
     app:startDestination="@id/emaBackFragment">
     <fragment
         android:id="@+id/emaBackResultFragment"
-        android:name="com.dd.database.sqlite.ema.ui.backdata.creation.EmaBackUserCreationFragment"
+        android:name="com.dd.database.sqlite.ui.backdata.creation.EmaBackUserCreationFragment"
         android:label="@string/back_toolbar_title"
         tools:layout="@layout/fragment_back_result"/>
     <fragment
         android:id="@+id/emaBackFragment"
-        android:name="com.dd.database.sqlite.ema.ui.backdata.userlist.EmaBackUserFragment"
+        android:name="com.dd.database.sqlite.ui.backdata.userlist.EmaBackUserFragment"
         android:label="@string/back_result_toolbar_title"
         tools:layout="@layout/fragment_back">
         <action
