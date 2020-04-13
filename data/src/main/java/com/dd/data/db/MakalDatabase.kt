@@ -17,6 +17,6 @@ import com.dd.data.db.entities.MakalDbData
         exportSchema = true
 )
 abstract class MakalDatabase : RoomDatabase() {
-    abstract fun maakalDao(): MakalDbDao
+    abstract fun makalDao(): MakalDbDao
     abstract fun categoryDao(): CategoryDbDao
 }

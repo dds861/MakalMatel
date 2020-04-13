@@ -50,7 +50,7 @@ rootProject.ext {
 
     converter_gson = "2.1.0"
 
-    roomVersion = '2.1.0'
+    roomVersion = '2.2.3'
 
     sqlcipherVersion = "4.3.0"
 

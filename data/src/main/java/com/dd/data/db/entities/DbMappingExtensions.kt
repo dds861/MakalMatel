@@ -1,16 +1,19 @@
 package com.dd.data.db.entities
 
-import android.net.Uri
+import com.dd.domain.model.CategoryModel
+import com.dd.domain.model.MakalModel
+import com.dd.domain.model.ResponseCategoryModel
+import com.dd.domain.model.ResponseMakalModel
 
 
+fun List<CategoryDbData>.toDomainModel(): ResponseCategoryModel {
+    return ResponseCategoryModel(
+            list = this.map { CategoryModel(category_id = it.category_id, category_text = it.category_text) }
+    )
+}
 
-//fun VerificationImageModel.toDbModel(uri: Uri): VerificationVehicleImageDbData {
-//    return VerificationVehicleImageDbData(
-//            side = side,
-//            image = uri.toString(),
-//            policeId = policeModel.toDbModel().ref,
-//            location = locationModel.toDbModel(),
-//            uploaded = uploaded
-//    )
-//}
-
+fun List<MakalDbData>.toDomainModel(): ResponseMakalModel {
+    return ResponseMakalModel(
+            list = this.map { MakalModel(makal_id = it.makal_id, makal_text = it.makal_text) }
+    )
+}

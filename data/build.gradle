@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion ema.compileSdk
@@ -67,7 +68,7 @@ dependencies {
     implementation dataDependencies.converter_gson
     implementation dataDependencies.room
     implementation dataDependencies.roomKt
-    annotationProcessor dataDependencies.roomCompiler
+    kapt dataDependencies.roomCompiler
     implementation dataDependencies.sqlcipher
     implementation dataDependencies.androidxSqlite
 }

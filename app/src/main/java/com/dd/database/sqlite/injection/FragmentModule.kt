@@ -36,7 +36,7 @@ fun fragmentInjection(fragment: Fragment) = Kodein.Module(name = "FragmentModule
     bind<EmaBaseDialogProvider>(tag = DIALOG_TAG_LOADING) with provider { LoadingDialogProvider(instance()) }
 
 
-    bind<CategoryViewModel>() with provider { CategoryViewModel(instance()) }
+    bind<CategoryViewModel>() with provider { CategoryViewModel(instance(), instance()) }
 
     bind<MakalViewModel>() with provider { MakalViewModel(instance(), instance()) }
 }

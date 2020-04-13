@@ -4,6 +4,9 @@ import android.content.Context
 import androidx.room.Room
 import com.dd.data.BuildConfig
 import com.dd.data.db.MakalDatabase
+import com.dd.data.db.entities.toDomainModel
+import com.dd.domain.model.RequestCategoryModel
+import com.dd.domain.model.RequestMakalModel
 import com.dd.domain.model.ResponseCategoryModel
 import com.dd.domain.model.ResponseMakalModel
 import com.dd.domain.repository.LocalStorageRepository
@@ -12,12 +15,11 @@ import net.sqlcipher.database.SQLiteException
 import net.sqlcipher.database.SupportFactory
 import java.io.File
 import java.io.IOException
-import java.util.logging.Logger
 
 
 class RoomLocalStorageRepository(
-        private val context: Context,
-        private val logger: Logger) : LocalStorageRepository {
+        private val context: Context
+) : LocalStorageRepository {
 
     private val dbSecretKey = BuildConfig.DB_SECRET_KEY
     private val passphrase: ByteArray = SQLiteDatabase.getBytes(dbSecretKey.toCharArray())
@@ -28,6 +30,7 @@ class RoomLocalStorageRepository(
                 context.applicationContext,
                 MakalDatabase::class.java,
                 BuildConfig.DB_NAME)
+        build.createFromAsset("database/makal.db")
         build.build()
     }
 
@@ -60,11 +63,14 @@ class RoomLocalStorageRepository(
         }
     }
 
+    override fun getAllCategories(request: RequestCategoryModel): ResponseCategoryModel {
+        return db.categoryDao().getAllCategories().toDomainModel()
 
-
-    override fun getAllCategories(responseCategoryModel: ResponseCategoryModel) {
     }
 
-    override fun getAllMakals(responseMakalModel: ResponseMakalModel) {
+    override fun getAllMakals(request: RequestMakalModel): ResponseMakalModel {
+        return db.makalDao().getAllMakals().toDomainModel()
     }
+
+
 }
