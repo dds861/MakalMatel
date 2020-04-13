@@ -6,6 +6,11 @@ android {
     compileSdkVersion ema.compileSdk
     buildToolsVersion ema.buildTools
 
+    // Values from keystore.properties file
+    def keystorePropertiesFile = rootProject.file("data/keystore.properties")
+    def keystoreProperties = new Properties()
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
     defaultConfig {
         minSdkVersion ema.minSdk
         targetSdkVersion ema.targetSdk
@@ -37,14 +42,16 @@ android {
     productFlavors {
         mock {
             dimension 'environment'
-            buildConfigField 'String', 'DB_NAME', '"MockDatabase"'
+            buildConfigField 'String', 'DB_NAME', '"makal"'
             buildConfigField 'String', 'URL_LDA', '"https://www.site.com"'
+            buildConfigField "String", "DB_SECRET_KEY", keystoreProperties["DB_SECRET_KEY"]
         }
 
         pro {
             dimension 'environment'
-            buildConfigField 'String', 'DB_NAME', '"LocalLdaDatabase"'
+            buildConfigField 'String', 'DB_NAME', '"makal"'
             buildConfigField 'String', 'URL_LDA', '"https://www.site.com"'
+            buildConfigField "String", "DB_SECRET_KEY", keystoreProperties["DB_SECRET_KEY"]
         }
 
     }
@@ -54,10 +61,13 @@ dependencies {
     implementation project(path: ':domain')
     implementation project(path: ':common')
 
-
-    //Kotlin
     implementation dataDependencies.kotlin
     implementation dataDependencies.coroutines
     implementation dataDependencies.retrofit
     implementation dataDependencies.converter_gson
+    implementation dataDependencies.room
+    implementation dataDependencies.roomKt
+    annotationProcessor dataDependencies.roomCompiler
+    implementation dataDependencies.sqlcipher
+    implementation dataDependencies.androidxSqlite
 }

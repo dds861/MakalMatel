@@ -12,15 +12,5 @@ package com.dd.domain.manager
 
 interface ResourceManager {
 
-    fun getResultErrorFillName(): String
-
-    fun getResultErrorFillSurname(): String
-
-    fun getHomeUserToolbarTitle(): String
-
-    fun getCongratulations(): String
-
-    fun getNumberPeople(number: Int): String
-
     fun getCategoryList(): List<String>
 }

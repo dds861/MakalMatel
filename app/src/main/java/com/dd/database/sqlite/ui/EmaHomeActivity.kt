@@ -7,7 +7,6 @@ import com.carmabs.ema.android.extension.toDateFormat
 import com.carmabs.ema.core.state.EmaExtraData
 import com.dd.database.sqlite.base.BaseActivity
 import com.dd.database.sqlite.R
-import com.dd.database.sqlite.ui.home.EmaHomeNavigator
 import org.kodein.di.generic.instance
 
 /**

@@ -16,26 +16,6 @@ import com.dd.domain.manager.ResourceManager
 
 class AndroidResourceManager(private val context: Context) : ResourceManager {
 
-    override fun getResultErrorFillName(): String {
-        return context.getString(R.string.back_result_fill_name)
-    }
-
-    override fun getResultErrorFillSurname(): String {
-        return context.getString(R.string.back_result_fill_surname)
-    }
-
-    override fun getHomeUserToolbarTitle(): String {
-        return context.getString(R.string.user_toolbar_title)
-    }
-
-    override fun getCongratulations(): String {
-        return context.getString(R.string.home_congratulations)
-    }
-
-    override fun getNumberPeople(number: Int): String {
-        return String.format(context.getString(R.string.user_number_people), number)
-    }
-
     override fun getCategoryList(): List<String> {
         return listOf("a", "b", "d", "e", "f", "g", "h", "i")
     }

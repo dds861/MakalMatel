@@ -2,7 +2,6 @@ package com.dd.database.sqlite.ui
 
 import com.carmabs.ema.core.state.EmaExtraData
 import com.dd.database.sqlite.base.BaseViewModel
-import com.dd.database.sqlite.ui.home.EmaHomeNavigator
 
 /**
  *  *<p>

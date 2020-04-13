@@ -2,7 +2,6 @@ package com.dd.database.sqlite.ui.category
 
 import com.carmabs.ema.core.constants.STRING_EMPTY
 import com.carmabs.ema.core.state.EmaBaseState
-import com.dd.database.sqlite.ui.backdata.userlist.EmaBackUserModel
 
 data class CategoryState(
         val default: String = STRING_EMPTY,

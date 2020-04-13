@@ -20,11 +20,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.backdata.EmaBackToolbarActivity" />
-
-        <activity
-            android:name=".ui.error.EmaErrorToolbarViewActivity"
-            android:launchMode="singleInstance" />
 
         <receiver android:name=".widget.View.ViewWidget">
             <intent-filter>

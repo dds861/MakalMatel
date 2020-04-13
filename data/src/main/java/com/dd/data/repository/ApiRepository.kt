@@ -5,10 +5,8 @@ import com.dd.data.net.model.toDataModel
 import com.dd.data.net.model.toDomainModel
 import com.dd.domain.model.RequestMakalModel
 import com.dd.domain.model.ResponseMakalModel
-import com.dd.domain.model.RequestLogin
 import com.dd.domain.model.RequestCategoryModel
 import com.dd.domain.model.ResponseCategoryModel
-import com.dd.domain.model.ResponseUser
 import com.dd.domain.repository.Repository
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -49,10 +47,6 @@ class ApiLdaRepository() : Repository {
     /**                                IMPLEMENTATIONS                                            */
     /**                                                                                           */
     /**-------------------------------------------------------------------------------------------*/
-
-    override suspend fun login(requestLogin: RequestLogin): ResponseUser {
-        return ResponseUser()
-    }
 
 
     override suspend fun getCategory(requestCategoryModel: RequestCategoryModel): ResponseCategoryModel {
