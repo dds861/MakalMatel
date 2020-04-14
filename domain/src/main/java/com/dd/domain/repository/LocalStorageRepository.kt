@@ -20,4 +20,6 @@ interface LocalStorageRepository {
     fun getAllCategories(request: RequestCategoryModel): ResponseCategoryModel
 
     fun getAllMakals(request: RequestMakalModel): ResponseMakalModel
+
+    fun getMakalsByCategoryId(request: RequestMakalModel): ResponseMakalModel
 }

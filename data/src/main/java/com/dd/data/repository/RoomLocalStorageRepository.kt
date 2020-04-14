@@ -81,5 +81,9 @@ class RoomLocalStorageRepository(
         return db.makalDao().getAllMakals().toDomainModel()
     }
 
+    override fun getMakalsByCategoryId(request: RequestMakalModel): ResponseMakalModel {
+        return db.makalDao().getMakalsByCategoryId(request.categoryId).toDomainModel()
+    }
+
 
 }

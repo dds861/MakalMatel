@@ -10,18 +10,16 @@ import com.dd.domain.usecase.GetLocalCategoryUseCase
 
 class CategoryViewModel(
         private val resourceManager: ResourceManager,
-        private val categoryUseCase: GetLocalCategoryUseCase
+        private val getLocalCategoryUseCase: GetLocalCategoryUseCase
 ) : BaseViewModel<CategoryState, CategoryNavigator.Navigation>() {
 
 
     override val initialViewState: CategoryState = CategoryState()
 
     override fun onStartFirstTime(statePreloaded: Boolean) {
-//        val list: List<CategoryModel> = resourceManager.getCategoryList().map { CategoryModel(title = it) }
-
         executeUseCaseWithException(
                 {
-                    val responseCategoryModel= categoryUseCase.execute(RequestCategoryModel())
+                    val responseCategoryModel= getLocalCategoryUseCase.execute(RequestCategoryModel())
                     updateToNormalState {
                         copy(
                                 listCategories = responseCategoryModel.list
@@ -37,7 +35,7 @@ class CategoryViewModel(
         navigate(
                 CategoryNavigator.Navigation.Makal(
                         MakalState(
-                                categoryIdClicked = categoryModel.category_id
+                                categoryId = categoryModel.category_id
                         )
                 )
         )
