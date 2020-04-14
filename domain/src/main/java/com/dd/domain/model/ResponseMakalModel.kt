@@ -12,5 +12,7 @@ data class ResponseMakalModel(
 
 data class MakalModel(
         val makal_id: Int = INT_ZERO,
-        val makal_text: String = STRING_EMPTY
+        val makal_text: String = STRING_EMPTY,
+        val copyClicked: Boolean = false,
+        val shareClicked: Boolean = false
 ) : EmaModel

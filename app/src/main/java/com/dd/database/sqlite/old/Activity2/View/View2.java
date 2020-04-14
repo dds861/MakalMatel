@@ -74,7 +74,7 @@ public class View2 extends AppCompatActivity implements IView2, View.OnClickList
 
     private void initView() {
         mAdView = findViewById(R.id.adView);
-        mRecyclerview2 = findViewById(R.id.recyclerview2);
+        mRecyclerview2 = findViewById(R.id.rvMakals);
         mSearchEt = findViewById(R.id.et_search);
         mClearSearch2Iv = findViewById(R.id.iv_clearSearch2);
         mClearSearch2Iv.setOnClickListener(this);
