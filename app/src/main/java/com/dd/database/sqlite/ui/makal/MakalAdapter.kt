@@ -11,7 +11,8 @@ class MakalAdapter(override val listItems: MutableList<MakalModel> = mutableList
     override val layoutItemId: Int = R.layout.item_makal
 
     override fun View.bind(item: MakalModel, viewType: Int) {
-        text2.text = item.makal_text
+        text2.text = item.makal_text.replace("\\\\n".toRegex(), "\n")
+
 
 
         ivCopy.setOnClickListener { itemListener.invoke(MakalModel(makal_id = item.makal_id, makal_text = item.makal_text, copyClicked = true)) }
