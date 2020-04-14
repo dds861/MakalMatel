@@ -1,5 +1,6 @@
 package com.dd.database.sqlite.ui.category
 
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.carmabs.ema.core.state.EmaExtraData
@@ -47,6 +48,7 @@ class CategoryViewFragment : BaseFragment<CategoryState, CategoryViewModel, Cate
     }
 
     override fun onError(error: Throwable) {
+        Log.i("autolog", "error: " + error);
 
     }
 

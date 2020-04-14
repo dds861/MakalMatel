@@ -10,13 +10,13 @@ import com.dd.data.db.entities.MakalDbData
 
 @Database(
         entities = [
-            MakalDbData::class,
-            CategoryDbData::class
+            CategoryDbData::class,
+            MakalDbData::class
         ],
-        version = 1,
-        exportSchema = true
+        version = 2,
+        exportSchema = false
 )
 abstract class MakalDatabase : RoomDatabase() {
-    abstract fun makalDao(): MakalDbDao
     abstract fun categoryDao(): CategoryDbDao
+    abstract fun makalDao(): MakalDbDao
 }

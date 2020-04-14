@@ -21,10 +21,10 @@ class CategoryViewModel(
 
         executeUseCaseWithException(
                 {
-                    val list: List<CategoryModel> = categoryUseCase.execute(RequestCategoryModel()).list
+                    val responseCategoryModel= categoryUseCase.execute(RequestCategoryModel())
                     updateToNormalState {
                         copy(
-                                listCategories = list
+                                listCategories = responseCategoryModel.list
                         )
                     }
                 },
