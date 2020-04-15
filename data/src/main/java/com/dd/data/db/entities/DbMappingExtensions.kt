@@ -14,6 +14,6 @@ fun List<CategoryDbData>.toDomainModel(): ResponseCategoryModel {
 
 fun List<MakalDbData>.toDomainModel(): ResponseMakalModel {
     return ResponseMakalModel(
-            list = this.map { MakalModel(makal_id = it.category_id, makal_text = it.makal_text) }
+            list = this.map { MakalModel(makal_id = it.category_id, makal_text = it.makal_text.replace("\\\\n".toRegex(), "\n")) }
     )
 }

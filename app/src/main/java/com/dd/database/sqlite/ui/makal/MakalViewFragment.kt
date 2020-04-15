@@ -1,5 +1,10 @@
 package com.dd.database.sqlite.ui.makal
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
+import android.content.Intent
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.carmabs.ema.core.state.EmaExtraData
@@ -50,12 +55,27 @@ class MakalViewFragment
         rvMakals.adapter = data.listMakals.toMutableList().let { it ->
             MakalAdapter(listItems = it) {
                 if (it.copyClicked) {
-                    viewModelSeed.onActionCopyClick(it)
+                    copyToClipboard(it.makal_text)
                 } else if (it.shareClicked) {
-                    viewModelSeed.onActionShareClick(it)
+                    shareText(it.makal_text)
                 }
             }
         }
+    }
+
+    private fun copyToClipboard(text: String) {
+        val clipboard = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager?
+        val clip = ClipData.newPlainText("Makal text", text)
+        clipboard?.setPrimaryClip(clip)
+        Toast.makeText(context, R.string.TextCopied, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun shareText(text: String) {
+        val sharingIntent = Intent(Intent.ACTION_SEND)
+        sharingIntent.type = "text/plain"
+        sharingIntent.putExtra(Intent.EXTRA_SUBJECT, text)
+        sharingIntent.putExtra(Intent.EXTRA_TEXT, text)
+        startActivity(Intent.createChooser(sharingIntent, resources.getString(R.string.share_using)))
     }
 }
 
