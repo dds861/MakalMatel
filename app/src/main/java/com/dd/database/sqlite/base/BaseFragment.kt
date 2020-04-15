@@ -8,13 +8,6 @@ import com.carmabs.ema.core.state.EmaExtraData
 import com.dd.database.sqlite.injection.fragmentInjection
 import org.kodein.di.Kodein
 
-/**
- *  *<p>
- * Copyright (c) 2020, Carmabs. All rights reserved.
- * </p>
- *
- * @author <a href=“mailto:apps.carmabs@gmail.com”>Carlos Mateo</a>
- */
 
 abstract class BaseFragment<S : EmaBaseState, VM : EmaViewModel<S, NS>, NS : EmaNavigationState> : EmaFragment<S, VM, NS>() {
 

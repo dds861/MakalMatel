@@ -5,14 +5,6 @@ import com.dd.domain.model.ResponseMakalModel
 import com.dd.domain.model.RequestCategoryModel
 import com.dd.domain.model.ResponseCategoryModel
 
-/**
- *  *<p>
- * Copyright (c) 2020, Carmabs. All rights reserved.
- * </p>
- *
- *
- * @author <a href=“mailto:apps.carmabs@gmail.com”>Carlos Mateo</a>
- */
 
 interface Repository {
 

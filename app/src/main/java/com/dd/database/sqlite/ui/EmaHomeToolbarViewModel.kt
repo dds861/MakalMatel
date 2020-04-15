@@ -3,15 +3,6 @@ package com.dd.database.sqlite.ui
 import com.carmabs.ema.core.state.EmaExtraData
 import com.dd.database.sqlite.base.BaseViewModel
 
-/**
- *  *<p>
- * Copyright (c) 2020, Carmabs. All rights reserved.
- * </p>
- *
- * @author <a href=“mailto:apps.carmabs@gmail.com”>Carlos Mateo Benito</a>
- *
- * Created by: Carlos Mateo Benito on 20/1/19.
- */
 class EmaHomeToolbarViewModel : BaseViewModel<EmaHomeToolbarState, EmaHomeNavigator.Navigation>() {
 
     override fun onStartFirstTime(statePreloaded: Boolean) {
@@ -33,4 +24,5 @@ class EmaHomeToolbarViewModel : BaseViewModel<EmaHomeToolbarState, EmaHomeNaviga
     }
 
     override val initialViewState: EmaHomeToolbarState = EmaHomeToolbarState()
+
 }

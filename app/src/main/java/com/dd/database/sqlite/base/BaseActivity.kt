@@ -8,14 +8,6 @@ import com.dd.database.sqlite.injection.activityInjection
 import org.kodein.di.Kodein
 
 
-/**
- * Base Activity. OverrideTheme -> True, the theme is overriden by AppTheme
- * Injection is provided
- *
- *
- * @author <a href=“mailto:apps.carmabs@gmail.com”>Carlos Mateo</a>
- */
-
 abstract class BaseActivity<S : EmaBaseState, VM : EmaViewModel<S, NS>, NS : EmaNavigationState> : EmaActivity<S, VM, NS>() {
 
     override fun injectActivityModule(kodein: Kodein.MainBuilder): Kodein.Module? = activityInjection(this)

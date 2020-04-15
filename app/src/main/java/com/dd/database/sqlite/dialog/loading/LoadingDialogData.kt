@@ -2,15 +2,6 @@ package com.dd.database.sqlite.dialog.loading
 
 import com.carmabs.ema.core.dialog.EmaDialogData
 
-/**
- *  *<p>
- * Copyright (c) 2020, Carmabs. All rights reserved.
- * </p>
- *
- *
- * @author <a href=“mailto:apps.carmabs@gmail.com”>Carlos Mateo</a>
- */
-
 data class LoadingDialogData(
         val title: String = "",
         val message: String = "",

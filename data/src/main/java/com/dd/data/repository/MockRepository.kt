@@ -10,15 +10,7 @@ import kotlinx.coroutines.delay
 import javax.security.auth.login.LoginException
 
 
-/**
- *  *<p>
- * Copyright (c) 2020, Carmabs. All rights reserved.
- * </p>
- *
- * @author <a href=“mailto:apps.carmabs@gmail.com”>Carlos Mateo Benito</a>
- *
- * Created by: Carlos Mateo Benito on 19/1/19.
- */
+
 class MockRepository : Repository {
 
     override suspend fun getCategory(requestCategoryModel: RequestCategoryModel): ResponseCategoryModel {

@@ -9,15 +9,6 @@ import com.dd.database.sqlite.base.BaseActivity
 import com.dd.database.sqlite.R
 import org.kodein.di.generic.instance
 
-/**
- *  *<p>
- * Copyright (c) 2020, Carmabs. All rights reserved.
- * </p>
- *
- * @author <a href=“mailto:apps.carmabs@gmail.com”>Carlos Mateo Benito</a>
- *
- * Created by: Carlos Mateo Benito on 20/1/19.
- */
 class EmaHomeActivity : BaseActivity<EmaHomeToolbarState, EmaHomeToolbarViewModel, EmaHomeNavigator.Navigation>() {
 
     override val navGraph: Int = com.dd.database.sqlite.R.navigation.navigation_ema_home

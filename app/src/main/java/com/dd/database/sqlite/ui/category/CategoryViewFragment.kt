@@ -24,6 +24,7 @@ class CategoryViewFragment : BaseFragment<CategoryState, CategoryViewModel, Cate
      */
     override fun onInitialized(viewModel: CategoryViewModel) {
         setupRecycler()
+        setupListeners()
     }
 
     override fun onSingleEvent(data: EmaExtraData) {
@@ -56,5 +57,10 @@ class CategoryViewFragment : BaseFragment<CategoryState, CategoryViewModel, Cate
                 viewModelSeed.onActionCategoryClick(it)
             }
         }
+    }
+
+
+    private fun setupListeners() {
+
     }
 }
