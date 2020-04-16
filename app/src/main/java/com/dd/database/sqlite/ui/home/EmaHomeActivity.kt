@@ -1,9 +1,5 @@
-package com.dd.database.sqlite.ui
+package com.dd.database.sqlite.ui.home
 
-import android.widget.Toast
-import com.carmabs.ema.android.extension.DATE_FORMAT_HHMM
-import com.carmabs.ema.android.extension.getFormattedString
-import com.carmabs.ema.android.extension.toDateFormat
 import com.carmabs.ema.core.state.EmaExtraData
 import com.dd.database.sqlite.R
 import com.dd.database.sqlite.base.BaseActivity
@@ -25,8 +21,10 @@ class EmaHomeActivity : BaseActivity<EmaHomeToolbarState, EmaHomeToolbarViewMode
     override val viewModelSeed: EmaHomeToolbarViewModel by instance()
     override val navigator: EmaHomeNavigator by instance()
 
+
     override fun onStateNormal(data: EmaHomeToolbarState) {
         setToolbarTitle(data.toolbarTitle)
+
     }
 
     override fun onStateAlternative(data: EmaExtraData) {

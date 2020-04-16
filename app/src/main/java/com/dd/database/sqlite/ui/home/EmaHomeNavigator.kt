@@ -1,4 +1,4 @@
-package com.dd.database.sqlite.ui
+package com.dd.database.sqlite.ui.home
 
 import android.app.Activity
 import androidx.navigation.NavController
