@@ -9,6 +9,7 @@ import com.dd.database.sqlite.ui.makal.MakalNavigator
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
+import org.kodein.di.generic.provider
 import org.kodein.di.generic.singleton
 
 
@@ -19,10 +20,12 @@ fun activityInjection(activity: Activity) = Kodein.Module(name = "ActivityModule
     bind<NavController>() with singleton { (activity as EmaFragmentActivity).let { it.navController } }
 
 
-    bind<EmaHomeToolbarViewModel>() with singleton { EmaHomeToolbarViewModel() }
+    bind<EmaHomeToolbarViewModel>() with provider { EmaHomeToolbarViewModel() }
 
     bind<CategoryNavigator>() with singleton { CategoryNavigator(instance(), instance()) }
 
     bind<MakalNavigator>() with singleton { MakalNavigator(instance(), instance()) }
+
+
 
 }

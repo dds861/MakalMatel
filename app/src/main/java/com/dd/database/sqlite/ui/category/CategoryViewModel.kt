@@ -1,6 +1,9 @@
 package com.dd.database.sqlite.ui.category
 
-import com.dd.database.sqlite.base.BaseViewModel
+import com.carmabs.ema.core.constants.STRING_EMPTY
+import com.dd.database.sqlite.base.BaseToolbarsViewModel
+import com.dd.database.sqlite.model.ToolbarModel
+import com.dd.database.sqlite.ui.home.EmaHomeToolbarViewModel
 import com.dd.database.sqlite.ui.makal.MakalState
 import com.dd.domain.manager.ResourceManager
 import com.dd.domain.model.CategoryModel
@@ -10,7 +13,7 @@ import com.dd.domain.usecase.GetLocalCategoryUseCase
 class CategoryViewModel(
         private val resourceManager: ResourceManager,
         private val getLocalCategoryUseCase: GetLocalCategoryUseCase
-) : BaseViewModel<CategoryState, CategoryNavigator.Navigation>() {
+) : BaseToolbarsViewModel<CategoryState, CategoryNavigator.Navigation>() {
     override val initialViewState: CategoryState = CategoryState()
 
     override fun onStartFirstTime(statePreloaded: Boolean) {
@@ -36,5 +39,20 @@ class CategoryViewModel(
                         )
                 )
         )
+    }
+
+    override fun onConfigureToolbars(mainToolbarsVm: EmaHomeToolbarViewModel) {
+        mainToolbarsVm.onActionUpdateToolbar {
+            it.copy(
+                    backDrawableCross = false,
+                    title = "bye",
+                    exitButton = ToolbarModel.ExitButton(
+                            text = STRING_EMPTY,
+                            onClickListener = {}
+                    ),
+                    visibility = true,
+                    gone = false
+            )
+        }
     }
 }

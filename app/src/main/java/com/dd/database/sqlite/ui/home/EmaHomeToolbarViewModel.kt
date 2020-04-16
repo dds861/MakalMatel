@@ -2,6 +2,7 @@ package com.dd.database.sqlite.ui.home
 
 import com.carmabs.ema.core.state.EmaExtraData
 import com.dd.database.sqlite.base.BaseViewModel
+import com.dd.database.sqlite.model.ToolbarModel
 
 class EmaHomeToolbarViewModel : BaseViewModel<EmaHomeToolbarState, EmaHomeNavigator.Navigation>() {
 
@@ -25,4 +26,17 @@ class EmaHomeToolbarViewModel : BaseViewModel<EmaHomeToolbarState, EmaHomeNaviga
 
     override val initialViewState: EmaHomeToolbarState = EmaHomeToolbarState()
 
+
+    fun onActionUpdateToolbar(update: Boolean = true, updateToolbar: (ToolbarModel) -> ToolbarModel) {
+        checkDataState{
+            if(update)
+                updateToNormalState {
+                    copy(toolbarModel = updateToolbar.invoke(it.toolbarModel))
+                }
+            else
+                updateDataState {
+                    copy(toolbarModel = updateToolbar.invoke(it.toolbarModel))
+                }
+        }
+    }
 }

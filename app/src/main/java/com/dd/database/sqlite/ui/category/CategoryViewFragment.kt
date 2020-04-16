@@ -6,10 +6,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.carmabs.ema.core.state.EmaExtraData
 import com.dd.database.sqlite.R
 import com.dd.database.sqlite.base.BaseFragment
+import com.dd.database.sqlite.base.BaseToolbarsFragment
+import com.dd.database.sqlite.ui.home.EmaHomeToolbarViewModel
 import kotlinx.android.synthetic.main.fragment_category.*
 import org.kodein.di.generic.instance
 
-class CategoryViewFragment : BaseFragment<CategoryState, CategoryViewModel, CategoryNavigator.Navigation>() {
+class CategoryViewFragment : BaseToolbarsFragment<CategoryState, CategoryViewModel, CategoryNavigator.Navigation>() {
     /**
      * Default variables
      */
@@ -22,7 +24,8 @@ class CategoryViewFragment : BaseFragment<CategoryState, CategoryViewModel, Cate
     /**
      * Default functions
      */
-    override fun onInitialized(viewModel: CategoryViewModel) {
+
+    override fun onInitializedWithToolbarsManagement(viewModel: CategoryViewModel, mainToolbarViewModel: EmaHomeToolbarViewModel) {
         setupRecycler()
         setupListeners()
     }
@@ -63,4 +66,6 @@ class CategoryViewFragment : BaseFragment<CategoryState, CategoryViewModel, Cate
     private fun setupListeners() {
 
     }
+
+
 }

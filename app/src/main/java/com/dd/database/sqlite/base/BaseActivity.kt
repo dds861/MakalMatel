@@ -15,5 +15,4 @@ abstract class BaseActivity<S : EmaBaseState, VM : EmaViewModel<S, NS>, NS : Ema
     //True if you want to set the Application theme to activity, otherwise it will take EmaTheme.
     //False by default -> EmaTheme
     override val overrideTheme: Boolean = true
-    override val navGraph: Int = com.dd.database.sqlite.R.navigation.navigation_ema_home
 }
