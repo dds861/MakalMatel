@@ -2,6 +2,7 @@ package com.dd.database.sqlite.ui.makal
 
 import com.dd.database.sqlite.base.BaseViewModel
 import com.dd.domain.manager.ResourceManager
+import com.dd.domain.model.MakalModel
 import com.dd.domain.model.RequestMakalModel
 import com.dd.domain.usecase.GetLocalMakalByCategoryIdUseCase
 
@@ -26,5 +27,9 @@ class MakalViewModel(
                         updateToErrorState(e)
                     })
         }
+    }
+
+    fun onActionItemClicked(makalModel: MakalModel) {
+
     }
 }

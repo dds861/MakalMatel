@@ -15,6 +15,8 @@ class CategoryAdapter(override val listItems: MutableList<CategoryModel> = mutab
     override fun View.bind(item: CategoryModel, viewType: Int) {
         tvCategoryTitle.text = item.category_text
 
-        tvCategoryTitle.setOnClickListener { itemListener.invoke(item) }
+        tvCategoryTitle.setOnClickListener {
+            itemListener.invoke(item)
+        }
     }
 }
