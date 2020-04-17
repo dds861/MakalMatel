@@ -8,6 +8,7 @@
     android:background="@android:color/transparent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintToolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:animateLayoutChanges="true">
@@ -24,12 +25,13 @@
             android:gravity="center"
             android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_scrollFlags="enterAlwaysCollapsed"/>
+            app:layout_scrollFlags="enterAlwaysCollapsed" />
 
         <View
             android:id="@+id/vToolbarView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/colorAccent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -38,16 +40,10 @@
         <ImageView
             android:id="@+id/ivToolbarLogo"
             android:layout_width="0dp"
-            android:layout_height="44dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:padding="3dp"
+            android:layout_height="wrap_content"
             android:scaleType="fitCenter"
             android:src="@mipmap/ic_launcher_pen"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -57,12 +53,13 @@
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:gravity="center"
-            android:textAlignment="center"
+            android:gravity="start|center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/white"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivToolbarLogo"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Title"
             tools:visibility="visible" />
@@ -92,34 +89,30 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
-            android:id="@+id/ivToolbarCloseSession"
-            android:layout_width="wrap_content"
+            android:id="@+id/ivToolbarTelegram"
+            android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:paddingStart="@dimen/space_big"
-            android:paddingEnd="@dimen/space_big"
-            android:src="@drawable/ic_cross"
+            android:paddingEnd="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:src="@mipmap/ic_launcher_telegram_icon"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
             tools:visibility="visible" />
 
-        <TextView
-            android:id="@+id/tvToolbarExit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="18dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center_vertical|end"
-            android:textAlignment="textEnd"
-            android:visibility="gone"
+        <ImageView
+            android:id="@+id/ivToolbarSearch"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:paddingBottom="16dp"
+            android:paddingTop="16dp"
+            android:src="@drawable/ic_action_search"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintEnd_toStartOf="@id/ivToolbarTelegram"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Salir"
             tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

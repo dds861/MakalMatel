@@ -3,7 +3,7 @@ package com.dd.database.sqlite.injection
 import android.app.Activity
 import androidx.navigation.NavController
 import com.carmabs.ema.android.ui.EmaFragmentActivity
-import com.dd.database.sqlite.ui.home.MainToolbarsViewModel
+import com.dd.database.sqlite.ui.main.MainToolbarsViewModel
 import com.dd.database.sqlite.ui.category.CategoryNavigator
 import com.dd.database.sqlite.ui.makal.MakalNavigator
 import org.kodein.di.Kodein

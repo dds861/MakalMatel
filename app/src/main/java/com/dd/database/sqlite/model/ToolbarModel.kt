@@ -1,6 +1,5 @@
 package com.dd.database.sqlite.model
 
-import com.carmabs.ema.core.constants.FLOAT_ZERO
 import com.carmabs.ema.core.constants.STRING_EMPTY
 
 /**
@@ -12,22 +11,28 @@ import com.carmabs.ema.core.constants.STRING_EMPTY
  *
  * @author <a href=“mailto:carlos.mateo@babel.es”>Carlos Mateo</a>
  */
-
 data class ToolbarModel(
-        val backClickListener: (() -> Unit)? = null,
-        val backVisibility: Boolean = false,
-        val backDrawableCross: Boolean = false,
-        val closeSessionVisibility: Boolean = true,
-        val title: String = STRING_EMPTY,
-        val visibility: Boolean = true,
-        val elevation: Boolean = true,
-        val gone: Boolean = true,
-        val exitButton: ExitButton? = null
+        val telegramButton: TelegramButton? = null,
+        val backButton: BackButton? = null,
+        val searchButton: SearchButton? = null,
+        val toolbarTitle: String = STRING_EMPTY,
+        val toolbarTitleVisibility: Boolean = false,
+        val toolbarLogoVisibility: Boolean = false,
+        val toolbarVisibility: Boolean = true,
+        val toolbarElevation: Boolean = false
 ) {
-    data class ExitButton(
-            val text: String = STRING_EMPTY,
+    data class SearchButton(
             val onClickListener: (() -> Unit),
-            val textSize: Float = FLOAT_ZERO,
-            val enabled: Boolean = true
+            val visibility: Boolean = true
+    )
+
+    data class TelegramButton(
+            val onClickListener: (() -> Unit),
+            val visibility: Boolean = true
+    )
+
+    data class BackButton(
+            val onClickListener: (() -> Unit),
+            val visibility: Boolean = false
     )
 }

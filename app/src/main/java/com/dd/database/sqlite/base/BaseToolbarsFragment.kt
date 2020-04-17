@@ -2,7 +2,7 @@ package com.dd.database.sqlite.base
 
 import com.carmabs.ema.core.navigator.EmaNavigationState
 import com.carmabs.ema.core.state.EmaBaseState
-import com.dd.database.sqlite.ui.home.MainToolbarsViewModel
+import com.dd.database.sqlite.ui.main.MainToolbarsViewModel
 import org.kodein.di.generic.instance
 
 abstract class BaseToolbarsFragment<S : EmaBaseState, VM : BaseToolbarsViewModel<S, NS>, NS : EmaNavigationState>

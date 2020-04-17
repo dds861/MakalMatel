@@ -1,9 +1,8 @@
 package com.dd.database.sqlite.ui.category
 
-import com.carmabs.ema.core.constants.STRING_EMPTY
 import com.dd.database.sqlite.base.BaseToolbarsViewModel
 import com.dd.database.sqlite.model.ToolbarModel
-import com.dd.database.sqlite.ui.home.MainToolbarsViewModel
+import com.dd.database.sqlite.ui.main.MainToolbarsViewModel
 import com.dd.database.sqlite.ui.makal.MakalState
 import com.dd.domain.manager.ResourceManager
 import com.dd.domain.model.CategoryModel
@@ -14,7 +13,35 @@ class CategoryViewModel(
         private val resourceManager: ResourceManager,
         private val getLocalCategoryUseCase: GetLocalCategoryUseCase
 ) : BaseToolbarsViewModel<CategoryState, CategoryNavigator.Navigation>() {
+    /**
+     * Default variables
+     */
     override val initialViewState: CategoryState = CategoryState()
+    /**
+     * Custom variables
+     */
+    /**
+     * Default functions
+     */
+    override fun onConfigureToolbars(mainToolbarsVm: MainToolbarsViewModel) {
+        mainToolbarsVm.onActionUpdateToolbar {
+            it.copy(
+                    toolbarTitle = resourceManager.getToolbarTitle(),
+                    toolbarTitleVisibility = true,
+                    toolbarLogoVisibility = true,
+                    telegramButton = ToolbarModel.TelegramButton(
+                            visibility = true,
+                            onClickListener = {}
+                    ),
+                    searchButton = ToolbarModel.SearchButton(
+                            visibility = true,
+                            onClickListener = {}
+                    )
+            )
+        }
+    }
+
+
 
     override fun onStartFirstTime(statePreloaded: Boolean) {
         executeUseCaseWithException(
@@ -31,6 +58,9 @@ class CategoryViewModel(
                 })
     }
 
+    /**
+     * Custom functions
+     */
     fun onActionCategoryClick(categoryModel: CategoryModel) {
         navigate(
                 CategoryNavigator.Navigation.Makal(
@@ -39,16 +69,5 @@ class CategoryViewModel(
                         )
                 )
         )
-    }
-
-    override fun onConfigureToolbars(mainToolbarsVm: MainToolbarsViewModel) {
-        mainToolbarsVm.onActionUpdateToolbar {
-            it.copy(
-                    backDrawableCross = false,
-                    title = resourceManager.getToolbarTitle(),
-                    visibility = true,
-                    gone = false
-            )
-        }
     }
 }

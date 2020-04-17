@@ -1,4 +1,4 @@
-package com.dd.database.sqlite.ui.home
+package com.dd.database.sqlite.ui.main
 
 import com.carmabs.ema.core.state.EmaExtraData
 import com.dd.database.sqlite.base.BaseViewModel

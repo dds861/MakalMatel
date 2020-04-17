@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.carmabs.ema.core.state.EmaExtraData
 import com.dd.database.sqlite.R
 import com.dd.database.sqlite.base.BaseToolbarsFragment
-import com.dd.database.sqlite.ui.home.MainToolbarsViewModel
+import com.dd.database.sqlite.ui.main.MainToolbarsViewModel
 import kotlinx.android.synthetic.main.fragment_category.*
 import org.kodein.di.generic.instance
 
