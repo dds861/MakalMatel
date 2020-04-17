@@ -4,21 +4,21 @@
     package="com.dd.database.sqlite">
 
     <application
-        android:name=".base.EmaSampleApplication"
-        android:allowBackup="true"
+        android:name=".base.MakalApplication"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher_pen"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_pen"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
+        android:theme="@style/AppTheme.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity
-            android:name=".old.Activity1.View.View"
-            android:launchMode="singleTop">
+
+        <activity android:name=".ui.main.MainToolbarsViewActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-        <activity
-            android:name=".old.Activity2.View.View2"
-            android:parentActivityName=".old.Activity1.View.View" />
 
 
         <receiver android:name=".widget.View.ViewWidget">
@@ -30,20 +30,5 @@
                 android:resource="@xml/new_app_widget_info" />
         </receiver>
 
-
-
-        <activity android:name=".ui.EmaHomeActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".ui.error.EmaErrorToolbarViewActivity"
-            android:launchMode="singleInstance" />
-        <activity android:name=".ui.backdata.EmaBackToolbarActivity" />
-
     </application>
-
 </manifest>

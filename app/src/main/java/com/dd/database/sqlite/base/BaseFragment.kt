@@ -1,5 +1,7 @@
 package com.dd.database.sqlite.base
 
+import android.content.Context
+import android.view.inputmethod.InputMethodManager
 import com.carmabs.ema.android.ui.EmaFragment
 import com.carmabs.ema.android.viewmodel.EmaViewModel
 import com.carmabs.ema.core.navigator.EmaNavigationState
@@ -8,13 +10,6 @@ import com.carmabs.ema.core.state.EmaExtraData
 import com.dd.database.sqlite.injection.fragmentInjection
 import org.kodein.di.Kodein
 
-/**
- *  *<p>
- * Copyright (c) 2020, Carmabs. All rights reserved.
- * </p>
- *
- * @author <a href=“mailto:apps.carmabs@gmail.com”>Carlos Mateo</a>
- */
 
 abstract class BaseFragment<S : EmaBaseState, VM : EmaViewModel<S, NS>, NS : EmaNavigationState> : EmaFragment<S, VM, NS>() {
 
@@ -46,4 +41,13 @@ abstract class BaseFragment<S : EmaBaseState, VM : EmaViewModel<S, NS>, NS : Ema
 
     abstract fun onError(error: Throwable)
 
+    override fun onNavigation(navigation: EmaNavigationState?) {
+        super.onNavigation(navigation)
+        context?.let {
+            val hideKeyboard: InputMethodManager = it.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            view?.let { view ->
+                hideKeyboard.hideSoftInputFromWindow(view.windowToken, 0)
+            }
+        }
+    }
 }

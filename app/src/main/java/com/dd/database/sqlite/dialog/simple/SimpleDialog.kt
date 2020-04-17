@@ -6,12 +6,6 @@ import com.dd.database.sqlite.R
 import kotlinx.android.synthetic.main.dialog_simple.view.*
 
 
-/**
- * Simple dialog
- *
- *
- * @author <a href="mailto:apps.carmabs@gmail.com">Carlos Mateo Benito</a>
- */
 class SimpleDialog : EmaBaseDialog<SimpleDialogData>() {
 
     override val layoutId: Int = R.layout.dialog_simple

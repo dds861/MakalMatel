@@ -43,7 +43,7 @@ public class MyAdapter2 extends RecyclerView.Adapter<MyAdapter2.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.items2, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_makal, parent, false);
 
         return new ViewHolder(view);
     }
@@ -72,7 +72,7 @@ public class MyAdapter2 extends RecyclerView.Adapter<MyAdapter2.ViewHolder> {
             super(itemView);
             this.mTextView = itemView.findViewById(R.id.text2);
             this.imageViewShare = itemView.findViewById(R.id.ivShare);
-            this.imageViewCopy = itemView.findViewById(R.id.ivCopyAll);
+            this.imageViewCopy = itemView.findViewById(R.id.ivCopy);
 
             imageViewShare.setOnClickListener(this);
             imageViewCopy.setOnClickListener(this);
@@ -83,14 +83,14 @@ public class MyAdapter2 extends RecyclerView.Adapter<MyAdapter2.ViewHolder> {
         @Override
         public void onClick(View view) {
             switch (view.getId()) {
-                case R.id.ivCopyAll:
+                case R.id.ivCopy:
 
                     //Analytics: copy_clicked
                     AnalyticsManager.registerEvent(AnalyticsConstants.TAG_COPY_CLICKED,null);
 
                     //эффект нажатия на кнопку
-                    MakeAnimation.makeAnimationOnView(R.id.ivCopyAll, Techniques.FadeOut, 150, 0, view);
-                    MakeAnimation.makeAnimationOnView(R.id.ivCopyAll, Techniques.FadeIn, 350, 0, view);
+                    MakeAnimation.makeAnimationOnView(R.id.ivCopy, Techniques.FadeOut, 150, 0, view);
+                    MakeAnimation.makeAnimationOnView(R.id.ivCopy, Techniques.FadeIn, 350, 0, view);
 
                     // Gets a handle to the clipboard service.
                     ClipboardManager clipboard2 = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);

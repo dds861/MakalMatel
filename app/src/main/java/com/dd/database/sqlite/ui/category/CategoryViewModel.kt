@@ -1,33 +1,73 @@
 package com.dd.database.sqlite.ui.category
 
-import com.dd.database.sqlite.base.BaseViewModel
+import com.dd.database.sqlite.base.BaseToolbarsViewModel
+import com.dd.database.sqlite.model.ToolbarModel
+import com.dd.database.sqlite.ui.main.MainToolbarsViewModel
+import com.dd.database.sqlite.ui.makal.MakalState
 import com.dd.domain.manager.ResourceManager
-import com.dd.domain.usecase.GetCategoryUseCase
-
+import com.dd.domain.model.CategoryModel
+import com.dd.domain.model.RequestCategoryModel
+import com.dd.domain.usecase.GetLocalCategoryUseCase
 
 class CategoryViewModel(
-        val resourceManager: ResourceManager,
-        private val getCategoryUseCase: GetCategoryUseCase
-) : BaseViewModel<CategoryState, CategoryNavigator.Navigation>() {
-
-
-
-
+        private val resourceManager: ResourceManager,
+        private val getLocalCategoryUseCase: GetLocalCategoryUseCase
+) : BaseToolbarsViewModel<CategoryState, CategoryNavigator.Navigation>() {
+    /**
+     * Default variables
+     */
     override val initialViewState: CategoryState = CategoryState()
-
-    fun onActionUpdate(text: String) {
-//        executeSessionUseCaseWithException({
-//            val result = getCategoryUseCase.execute(
-//                    RequestCategoryModel(
-//                            default = text
-//                    )
-//            )
-//        }, { e ->
-//            updateToErrorState(e)
-//        })
+    /**
+     * Custom variables
+     */
+    /**
+     * Default functions
+     */
+    override fun onConfigureToolbars(mainToolbarsVm: MainToolbarsViewModel) {
+        mainToolbarsVm.onActionUpdateToolbar {
+            it.copy(
+                    toolbarTitle = resourceManager.getToolbarTitle(),
+                    toolbarTitleVisibility = true,
+                    toolbarLogoVisibility = true,
+                    telegramButton = ToolbarModel.TelegramButton(
+                            visibility = true,
+                            onClickListener = {}
+                    ),
+                    searchButton = ToolbarModel.SearchButton(
+                            visibility = true,
+                            onClickListener = {}
+                    )
+            )
+        }
     }
 
-    override fun onStartFirstTime(statePreloaded: Boolean) {
 
+
+    override fun onStartFirstTime(statePreloaded: Boolean) {
+        executeUseCaseWithException(
+                {
+                    val responseCategoryModel = getLocalCategoryUseCase.execute(RequestCategoryModel())
+                    updateToNormalState {
+                        copy(
+                                listCategories = responseCategoryModel.list
+                        )
+                    }
+                },
+                { e ->
+                    updateToErrorState(e)
+                })
+    }
+
+    /**
+     * Custom functions
+     */
+    fun onActionCategoryClick(categoryModel: CategoryModel) {
+        navigate(
+                CategoryNavigator.Navigation.Makal(
+                        MakalState(
+                                categoryId = categoryModel.category_id
+                        )
+                )
+        )
     }
 }

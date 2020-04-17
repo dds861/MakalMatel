@@ -50,12 +50,18 @@ rootProject.ext {
 
     converter_gson = "2.1.0"
 
+    roomVersion = '2.2.3'
+
+    sqlcipherVersion = "4.3.0"
+
+    androidxSqliteVersion = "2.0.1"
+
 
     ema = [
             buildTools : "28.0.3",
             minSdk     : 21,
-            compileSdk : 28,
-            targetSdk  : 28,
+            compileSdk : 29,
+            targetSdk  : 29,
             versionCode: 5,
             versionName: "2.3.0"
     ]
@@ -80,10 +86,15 @@ rootProject.ext {
     ]
 
     dataDependencies = [
-            kotlin    : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:" + project.kotlin_version,
-            coroutines: 'org.jetbrains.kotlinx:kotlinx-coroutines-android:' + project.coroutinesVersion,
-            retrofit  : 'com.squareup.retrofit2:retrofit:' + project.retrofit,
-            converter_gson  : 'com.squareup.retrofit2:converter-gson:' + project.converter_gson
+            kotlin        : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:" + project.kotlin_version,
+            coroutines    : 'org.jetbrains.kotlinx:kotlinx-coroutines-android:' + project.coroutinesVersion,
+            retrofit      : 'com.squareup.retrofit2:retrofit:' + project.retrofit,
+            converter_gson: 'com.squareup.retrofit2:converter-gson:' + project.converter_gson,
+            room          : "androidx.room:room-runtime:" + project.roomVersion,
+            roomKt        : "androidx.room:room-ktx:" + project.roomVersion,
+            roomCompiler  : "androidx.room:room-compiler:" + project.roomVersion,
+            sqlcipher     : "net.zetetic:android-database-sqlcipher:" + project.sqlcipherVersion,
+            androidxSqlite: "androidx.sqlite:sqlite:" + project.androidxSqliteVersion
     ]
 
     domainDependencies = [
