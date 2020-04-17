@@ -1,11 +1,15 @@
 package com.dd.database.sqlite.ui.category
 
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.carmabs.ema.core.state.EmaExtraData
 import com.dd.database.sqlite.R
 import com.dd.database.sqlite.base.BaseToolbarsFragment
+import com.dd.database.sqlite.ui.category.CategoryViewModel.Companion.TELEGRAM_CLICKED
 import com.dd.database.sqlite.ui.main.MainToolbarsViewModel
 import kotlinx.android.synthetic.main.fragment_category.*
 import org.kodein.di.generic.instance
@@ -33,6 +37,9 @@ class CategoryViewFragment : BaseToolbarsFragment<CategoryState, CategoryViewMod
     }
 
     override fun onSingleEvent(data: EmaExtraData) {
+        when (data.type) {
+            TELEGRAM_CLICKED -> launchTelegram()
+        }
     }
 
     override fun onSingle(data: EmaExtraData) {
@@ -65,5 +72,14 @@ class CategoryViewFragment : BaseToolbarsFragment<CategoryState, CategoryViewMod
     }
 
     private fun setupListeners() {
+    }
+
+    private fun launchTelegram() {
+        startActivity(try {
+            requireContext().packageManager.getPackageInfo(resources.getString(R.string.telegramPackage), PackageManager.GET_ACTIVITIES)
+            Intent(Intent.ACTION_VIEW, Uri.parse("tg://resolve?domain=maqal7"))
+        } catch (e: PackageManager.NameNotFoundException) {
+            Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/maqal7"))
+        })
     }
 }

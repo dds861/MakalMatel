@@ -1,5 +1,6 @@
 package com.dd.database.sqlite.ui.category
 
+import com.carmabs.ema.core.state.EmaExtraData
 import com.dd.database.sqlite.base.BaseToolbarsViewModel
 import com.dd.database.sqlite.model.ToolbarModel
 import com.dd.database.sqlite.ui.main.MainToolbarsViewModel
@@ -13,6 +14,10 @@ class CategoryViewModel(
         private val resourceManager: ResourceManager,
         private val getLocalCategoryUseCase: GetLocalCategoryUseCase
 ) : BaseToolbarsViewModel<CategoryState, CategoryNavigator.Navigation>() {
+    companion object {
+        const val TELEGRAM_CLICKED = 1
+    }
+
     /**
      * Default variables
      */
@@ -31,7 +36,7 @@ class CategoryViewModel(
                     toolbarLogoVisibility = true,
                     telegramButton = ToolbarModel.TelegramButton(
                             visibility = true,
-                            onClickListener = {}
+                            onClickListener = { notifySingleEvent(EmaExtraData(type = TELEGRAM_CLICKED)) }
                     ),
                     searchButton = ToolbarModel.SearchButton(
                             visibility = true,
@@ -40,8 +45,6 @@ class CategoryViewModel(
             )
         }
     }
-
-
 
     override fun onStartFirstTime(statePreloaded: Boolean) {
         executeUseCaseWithException(
