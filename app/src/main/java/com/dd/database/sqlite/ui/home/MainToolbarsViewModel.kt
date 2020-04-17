@@ -4,7 +4,7 @@ import com.carmabs.ema.core.state.EmaExtraData
 import com.dd.database.sqlite.base.BaseViewModel
 import com.dd.database.sqlite.model.ToolbarModel
 
-class EmaHomeToolbarViewModel : BaseViewModel<EmaHomeToolbarState, EmaHomeNavigator.Navigation>() {
+class MainToolbarsViewModel : BaseViewModel<HomeToolbarState, HomeNavigator.Navigation>() {
 
     override fun onStartFirstTime(statePreloaded: Boolean) {
 
@@ -24,7 +24,7 @@ class EmaHomeToolbarViewModel : BaseViewModel<EmaHomeToolbarState, EmaHomeNaviga
         }
     }
 
-    override val initialViewState: EmaHomeToolbarState = EmaHomeToolbarState()
+    override val initialViewState: HomeToolbarState = HomeToolbarState()
 
 
     fun onActionUpdateToolbar(update: Boolean = true, updateToolbar: (ToolbarModel) -> ToolbarModel) {
@@ -38,5 +38,13 @@ class EmaHomeToolbarViewModel : BaseViewModel<EmaHomeToolbarState, EmaHomeNaviga
                     copy(toolbarModel = updateToolbar.invoke(it.toolbarModel))
                 }
         }
+    }
+
+    fun onActionBackClicked() {
+        navigate(HomeNavigator.Navigation.Back)
+    }
+
+    fun onActionCloseSessionClicked() {
+        updateToAlternativeState()
     }
 }

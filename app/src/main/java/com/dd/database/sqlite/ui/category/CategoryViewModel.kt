@@ -3,7 +3,7 @@ package com.dd.database.sqlite.ui.category
 import com.carmabs.ema.core.constants.STRING_EMPTY
 import com.dd.database.sqlite.base.BaseToolbarsViewModel
 import com.dd.database.sqlite.model.ToolbarModel
-import com.dd.database.sqlite.ui.home.EmaHomeToolbarViewModel
+import com.dd.database.sqlite.ui.home.MainToolbarsViewModel
 import com.dd.database.sqlite.ui.makal.MakalState
 import com.dd.domain.manager.ResourceManager
 import com.dd.domain.model.CategoryModel
@@ -41,7 +41,7 @@ class CategoryViewModel(
         )
     }
 
-    override fun onConfigureToolbars(mainToolbarsVm: EmaHomeToolbarViewModel) {
+    override fun onConfigureToolbars(mainToolbarsVm: MainToolbarsViewModel) {
         mainToolbarsVm.onActionUpdateToolbar {
             it.copy(
                     backDrawableCross = false,

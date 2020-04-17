@@ -4,7 +4,7 @@
     package="com.dd.database.sqlite">
 
     <application
-        android:name=".base.EmaSampleApplication"
+        android:name=".base.MakalApplication"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher_pen"
         android:label="@string/app_name"
@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".ui.home.EmaHomeActivity">
+        <activity android:name=".ui.home.MainToolbarsViewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
