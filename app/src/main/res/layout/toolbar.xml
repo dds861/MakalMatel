@@ -24,7 +24,7 @@
             android:gravity="center"
             android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_scrollFlags="enterAlwaysCollapsed"></androidx.appcompat.widget.Toolbar>
+            app:layout_scrollFlags="enterAlwaysCollapsed"/>
 
         <View
             android:id="@+id/vToolbarView"
@@ -98,7 +98,7 @@
             android:paddingStart="@dimen/space_big"
             android:paddingEnd="@dimen/space_big"
             android:src="@drawable/ic_cross"
-            android:visibility="visible"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

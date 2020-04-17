@@ -40,7 +40,6 @@ class MainToolbarsViewActivity : BaseActivity<HomeToolbarState, MainToolbarsView
     }
 
     override fun onStateNormal(data: HomeToolbarState) {
-        setToolbarTitle(data.toolbarTitle)
 
         if (checkToolbarVisibility(data)) {
             updateToolbar(data.toolbarModel)
