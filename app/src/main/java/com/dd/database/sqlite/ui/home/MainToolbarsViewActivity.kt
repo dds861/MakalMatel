@@ -1,6 +1,11 @@
 package com.dd.database.sqlite.ui.home
 
+import android.os.Bundle
 import android.view.View
+import androidx.constraintlayout.widget.ConstraintLayout
+import com.carmabs.ema.android.extra.EmaReceiverModel
+import com.carmabs.ema.android.extra.EmaResultModel
+import com.carmabs.ema.android.ui.EmaView
 import com.carmabs.ema.core.constants.FLOAT_ZERO
 import com.carmabs.ema.core.constants.STRING_EMPTY
 import com.carmabs.ema.core.state.EmaExtraData
@@ -10,25 +15,38 @@ import com.dd.database.sqlite.model.ToolbarModel
 import kotlinx.android.synthetic.main.toolbar.*
 import org.kodein.di.generic.instance
 
-class MainToolbarsViewActivity : BaseActivity<HomeToolbarState, MainToolbarsViewModel, HomeNavigator.Navigation>() {
+class MainToolbarsViewActivity : BaseActivity(), EmaView<HomeToolbarState, MainToolbarsViewModel, HomeNavigator.Navigation> {
+    /**
+     * Default variables
+     */
+    override val inputState: HomeToolbarState? = null
+    override var previousState: HomeToolbarState? = null
+    override val viewModelSeed: MainToolbarsViewModel by instance()
+    override val navigator: HomeNavigator by instance()
     override val navGraph: Int = R.navigation.navigation_ema_home
+    /**
+     * Customs variables
+     */
+    /**
+     * Default functions
+     */
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        initializeViewModel(this)
+    }
 
+    override fun onResultReceiverInvokeEvent(emaReceiverModel: EmaReceiverModel) {
+    }
 
+    override fun onResultSetEvent(emaResultModel: EmaResultModel) {
+    }
 
-    override fun onInitialized(viewModel: MainToolbarsViewModel) {
-
+    override fun onViewModelInitialized(viewModel: MainToolbarsViewModel) {
         setupToolbar(viewModel)
     }
 
     override fun provideFixedToolbarTitle(): String? = null
-
-    /**
-     * Variable used to enable the theme used in manifest. Otherwise it will use the EmaTheme,
-     * It is set as true by default.
-     */
-    override val viewModelSeed: MainToolbarsViewModel by instance()
-    override val navigator: HomeNavigator by instance()
 
     override fun onStateAlternative(data: EmaExtraData) {
     }
@@ -39,31 +57,19 @@ class MainToolbarsViewActivity : BaseActivity<HomeToolbarState, MainToolbarsView
     override fun onStateError(error: Throwable) {
     }
 
-    override fun onStateNormal(data: HomeToolbarState) {
 
+    override fun onStateNormal(data: HomeToolbarState) {
         if (checkToolbarVisibility(data)) {
             updateToolbar(data.toolbarModel)
         }
     }
 
+    /**
+     * Customs functions
+     */
     private fun setupToolbar(viewModel: MainToolbarsViewModel) {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             val backVisibility = destination.id != R.id.categoryViewFragment
-
-            // False to avoid screen update and change title effect flash
-//            if (applicationContext.isDarkMode()) {
-//                // Tabbar
-//                clTabbarOptions.setBackgroundColor(getColor(R.color.colorHomeTabbar))
-//                vTabbarHeaderShadow.visibility = View.GONE
-//
-//                // Toolbar
-//                if (destination.id == R.id.homeDashboardViewFragment) {
-//                    vToolbarView.setBackgroundColor(getColor(R.color.colorToolbarBackgroundInHome))
-//                } else {
-//                    vToolbarView.setBackgroundColor(getColor(R.color.colorToolbarBackground))
-//                }
-//            }
-
             viewModel.onActionUpdateToolbar(false) {
                 it.copy(
                         backVisibility = backVisibility,

@@ -17,14 +17,17 @@ class CategoryViewFragment : BaseToolbarsFragment<CategoryState, CategoryViewMod
     override val layoutId: Int = R.layout.fragment_category
     override val navigator: CategoryNavigator by instance()
     override val viewModelSeed: CategoryViewModel by instance()
+
     /**
      * Custom variables
      */
+    private lateinit var vm: CategoryViewModel
+
     /**
      * Default functions
      */
-
     override fun onInitializedWithToolbarsManagement(viewModel: CategoryViewModel, mainToolbarViewModel: MainToolbarsViewModel) {
+        vm = viewModel
         setupRecycler()
         setupListeners()
     }
@@ -56,15 +59,11 @@ class CategoryViewFragment : BaseToolbarsFragment<CategoryState, CategoryViewMod
     private fun loadRecyclerViews(data: CategoryState) {
         rvCategory.adapter = data.listCategories.toMutableList().let { it ->
             CategoryAdapter(listItems = it) {
-                viewModelSeed.onActionCategoryClick(it)
+                vm.onActionCategoryClick(it)
             }
         }
     }
 
-
     private fun setupListeners() {
-
     }
-
-
 }

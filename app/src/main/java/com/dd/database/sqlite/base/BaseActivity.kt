@@ -1,6 +1,7 @@
 package com.dd.database.sqlite.base
 
 import com.carmabs.ema.android.ui.EmaActivity
+import com.carmabs.ema.android.ui.EmaToolbarFragmentActivity
 import com.carmabs.ema.android.viewmodel.EmaViewModel
 import com.carmabs.ema.core.navigator.EmaNavigationState
 import com.carmabs.ema.core.state.EmaBaseState
@@ -9,7 +10,7 @@ import com.dd.database.sqlite.injection.activityInjection
 import org.kodein.di.Kodein
 
 
-abstract class BaseActivity<S : EmaBaseState, VM : EmaViewModel<S, NS>, NS : EmaNavigationState> : EmaActivity<S, VM, NS>() {
+abstract class BaseActivity : EmaToolbarFragmentActivity() {
 
     override fun injectActivityModule(kodein: Kodein.MainBuilder): Kodein.Module? = activityInjection(this)
 

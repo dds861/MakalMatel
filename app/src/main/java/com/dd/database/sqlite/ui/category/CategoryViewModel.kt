@@ -45,11 +45,7 @@ class CategoryViewModel(
         mainToolbarsVm.onActionUpdateToolbar {
             it.copy(
                     backDrawableCross = false,
-                    title = resourceManager.getAppName(),
-                    exitButton = ToolbarModel.ExitButton(
-                            text = STRING_EMPTY,
-                            onClickListener = {}
-                    ),
+                    title = resourceManager.getToolbarTitle(),
                     visibility = true,
                     gone = false
             )

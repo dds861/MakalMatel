@@ -18,25 +18,23 @@ import net.sqlcipher.database.SupportFactory
 import java.io.File
 import java.io.IOException
 
-
 class RoomLocalStorageRepository(
         private val context: Context
 ) : LocalStorageRepository {
-
     private val dbSecretKey = BuildConfig.DB_SECRET_KEY
     private val passphrase: ByteArray = SQLiteDatabase.getBytes(dbSecretKey.toCharArray())
     private val factory = SupportFactory(passphrase)
-
     val db: MakalDatabase by lazy {
         val build = Room.databaseBuilder(
                 context.applicationContext,
                 MakalDatabase::class.java,
                 BuildConfig.DB_NAME)
         build.createFromAsset("database/makal.db")
+//        build.fallbackToDestructiveMigration()
         build.addMigrations(MIGRATION_1_2)
+        build.fallbackToDestructiveMigration()
         build.build()
     }
-
     private val MIGRATION_1_2: Migration = object : Migration(1, 2) {
         override fun migrate(database: SupportSQLiteDatabase) {
             // Since we didn't alter the table, there's nothing else to do here.
@@ -74,7 +72,6 @@ class RoomLocalStorageRepository(
 
     override fun getAllCategories(request: RequestCategoryModel): ResponseCategoryModel {
         return db.categoryDao().getAllCategories().toDomainModel()
-
     }
 
     override fun getAllMakals(request: RequestMakalModel): ResponseMakalModel {
@@ -84,6 +81,4 @@ class RoomLocalStorageRepository(
     override fun getMakalsByCategoryId(request: RequestMakalModel): ResponseMakalModel {
         return db.makalDao().getMakalsByCategoryId(request.categoryId).toDomainModel()
     }
-
-
 }
