@@ -22,12 +22,10 @@ data class ToolbarModel(
         val toolbarElevation: Boolean = false
 ) {
     data class SearchButton(
-            val onClickListener: (() -> Unit),
             val visibility: Boolean = true
     )
 
     data class TelegramButton(
-            val onClickListener: (() -> Unit),
             val visibility: Boolean = true
     )
 

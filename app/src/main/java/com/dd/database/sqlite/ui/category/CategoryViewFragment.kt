@@ -37,9 +37,6 @@ class CategoryViewFragment : BaseToolbarsFragment<CategoryState, CategoryViewMod
     }
 
     override fun onSingleEvent(data: EmaExtraData) {
-        when (data.type) {
-            TELEGRAM_CLICKED -> launchTelegram()
-        }
     }
 
     override fun onNormal(data: CategoryState) {

@@ -1,6 +1,5 @@
 package com.dd.database.sqlite.ui.category
 
-import com.carmabs.ema.core.state.EmaExtraData
 import com.dd.database.sqlite.base.BaseToolbarsViewModel
 import com.dd.database.sqlite.model.ToolbarModel
 import com.dd.database.sqlite.ui.main.MainToolbarsViewModel
@@ -41,12 +40,10 @@ class CategoryViewModel(
                             visibility = false
                     ),
                     telegramButton = ToolbarModel.TelegramButton(
-                            visibility = true,
-                            onClickListener = { notifySingleEvent(EmaExtraData(type = TELEGRAM_CLICKED)) }
+                            visibility = true
                     ),
                     searchButton = ToolbarModel.SearchButton(
-                            visibility = true,
-                            onClickListener = { onActionSearchButtonClick() }
+                            visibility = true
                     )
             )
         }
@@ -76,14 +73,6 @@ class CategoryViewModel(
                         MakalState(
                                 categoryId = categoryModel.category_id
                         )
-                )
-        )
-    }
-
-    private fun onActionSearchButtonClick() {
-        navigate(
-                CategoryNavigator.Navigation.Search(
-                        MakalState()
                 )
         )
     }

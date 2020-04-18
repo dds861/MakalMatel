@@ -51,12 +51,10 @@ class MakalViewModel(
                             visibility = true
                     ),
                     telegramButton = ToolbarModel.TelegramButton(
-                            visibility = true,
-                            onClickListener = { notifySingleEvent(EmaExtraData(type = CategoryViewModel.TELEGRAM_CLICKED)) }
+                            visibility = true
                     ),
                     searchButton = ToolbarModel.SearchButton(
-                            visibility = true,
-                            onClickListener = { onActionSearchButtonClick() }
+                            visibility = true
                     )
             )
         }
@@ -68,14 +66,5 @@ class MakalViewModel(
     fun onActionItemClicked(makalModel: MakalModel) {
     }
 
-    private fun onActionSearchButtonClick() {
-        navigate(
-                MakalNavigator.Navigation.Search(
-                        MakalState()
-                )
-        )
-    }
 
-    private fun onActionBackButton() {
-    }
 }

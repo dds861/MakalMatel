@@ -36,9 +36,6 @@ class MakalViewFragment
     }
 
     override fun onSingleEvent(data: EmaExtraData) {
-        when (data.type) {
-            CategoryViewModel.TELEGRAM_CLICKED -> launchTelegram()
-        }
     }
 
     override fun onNormal(data: MakalState) {
@@ -68,13 +65,6 @@ class MakalViewFragment
         }
     }
 
-    private fun launchTelegram() {
-        startActivity(try {
-            requireContext().packageManager.getPackageInfo(resources.getString(R.string.telegramPackage), PackageManager.GET_ACTIVITIES)
-            Intent(Intent.ACTION_VIEW, Uri.parse(resources.getString(R.string.telegramDirectLink)))
-        } catch (e: PackageManager.NameNotFoundException) {
-            Intent(Intent.ACTION_VIEW, Uri.parse(resources.getString(R.string.telegramWebLink)))
-        })
-    }
+
 }
 

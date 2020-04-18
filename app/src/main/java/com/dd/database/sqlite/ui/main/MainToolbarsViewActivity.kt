@@ -5,7 +5,6 @@ import android.view.View
 import com.carmabs.ema.android.extra.EmaReceiverModel
 import com.carmabs.ema.android.extra.EmaResultModel
 import com.carmabs.ema.android.ui.EmaView
-import com.carmabs.ema.core.constants.STRING_EMPTY
 import com.carmabs.ema.core.state.EmaExtraData
 import com.dd.database.sqlite.R
 import com.dd.database.sqlite.base.BaseActivity
@@ -73,9 +72,12 @@ class MainToolbarsViewActivity : BaseActivity(), EmaView<HomeToolbarState, MainT
 //        }
 //        ivToolbarBack.setOnClickListener { viewModel.onActionBackClicked() }
 //        ivToolbarTelegram.setOnClickListener { viewModel.onActionCloseSessionClicked() }
-
         ivToolbarBack.setOnClickListener {
             viewModel.onActionBackClicked()
+        }
+
+        ivToolbarTelegram.setOnClickListener {
+            viewModel.onActionTelegramClicked()
         }
     }
 
@@ -116,10 +118,6 @@ class MainToolbarsViewActivity : BaseActivity(), EmaView<HomeToolbarState, MainT
             } else {
                 ivToolbarTelegram.visibility = View.GONE
             }
-
-            ivToolbarTelegram.setOnClickListener {
-                telegramButton.onClickListener.invoke()
-            }
         }
 
         data.searchButton?.let { searchButton ->
@@ -127,10 +125,6 @@ class MainToolbarsViewActivity : BaseActivity(), EmaView<HomeToolbarState, MainT
                 ivToolbarSearch.visibility = View.VISIBLE
             } else {
                 ivToolbarSearch.visibility = View.GONE
-            }
-
-            ivToolbarSearch.setOnClickListener {
-                searchButton.onClickListener.invoke()
             }
         }
 
@@ -140,8 +134,6 @@ class MainToolbarsViewActivity : BaseActivity(), EmaView<HomeToolbarState, MainT
             } else {
                 ivToolbarBack.visibility = View.GONE
             }
-
-
         }
     }
 }

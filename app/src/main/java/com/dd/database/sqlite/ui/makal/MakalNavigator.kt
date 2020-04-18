@@ -12,10 +12,6 @@ class MakalNavigator(
         private val activity: Activity)
     : BaseNavigator<MakalNavigator.Navigation>() {
     sealed class Navigation : EmaNavigationState {
-        class Search(private val makalState: MakalState) : MakalNavigator.Navigation() {
-            override fun navigateWith(navigator: EmaBaseNavigator<out EmaNavigationState>) {
-                val nav = navigator as CategoryNavigator
-            }
-        }
+
     }
 }

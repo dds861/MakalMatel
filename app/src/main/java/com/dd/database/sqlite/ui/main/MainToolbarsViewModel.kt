@@ -44,7 +44,7 @@ class MainToolbarsViewModel : BaseViewModel<HomeToolbarState, HomeNavigator.Navi
         navigate(HomeNavigator.Navigation.Back)
     }
 
-    fun onActionCloseSessionClicked() {
-        updateToAlternativeState()
+    fun onActionTelegramClicked() {
+        navigate(HomeNavigator.Navigation.Telegram)
     }
 }
