@@ -42,18 +42,18 @@ class CategoryViewFragment : BaseToolbarsFragment<CategoryState, CategoryViewMod
         }
     }
 
-    override fun onSingle(data: EmaExtraData) {
+    override fun onNormal(data: CategoryState) {
+        loadRecyclerViews(data)
     }
 
     override fun onAlternative(data: EmaExtraData) {
     }
 
-    override fun onNormal(data: CategoryState) {
-        loadRecyclerViews(data)
-    }
-
     override fun onError(error: Throwable) {
         Log.i("autolog", "error: " + error);
+    }
+
+    override fun onSingle(data: EmaExtraData) {
     }
 
     /**

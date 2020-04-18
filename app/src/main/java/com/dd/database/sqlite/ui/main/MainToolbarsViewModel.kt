@@ -5,31 +5,31 @@ import com.dd.database.sqlite.base.BaseViewModel
 import com.dd.database.sqlite.model.ToolbarModel
 
 class MainToolbarsViewModel : BaseViewModel<HomeToolbarState, HomeNavigator.Navigation>() {
+    /**
+     * Default variables
+     */
+    override val initialViewState: HomeToolbarState = HomeToolbarState()
 
+    /**
+     * Default functions
+     */
     override fun onStartFirstTime(statePreloaded: Boolean) {
-
     }
 
     override fun onResultListenerSetup() {
-       addOnResultReceived{
-           (it.data as? Pair<*, *>)?.also { pair ->
-               notifySingleEvent(EmaExtraData(extraData = pair))
-           }
-       }
-    }
-
-    fun setToolbarTitle(title:String?){
-        updateToNormalState {
-            copy(toolbarTitle = title)
+        addOnResultReceived {
+            (it.data as? Pair<*, *>)?.also { pair ->
+                notifySingleEvent(EmaExtraData(extraData = pair))
+            }
         }
     }
 
-    override val initialViewState: HomeToolbarState = HomeToolbarState()
-
-
+    /**
+     * Custom functions
+     */
     fun onActionUpdateToolbar(update: Boolean = true, updateToolbar: (ToolbarModel) -> ToolbarModel) {
-        checkDataState{
-            if(update)
+        checkDataState {
+            if (update)
                 updateToNormalState {
                     copy(toolbarModel = updateToolbar.invoke(it.toolbarModel))
                 }

@@ -32,7 +32,6 @@ data class ToolbarModel(
     )
 
     data class BackButton(
-            val onClickListener: (() -> Unit),
             val visibility: Boolean = false
     )
 }

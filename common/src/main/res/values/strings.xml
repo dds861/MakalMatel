@@ -41,5 +41,7 @@
     <string name="zhaniltpashtar">Жаңылтпаштар</string>
     <string name="about_zhaniltspash">Жаңылтпаш — қазақ ауыз әдебиетінің шағын жанры. Жаңылтпаш ойын-сауыққа жиналған жұртты күлдіру; жас ұрпақтың тілін ұстартып, әр түрлі сөзді шапшаң айтуға үйрету мақсатымен пайда болған. Жаңылтпаштың сөздері адамды жаңылдыратындай қиын, көбінесе, ұяң және қатаң дауыссыз дыбыстардан құралады, қара сөз немесе өлең түрінде болады.</string>
     <string name="telegramPackage">org.telegram.messenger</string>
+    <string name="telegramDirectLink">tg://resolve?domain=maqal7</string>
+    <string name="telegramWebLink">https://t.me/maqal7</string>
 
 </resources>

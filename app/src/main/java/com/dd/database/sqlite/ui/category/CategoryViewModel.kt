@@ -14,6 +14,9 @@ class CategoryViewModel(
         private val resourceManager: ResourceManager,
         private val getLocalCategoryUseCase: GetLocalCategoryUseCase
 ) : BaseToolbarsViewModel<CategoryState, CategoryNavigator.Navigation>() {
+    /**
+     * Constants
+     */
     companion object {
         const val TELEGRAM_CLICKED = 1
     }
@@ -34,6 +37,9 @@ class CategoryViewModel(
                     toolbarTitle = resourceManager.getToolbarTitle(),
                     toolbarTitleVisibility = true,
                     toolbarLogoVisibility = true,
+                    backButton = ToolbarModel.BackButton(
+                            visibility = false
+                    ),
                     telegramButton = ToolbarModel.TelegramButton(
                             visibility = true,
                             onClickListener = { notifySingleEvent(EmaExtraData(type = TELEGRAM_CLICKED)) }
@@ -74,7 +80,7 @@ class CategoryViewModel(
         )
     }
 
-    fun onActionSearchButtonClick() {
+    private fun onActionSearchButtonClick() {
         navigate(
                 CategoryNavigator.Navigation.Search(
                         MakalState()

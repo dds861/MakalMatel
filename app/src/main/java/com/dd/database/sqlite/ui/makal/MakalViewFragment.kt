@@ -1,15 +1,20 @@
 package com.dd.database.sqlite.ui.makal
 
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.carmabs.ema.core.state.EmaExtraData
 import com.dd.database.sqlite.R
-import com.dd.database.sqlite.base.BaseFragment
+import com.dd.database.sqlite.base.BaseToolbarsFragment
+import com.dd.database.sqlite.ui.category.CategoryViewModel
+import com.dd.database.sqlite.ui.main.MainToolbarsViewModel
 import kotlinx.android.synthetic.main.fragment_makal.*
 import org.kodein.di.generic.instance
 
 class MakalViewFragment
-    : BaseFragment<MakalState, MakalViewModel, MakalNavigator.Navigation>() {
+    : BaseToolbarsFragment<MakalState, MakalViewModel, MakalNavigator.Navigation>() {
     /**
      * Default variables
      */
@@ -18,25 +23,34 @@ class MakalViewFragment
     override val viewModelSeed: MakalViewModel by instance()
 
     /**
+     * Custom variables
+     */
+    private lateinit var vm: MakalViewModel
+
+    /**
      * Default functions
      */
-    override fun onAlternative(data: EmaExtraData) {
+    override fun onInitializedWithToolbarsManagement(viewModel: MakalViewModel, mainToolbarViewModel: MainToolbarsViewModel) {
+        vm = viewModel
+        setupRecycler()
+    }
+
+    override fun onSingleEvent(data: EmaExtraData) {
+        when (data.type) {
+            CategoryViewModel.TELEGRAM_CLICKED -> launchTelegram()
+        }
     }
 
     override fun onNormal(data: MakalState) {
         loadRecyclerViews(data)
     }
 
+    override fun onAlternative(data: EmaExtraData) {
+    }
+
     override fun onError(error: Throwable) {}
 
-    override fun onSingleEvent(data: EmaExtraData) {
-    }
-
     override fun onSingle(data: EmaExtraData) {
-    }
-
-    override fun onInitialized(viewModel: MakalViewModel) {
-        setupRecycler()
     }
 
     /**
@@ -52,6 +66,15 @@ class MakalViewFragment
                 viewModelSeed.onActionItemClicked(it)
             }
         }
+    }
+
+    private fun launchTelegram() {
+        startActivity(try {
+            requireContext().packageManager.getPackageInfo(resources.getString(R.string.telegramPackage), PackageManager.GET_ACTIVITIES)
+            Intent(Intent.ACTION_VIEW, Uri.parse(resources.getString(R.string.telegramDirectLink)))
+        } catch (e: PackageManager.NameNotFoundException) {
+            Intent(Intent.ACTION_VIEW, Uri.parse(resources.getString(R.string.telegramWebLink)))
+        })
     }
 }
 

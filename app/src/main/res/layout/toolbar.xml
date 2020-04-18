@@ -66,29 +66,21 @@
             tools:text="Title"
             tools:visibility="visible" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/clToolbarBack"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
+
+        <ImageView
+            android:id="@+id/ivToolbarBack"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:paddingStart="@dimen/space_medium"
+            android:paddingEnd="@dimen/space_very_big"
+            android:scaleType="center"
+            android:src="@drawable/ic_keyboard_arrow_left_black_24dp"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:visibility="visible">
+            tools:visibility="visible" />
 
-            <ImageView
-                android:id="@+id/ivToolbarBack"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:paddingStart="@dimen/space_medium"
-                android:paddingEnd="@dimen/space_very_big"
-                android:scaleType="center"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@drawable/ic_keyboard_arrow_left_black_24dp" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
             android:id="@+id/ivToolbarTelegram"

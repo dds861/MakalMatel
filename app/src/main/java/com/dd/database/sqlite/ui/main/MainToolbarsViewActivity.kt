@@ -62,17 +62,21 @@ class MainToolbarsViewActivity : BaseActivity(), EmaView<HomeToolbarState, MainT
      * Customs functions
      */
     private fun setupToolbar(viewModel: MainToolbarsViewModel) {
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            val backVisibility = destination.id != R.id.categoryViewFragment
-            viewModel.onActionUpdateToolbar(false) {
-                it.copy(
-                        backButton = ToolbarModel.BackButton(visibility = backVisibility, onClickListener = {}),
-                        toolbarTitle = destination.label?.toString() ?: STRING_EMPTY
-                )
-            }
+//        navController.addOnDestinationChangedListener { _, destination, _ ->
+//            val backVisibility = destination.id != R.id.categoryViewFragment
+//            viewModel.onActionUpdateToolbar(false) {
+//                it.copy(
+//                        backButton = ToolbarModel.BackButton(visibility = backVisibility, onClickListener = {viewModel.onActionBackClicked()}),
+//                        toolbarTitle = destination.label?.toString() ?: STRING_EMPTY
+//                )
+//            }
+//        }
+//        ivToolbarBack.setOnClickListener { viewModel.onActionBackClicked() }
+//        ivToolbarTelegram.setOnClickListener { viewModel.onActionCloseSessionClicked() }
+
+        ivToolbarBack.setOnClickListener {
+            viewModel.onActionBackClicked()
         }
-        clToolbarBack.setOnClickListener { viewModel.onActionBackClicked() }
-        ivToolbarTelegram.setOnClickListener { viewModel.onActionCloseSessionClicked() }
     }
 
     private fun updateToolbar(data: ToolbarModel) {
@@ -137,9 +141,7 @@ class MainToolbarsViewActivity : BaseActivity(), EmaView<HomeToolbarState, MainT
                 ivToolbarBack.visibility = View.GONE
             }
 
-            ivToolbarBack.setOnClickListener {
-                backButton.onClickListener.invoke()
-            }
+
         }
     }
 }
