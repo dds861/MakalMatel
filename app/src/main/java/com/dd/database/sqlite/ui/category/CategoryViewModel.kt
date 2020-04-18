@@ -40,7 +40,7 @@ class CategoryViewModel(
                     ),
                     searchButton = ToolbarModel.SearchButton(
                             visibility = true,
-                            onClickListener = {}
+                            onClickListener = { onActionSearchButtonClick() }
                     )
             )
         }
@@ -70,6 +70,14 @@ class CategoryViewModel(
                         MakalState(
                                 categoryId = categoryModel.category_id
                         )
+                )
+        )
+    }
+
+    fun onActionSearchButtonClick() {
+        navigate(
+                CategoryNavigator.Navigation.Search(
+                        MakalState()
                 )
         )
     }

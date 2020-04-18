@@ -35,6 +35,11 @@ http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
     <dimen name="letter_small_medium">12sp</dimen>
     <dimen name="letter_medium">14sp</dimen>
 
+    <!--Toolbar-->
+    <dimen name="icon_padding_top">12dp</dimen>
+    <dimen name="icon_padding_bottom">12dp</dimen>
+
+
     <!--Other-->
     <dimen name="separator">1dp</dimen>
     <dimen name="radio_corner_big">17dp</dimen>

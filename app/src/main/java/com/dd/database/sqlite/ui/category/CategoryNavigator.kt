@@ -22,6 +22,13 @@ class CategoryNavigator(
             }
         }
 
+        class Search(private val makalState: MakalState) : Navigation() {
+            override fun navigateWith(navigator: EmaBaseNavigator<out EmaNavigationState>) {
+                val nav = navigator as CategoryNavigator
+
+            }
+        }
+
     }
 
     private fun toMakal(makalState: MakalState) {

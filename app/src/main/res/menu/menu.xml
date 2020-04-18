@@ -8,7 +8,7 @@
         app:showAsAction="always" />
     <item
         android:id="@+id/telegramOpenButton"
-        android:icon="@mipmap/ic_launcher_telegram_icon"
+        android:icon="@drawable/ic_telegram_logo"
         android:title=""
         app:showAsAction="always" />
 </menu>
