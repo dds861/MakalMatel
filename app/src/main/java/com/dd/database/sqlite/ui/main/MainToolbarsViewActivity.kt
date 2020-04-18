@@ -21,9 +21,12 @@ class MainToolbarsViewActivity : BaseActivity(), EmaView<HomeToolbarState, MainT
     override val viewModelSeed: MainToolbarsViewModel by instance()
     override val navigator: HomeNavigator by instance()
     override val navGraph: Int = R.navigation.navigation_ema_home
+
     /**
      * Customs variables
      */
+    lateinit var vm: MainToolbarsViewModel
+
     /**
      * Default functions
      */
@@ -61,27 +64,26 @@ class MainToolbarsViewActivity : BaseActivity(), EmaView<HomeToolbarState, MainT
      * Customs functions
      */
     private fun setupToolbar(viewModel: MainToolbarsViewModel) {
-//        navController.addOnDestinationChangedListener { _, destination, _ ->
-//            val backVisibility = destination.id != R.id.categoryViewFragment
-//            viewModel.onActionUpdateToolbar(false) {
-//                it.copy(
-//                        backButton = ToolbarModel.BackButton(visibility = backVisibility, onClickListener = {viewModel.onActionBackClicked()}),
-//                        toolbarTitle = destination.label?.toString() ?: STRING_EMPTY
-//                )
-//            }
-//        }
-//        ivToolbarBack.setOnClickListener { viewModel.onActionBackClicked() }
-//        ivToolbarTelegram.setOnClickListener { viewModel.onActionCloseSessionClicked() }
-        ivToolbarBack.setOnClickListener {
-            viewModel.onActionBackClicked()
-        }
-
-        ivToolbarTelegram.setOnClickListener {
-            viewModel.onActionTelegramClicked()
-        }
+        vm = viewModel
+        ivToolbarTelegram.setOnClickListener { viewModel.onActionTelegramClicked() }
     }
 
     private fun updateToolbar(data: ToolbarModel) {
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id == R.id.categoryViewFragment) {
+                true -> {
+                    ivToolbarLogoOrBack.setImageDrawable(resources.getDrawable(R.mipmap.ic_launcher_pen, null))
+                    ivToolbarLogoOrBack.setOnClickListener { null }
+                }
+
+                false -> {
+                    ivToolbarLogoOrBack.setImageDrawable(resources.getDrawable(R.drawable.ic_keyboard_arrow_left_black_24dp, null))
+                    ivToolbarLogoOrBack.setOnClickListener { vm.onActionBackClicked() }
+                }
+            }
+        }
+
+
         data.toolbarTitle.let {
             tvToolbarTitle.text = data.toolbarTitle
         }
@@ -94,11 +96,11 @@ class MainToolbarsViewActivity : BaseActivity(), EmaView<HomeToolbarState, MainT
             }
         }
 
-        data.toolbarLogoVisibility.let {
+        data.toolbarLogoOrBackVisibility.let {
             if (it) {
-                ivToolbarLogo.visibility = View.VISIBLE
+                ivToolbarLogoOrBack.visibility = View.VISIBLE
             } else {
-                ivToolbarLogo.visibility = View.GONE
+                ivToolbarLogoOrBack.visibility = View.GONE
             }
         }
 
@@ -125,14 +127,6 @@ class MainToolbarsViewActivity : BaseActivity(), EmaView<HomeToolbarState, MainT
                 ivToolbarSearch.visibility = View.VISIBLE
             } else {
                 ivToolbarSearch.visibility = View.GONE
-            }
-        }
-
-        data.backButton?.let { backButton ->
-            if (backButton.visibility) {
-                ivToolbarBack.visibility = View.VISIBLE
-            } else {
-                ivToolbarBack.visibility = View.GONE
             }
         }
     }

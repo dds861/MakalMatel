@@ -35,10 +35,7 @@ class CategoryViewModel(
             it.copy(
                     toolbarTitle = resourceManager.getToolbarTitle(),
                     toolbarTitleVisibility = true,
-                    toolbarLogoVisibility = true,
-                    backButton = ToolbarModel.BackButton(
-                            visibility = false
-                    ),
+                    toolbarLogoOrBackVisibility = true,
                     telegramButton = ToolbarModel.TelegramButton(
                             visibility = true
                     ),
@@ -71,7 +68,8 @@ class CategoryViewModel(
         navigate(
                 CategoryNavigator.Navigation.Makal(
                         MakalState(
-                                categoryId = categoryModel.category_id
+                                categoryId = categoryModel.category_id,
+                                categoryTitle = categoryModel.category_text
                         )
                 )
         )

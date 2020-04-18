@@ -1,5 +1,6 @@
 package com.dd.database.sqlite.model
 
+import com.carmabs.ema.core.constants.INT_ZERO
 import com.carmabs.ema.core.constants.STRING_EMPTY
 
 /**
@@ -13,11 +14,10 @@ import com.carmabs.ema.core.constants.STRING_EMPTY
  */
 data class ToolbarModel(
         val telegramButton: TelegramButton? = null,
-        val backButton: BackButton? = null,
         val searchButton: SearchButton? = null,
         val toolbarTitle: String = STRING_EMPTY,
-        val toolbarTitleVisibility: Boolean = false,
-        val toolbarLogoVisibility: Boolean = false,
+        val toolbarTitleVisibility: Boolean = true,
+        val toolbarLogoOrBackVisibility: Boolean = true,
         val toolbarVisibility: Boolean = true,
         val toolbarElevation: Boolean = false
 ) {
@@ -29,7 +29,4 @@ data class ToolbarModel(
             val visibility: Boolean = true
     )
 
-    data class BackButton(
-            val visibility: Boolean = false
-    )
 }

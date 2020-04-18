@@ -1,9 +1,7 @@
 package com.dd.database.sqlite.ui.makal
 
-import com.carmabs.ema.core.state.EmaExtraData
 import com.dd.database.sqlite.base.BaseToolbarsViewModel
 import com.dd.database.sqlite.model.ToolbarModel
-import com.dd.database.sqlite.ui.category.CategoryViewModel
 import com.dd.database.sqlite.ui.main.MainToolbarsViewModel
 import com.dd.domain.manager.ResourceManager
 import com.dd.domain.model.MakalModel
@@ -42,21 +40,18 @@ class MakalViewModel(
     }
 
     override fun onConfigureToolbars(mainToolbarsVm: MainToolbarsViewModel) {
-        mainToolbarsVm.onActionUpdateToolbar {
-            it.copy(
-                    toolbarTitle = resourceManager.getToolbarTitle(),
-                    toolbarTitleVisibility = false,
-                    toolbarLogoVisibility = false,
-                    backButton = ToolbarModel.BackButton(
-                            visibility = true
-                    ),
-                    telegramButton = ToolbarModel.TelegramButton(
-                            visibility = true
-                    ),
-                    searchButton = ToolbarModel.SearchButton(
-                            visibility = true
-                    )
-            )
+        checkDataState { makalState ->
+            mainToolbarsVm.onActionUpdateToolbar {
+                it.copy(
+                        toolbarTitle = makalState.categoryTitle,
+                        telegramButton = ToolbarModel.TelegramButton(
+                                visibility = true
+                        ),
+                        searchButton = ToolbarModel.SearchButton(
+                                visibility = true
+                        )
+                )
+            }
         }
     }
 
@@ -65,6 +60,4 @@ class MakalViewModel(
      */
     fun onActionItemClicked(makalModel: MakalModel) {
     }
-
-
 }
