@@ -3,6 +3,8 @@ package com.dd.database.sqlite.ui.main
 import com.carmabs.ema.core.state.EmaExtraData
 import com.dd.database.sqlite.base.BaseViewModel
 import com.dd.database.sqlite.model.ToolbarModel
+import com.dd.database.sqlite.ui.search.SearchState
+import com.dd.domain.model.CategoryModel
 
 class MainToolbarsViewModel : BaseViewModel<HomeToolbarState, HomeNavigator.Navigation>() {
     /**
@@ -46,5 +48,9 @@ class MainToolbarsViewModel : BaseViewModel<HomeToolbarState, HomeNavigator.Navi
 
     fun onActionTelegramClicked() {
         navigate(HomeNavigator.Navigation.Telegram)
+    }
+
+    fun onActionSearchClick() {
+        navigate(HomeNavigator.Navigation.Search)
     }
 }

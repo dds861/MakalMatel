@@ -66,6 +66,7 @@ class MainToolbarsViewActivity : BaseActivity(), EmaView<HomeToolbarState, MainT
     private fun setupToolbar(viewModel: MainToolbarsViewModel) {
         vm = viewModel
         ivToolbarTelegram.setOnClickListener { viewModel.onActionTelegramClicked() }
+        ivToolbarSearch.setOnClickListener { viewModel.onActionSearchClick() }
     }
 
     private fun updateToolbar(data: ToolbarModel) {

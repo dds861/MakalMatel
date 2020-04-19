@@ -25,6 +25,13 @@ class HomeNavigator(override val navController: NavController, val activity: Act
                 nav.toTelegram()
             }
         }
+
+        object Search : Navigation() {
+            override fun navigateWith(navigator: EmaBaseNavigator<out EmaNavigationState>) {
+                val nav = navigator as HomeNavigator
+                nav.toSearch()
+            }
+        }
     }
 
     private fun toTelegram() {
@@ -39,5 +46,10 @@ class HomeNavigator(override val navController: NavController, val activity: Act
     private fun toBack() {
         if (!navigateBack())
             activity.finish()
+    }
+
+    private fun toSearch() {
+        navigateWithAction(R.id.action_global_searchViewFragment,
+                null)
     }
 }
