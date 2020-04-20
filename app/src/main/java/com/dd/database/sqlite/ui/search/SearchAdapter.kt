@@ -13,6 +13,7 @@ import com.daimajia.androidanimations.library.YoYo
 import com.dd.database.sqlite.R
 import com.dd.domain.model.MakalModel
 import kotlinx.android.synthetic.main.item_makal.view.*
+import kotlinx.android.synthetic.main.item_search.view.*
 
 class SearchAdapter(private val context: Context,
                     override val listItems: MutableList<MakalModel> = mutableListOf(),
@@ -20,24 +21,24 @@ class SearchAdapter(private val context: Context,
     override val layoutItemId: Int = R.layout.item_search
 
     override fun View.bind(item: MakalModel, viewType: Int) {
-        text2.text = item.makal_text
+        tvText.text = item.makal_text
 
-        ivCopy.setOnClickListener {
-            YoYo.with(Techniques.FadeOut).duration(150).repeat(0).playOn(ivCopy)
-            YoYo.with(Techniques.FadeIn).duration(350).repeat(0).playOn(ivCopy)
-
-            copyToClipboard(item.makal_text)
-
-            itemListener.invoke(item)
-        }
-        ivShare.setOnClickListener {
-            YoYo.with(Techniques.FadeOut).duration(150).repeat(0).playOn(ivShare)
-            YoYo.with(Techniques.FadeIn).duration(350).repeat(0).playOn(ivShare)
-
-            shareText(item.makal_text)
-
-            itemListener.invoke(item)
-        }
+//        ivCopy.setOnClickListener {
+//            YoYo.with(Techniques.FadeOut).duration(150).repeat(0).playOn(ivCopy)
+//            YoYo.with(Techniques.FadeIn).duration(350).repeat(0).playOn(ivCopy)
+//
+//            copyToClipboard(item.makal_text)
+//
+//            itemListener.invoke(item)
+//        }
+//        ivShare.setOnClickListener {
+//            YoYo.with(Techniques.FadeOut).duration(150).repeat(0).playOn(ivShare)
+//            YoYo.with(Techniques.FadeIn).duration(350).repeat(0).playOn(ivShare)
+//
+//            shareText(item.makal_text)
+//
+//            itemListener.invoke(item)
+//        }
     }
 
     private fun copyToClipboard(text: String) {

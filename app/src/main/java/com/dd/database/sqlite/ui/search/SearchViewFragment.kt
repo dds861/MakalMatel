@@ -1,5 +1,6 @@
 package com.dd.database.sqlite.ui.search
 
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.carmabs.ema.core.state.EmaExtraData
@@ -29,6 +30,7 @@ class SearchViewFragment
     override fun onInitializedWithToolbarsManagement(viewModel: SearchViewModel, mainToolbarViewModel: MainToolbarsViewModel) {
         vm = viewModel
         setupRecycler()
+        setupListeners()
     }
 
     override fun onSingleEvent(data: EmaExtraData) {
@@ -59,6 +61,20 @@ class SearchViewFragment
                 viewModelSeed.onActionItemClicked(it)
             }
         }
+    }
+
+    private fun setupListeners() {
+        svSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                query?.let { vm.onActionQueryTextSubmit(it) }
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                newText?.let { vm.onActionQueryTextChange(it) }
+                return true
+            }
+        })
     }
 }
 

@@ -29,5 +29,5 @@ fun fragmentInjection(fragment: Fragment) = Kodein.Module(name = "FragmentModule
 
     bind<MakalViewModel>() with provider { MakalViewModel(instance(), instance()) }
 
-    bind<SearchViewModel>() with provider { SearchViewModel(instance(), instance()) }
+    bind<SearchViewModel>() with provider { SearchViewModel(instance(), instance(), instance()) }
 }

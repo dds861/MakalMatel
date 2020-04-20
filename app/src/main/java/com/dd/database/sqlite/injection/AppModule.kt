@@ -9,7 +9,6 @@ import org.kodein.di.generic.provider
 import org.kodein.di.generic.singleton
 
 fun appInjection(application: Application) = Kodein.Module(name = "AppModule") {
-
     bind<Application>() with singleton { application }
 
     bind<GetCategoryUseCase>() with provider { GetCategoryUseCase(instance()) }
@@ -22,4 +21,5 @@ fun appInjection(application: Application) = Kodein.Module(name = "AppModule") {
 
     bind<GetLocalMakalByCategoryIdUseCase>() with provider { GetLocalMakalByCategoryIdUseCase(instance()) }
 
+    bind<GetLocalMakalByQueryTextUseCase>() with provider { GetLocalMakalByQueryTextUseCase(instance()) }
 }
