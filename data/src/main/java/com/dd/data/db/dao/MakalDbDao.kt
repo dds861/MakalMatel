@@ -15,6 +15,4 @@ interface MakalDbDao : BaseDbDao<MakalDbData> {
     @Query("SELECT * FROM ${MakalDbData.TABLE_NAME} WHERE ${MakalDbData.MAKAL_TEXT} LIKE '%' || :queryText|| '%'")
     fun getMakalsByQueryText(queryText: String): List<MakalDbData>
 
-    @Query("SELECT * FROM ${MakalDbData.TABLE_NAME} WHERE ${MakalDbData.MAKAL_TEXT} LIKE  :queryText|| '%'")
-    fun getMakalsByFilteredQueryText(queryText: String): List<MakalDbData>
 }

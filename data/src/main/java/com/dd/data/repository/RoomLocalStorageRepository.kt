@@ -85,8 +85,4 @@ class RoomLocalStorageRepository(
     override fun getMakalsByQueryText(request: RequestMakalModel): ResponseMakalModel {
         return db.makalDao().getMakalsByQueryText(request.queryText).toDomainModel()
     }
-
-    override fun getMakalsByFilteredQueryText(request: RequestMakalModel): ResponseMakalModel {
-        return db.makalDao().getMakalsByFilteredQueryText(request.queryText).toDomainModel()
-    }
 }

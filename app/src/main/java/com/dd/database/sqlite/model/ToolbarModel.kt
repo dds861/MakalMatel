@@ -22,6 +22,7 @@ data class ToolbarModel(
 ) {
     data class SearchButton(
             val visibility: Boolean = true,
+            val searchViewText: String = STRING_EMPTY,
             val setOnQueryTextFocusChangeListener: ((queryText: String) -> Unit)? = null
     )
 

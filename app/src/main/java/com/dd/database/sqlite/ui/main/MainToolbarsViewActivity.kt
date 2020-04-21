@@ -23,12 +23,13 @@ class MainToolbarsViewActivity : BaseActivity(), EmaView<HomeToolbarState, MainT
     override var previousState: HomeToolbarState? = null
     override val viewModelSeed: MainToolbarsViewModel by instance()
     override val navigator: HomeNavigator by instance()
-    override val navGraph: Int = R.navigation.navigation_ema_home
+    override val navGraph: Int = com.dd.database.sqlite.R.navigation.navigation_ema_home
 
     /**
      * Customs variables
      */
     lateinit var vm: MainToolbarsViewModel
+    lateinit var txtSearch: EditText
 
     /**
      * Default functions
@@ -54,6 +55,17 @@ class MainToolbarsViewActivity : BaseActivity(), EmaView<HomeToolbarState, MainT
     }
 
     override fun onSingleEvent(data: EmaExtraData) {
+        if (txtSearch.text.toString() != data.extraData.toString()) {
+            txtSearch.setText(data.extraData.toString())
+        }
+//        txtSearch.addTextChangedListener(object : TextWatcher {
+//            override fun afterTextChanged(s: Editable?) {}
+//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+//            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+//                if (txtSearch.hasFocus()) {
+//                }
+//            }
+//        })
     }
 
     override fun onStateError(error: Throwable) {
@@ -73,8 +85,7 @@ class MainToolbarsViewActivity : BaseActivity(), EmaView<HomeToolbarState, MainT
         ivToolbarSearch.setOnSearchClickListener(View.OnClickListener {
             viewModel.onActionSearchClick()
         })
-
-        val txtSearch = ivToolbarSearch.findViewById(androidx.appcompat.R.id.search_src_text) as EditText
+        txtSearch = ivToolbarSearch.findViewById(androidx.appcompat.R.id.search_src_text) as EditText
         txtSearch.hint = resources.getString(R.string.hint_search)
         txtSearch.setHintTextColor(Color.LTGRAY)
         txtSearch.setTextColor(Color.WHITE)
@@ -152,6 +163,7 @@ class MainToolbarsViewActivity : BaseActivity(), EmaView<HomeToolbarState, MainT
                     return false
                 }
             })
+
 
 
             if (searchButton.visibility) {

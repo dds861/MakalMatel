@@ -7,16 +7,13 @@ import com.dd.domain.manager.ResourceManager
 import com.dd.domain.model.MakalModel
 import com.dd.domain.model.RequestMakalModel
 import com.dd.domain.usecase.GetLocalMakalByCategoryIdUseCase
-import com.dd.domain.usecase.GetLocalMakalByFilteredQueryTextUseCase
 import com.dd.domain.usecase.GetLocalMakalByQueryTextUseCase
 import java.util.*
 
 class SearchViewModel(
         val resourceManager: ResourceManager,
         private val getLocalMakalByCategoryIdUseCase: GetLocalMakalByCategoryIdUseCase,
-        private val getLocalMakalByQueryTextUseCase: GetLocalMakalByQueryTextUseCase,
-        private val getLocalMakalByFilteredQueryTextUseCase: GetLocalMakalByFilteredQueryTextUseCase
-
+        private val getLocalMakalByQueryTextUseCase: GetLocalMakalByQueryTextUseCase
 ) : BaseToolbarsViewModel<SearchState, SearchNavigator.Navigation>() {
     /**
      * Default variables
@@ -56,7 +53,7 @@ class SearchViewModel(
                         searchButton = ToolbarModel.SearchButton(
                                 visibility = true,
                                 setOnQueryTextFocusChangeListener = {
-                                    onActionToolbar(it)
+                                    onActionFilterToolbarHintsByQueryText(it)
                                 }
                         )
                 )
@@ -67,7 +64,7 @@ class SearchViewModel(
     /**
      * Custom functions
      */
-    private fun filterMakalsByQueryText(queryText: String, list: List<MakalModel>): List<MakalModel> {
+    private fun filterToolbarHintsByQueryText(queryText: String, list: List<MakalModel>): List<MakalModel> {
         if (queryText.isNotEmpty()) {
             val listMakalModels: MutableList<MakalModel> = mutableListOf()
 
@@ -95,14 +92,32 @@ class SearchViewModel(
         }
     }
 
-    fun onActionToolbar(queryText: String) {
+    private fun filterToolbarMakalsByQueryText(queryText: String, list: List<MakalModel>): List<MakalModel> {
+        return if (queryText.isNotEmpty()) {
+            val listMakalModels: MutableList<MakalModel> = mutableListOf()
+
+            list.map { makalModel ->
+                val indexBeforeQueryText = makalModel.makal_text.indexOf(queryText)
+                if (indexBeforeQueryText < 0 || (indexBeforeQueryText >= 0 && makalModel.makal_text[indexBeforeQueryText - 1] == ' ')) {
+                    listMakalModels.add(makalModel)
+                }
+            }
+            listMakalModels.distinct()
+                    .sortedByDescending { it.makal_text }
+                    .sortedBy { it.makal_text.length }
+        } else {
+            listOf()
+        }
+    }
+
+    private fun onActionFilterToolbarHintsByQueryText(queryText: String) {
         checkDataState {
             executeUseCaseWithException(
                     {
                         val responseMakalModel = getLocalMakalByQueryTextUseCase.execute(RequestMakalModel(queryText = queryText))
                         updateToNormalState {
                             copy(
-                                    listMakals = filterMakalsByQueryText(queryText, responseMakalModel.list),
+                                    listMakals = filterToolbarHintsByQueryText(queryText, responseMakalModel.list),
                                     adapterType = SearchState.AdapterType.HINT
                             )
                         }
@@ -113,14 +128,16 @@ class SearchViewModel(
         }
     }
 
-    fun onActionToolbar2(queryText: String) {
+    fun onActionFilterToolbarMakalsByQueryText(queryText: String) {
+        mainToolbarsVm.onActionSearchViewText(queryText)
+
         checkDataState {
             executeUseCaseWithException(
                     {
-                        val responseMakalModel = getLocalMakalByFilteredQueryTextUseCase.execute(RequestMakalModel(queryText = queryText))
+                        val responseMakalModel = getLocalMakalByQueryTextUseCase.execute(RequestMakalModel(queryText = queryText))
                         updateToNormalState {
                             copy(
-                                    listMakals = responseMakalModel.list,
+                                    listMakals = filterToolbarMakalsByQueryText(queryText, responseMakalModel.list),
                                     adapterType = SearchState.AdapterType.MAKALS
                             )
                         }

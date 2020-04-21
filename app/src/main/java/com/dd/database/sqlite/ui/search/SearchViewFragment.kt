@@ -56,7 +56,14 @@ class SearchViewFragment
     private fun loadRecyclerViews(data: SearchState) {
         rvSearch.adapter = data.listMakals.toMutableList().let { it ->
             SearchAdapter(context = requireContext(), listItems = it, adapterType = data.adapterType) {
-                vm.onActionToolbar2(it.makal_text)
+                when (data.adapterType) {
+                    SearchState.AdapterType.HINT -> {
+                        vm.onActionFilterToolbarMakalsByQueryText(it.makal_text)
+                    }
+
+                    SearchState.AdapterType.MAKALS -> {
+                    }
+                }
             }
         }
     }

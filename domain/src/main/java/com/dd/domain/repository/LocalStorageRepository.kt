@@ -13,5 +13,4 @@ interface LocalStorageRepository {
     fun getMakalsByCategoryId(request: RequestMakalModel): ResponseMakalModel
 
     fun getMakalsByQueryText(request: RequestMakalModel): ResponseMakalModel
-    fun getMakalsByFilteredQueryText(request: RequestMakalModel): ResponseMakalModel
 }

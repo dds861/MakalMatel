@@ -40,6 +40,10 @@ class MainToolbarsViewModel : BaseViewModel<HomeToolbarState, HomeNavigator.Navi
         }
     }
 
+    fun onActionSearchViewText(searchViewText: String) {
+        notifySingleEvent(EmaExtraData(extraData = searchViewText))
+    }
+
     fun onActionBackClicked() {
         navigate(HomeNavigator.Navigation.Back)
     }
