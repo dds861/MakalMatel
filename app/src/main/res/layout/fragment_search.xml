@@ -6,15 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/svSearch"
-        android:layout_width="0dp"
-
-        android:layout_height="wrap_content"
-        ads:layout_constraintEnd_toEndOf="parent"
-        ads:layout_constraintStart_toStartOf="parent"
-        ads:layout_constraintTop_toTopOf="parent" />
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvSearch"
@@ -23,7 +14,7 @@
         ads:layout_constraintBottom_toTopOf="@id/viewDivider"
         ads:layout_constraintEnd_toEndOf="parent"
         ads:layout_constraintStart_toStartOf="parent"
-        ads:layout_constraintTop_toBottomOf="@id/svSearch"
+        ads:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/item_search" />
 
     <View

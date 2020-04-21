@@ -9,5 +9,11 @@ data class SearchState(
         val default: String = STRING_EMPTY,
         val categoryId: Int = INT_ZERO,
         val listMakals: List<MakalModel> = listOf(),
-        val categoryTitle: String = STRING_EMPTY
-) : EmaBaseState
+        val categoryTitle: String = STRING_EMPTY,
+        val adapterType: AdapterType = AdapterType.HINT
+) : EmaBaseState {
+    enum class AdapterType {
+        HINT,
+        MAKALS,
+    }
+}

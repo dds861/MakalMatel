@@ -22,4 +22,6 @@ fun appInjection(application: Application) = Kodein.Module(name = "AppModule") {
     bind<GetLocalMakalByCategoryIdUseCase>() with provider { GetLocalMakalByCategoryIdUseCase(instance()) }
 
     bind<GetLocalMakalByQueryTextUseCase>() with provider { GetLocalMakalByQueryTextUseCase(instance()) }
+
+    bind<GetLocalMakalByFilteredQueryTextUseCase>() with provider { GetLocalMakalByFilteredQueryTextUseCase(instance()) }
 }

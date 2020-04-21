@@ -1,6 +1,5 @@
 package com.dd.database.sqlite.model
 
-import com.carmabs.ema.core.constants.INT_ZERO
 import com.carmabs.ema.core.constants.STRING_EMPTY
 
 /**
@@ -22,11 +21,11 @@ data class ToolbarModel(
         val toolbarElevation: Boolean = false
 ) {
     data class SearchButton(
-            val visibility: Boolean = true
+            val visibility: Boolean = true,
+            val setOnQueryTextFocusChangeListener: ((queryText: String) -> Unit)? = null
     )
 
     data class TelegramButton(
             val visibility: Boolean = true
     )
-
 }

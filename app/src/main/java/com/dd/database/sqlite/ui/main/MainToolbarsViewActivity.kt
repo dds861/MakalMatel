@@ -1,7 +1,10 @@
 package com.dd.database.sqlite.ui.main
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import android.widget.EditText
+import androidx.appcompat.widget.SearchView
 import com.carmabs.ema.android.extra.EmaReceiverModel
 import com.carmabs.ema.android.extra.EmaResultModel
 import com.carmabs.ema.android.ui.EmaView
@@ -66,20 +69,34 @@ class MainToolbarsViewActivity : BaseActivity(), EmaView<HomeToolbarState, MainT
     private fun setupToolbar(viewModel: MainToolbarsViewModel) {
         vm = viewModel
         ivToolbarTelegram.setOnClickListener { viewModel.onActionTelegramClicked() }
-        ivToolbarSearch.setOnClickListener { viewModel.onActionSearchClick() }
+
+        ivToolbarSearch.setOnSearchClickListener(View.OnClickListener {
+            viewModel.onActionSearchClick()
+        })
+
+        val txtSearch = ivToolbarSearch.findViewById(androidx.appcompat.R.id.search_src_text) as EditText
+        txtSearch.hint = resources.getString(R.string.hint_search)
+        txtSearch.setHintTextColor(Color.LTGRAY)
+        txtSearch.setTextColor(Color.WHITE)
     }
 
     private fun updateToolbar(data: ToolbarModel) {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id == R.id.categoryViewFragment) {
+                //Logo pressed
                 true -> {
                     ivToolbarLogoOrBack.setImageDrawable(resources.getDrawable(R.mipmap.ic_launcher_pen, null))
-                    ivToolbarLogoOrBack.setOnClickListener { null }
+                    ivToolbarLogoOrBack.setOnClickListener { }
                 }
-
+                //Back pressed
                 false -> {
                     ivToolbarLogoOrBack.setImageDrawable(resources.getDrawable(R.drawable.ic_keyboard_arrow_left_black_24dp, null))
-                    ivToolbarLogoOrBack.setOnClickListener { vm.onActionBackClicked() }
+                    ivToolbarLogoOrBack.setOnClickListener {
+                        //hide/show searchView on Back press
+                        ivToolbarSearch.onActionViewCollapsed()
+
+                        vm.onActionBackClicked()
+                    }
                 }
             }
         }
@@ -124,6 +141,19 @@ class MainToolbarsViewActivity : BaseActivity(), EmaView<HomeToolbarState, MainT
         }
 
         data.searchButton?.let { searchButton ->
+            ivToolbarSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String): Boolean {
+                    searchButton.setOnQueryTextFocusChangeListener?.invoke(query)
+                    return false
+                }
+
+                override fun onQueryTextChange(newText: String): Boolean {
+                    searchButton.setOnQueryTextFocusChangeListener?.invoke(newText)
+                    return false
+                }
+            })
+
+
             if (searchButton.visibility) {
                 ivToolbarSearch.visibility = View.VISIBLE
             } else {

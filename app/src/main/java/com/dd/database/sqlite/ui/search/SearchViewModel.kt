@@ -7,13 +7,16 @@ import com.dd.domain.manager.ResourceManager
 import com.dd.domain.model.MakalModel
 import com.dd.domain.model.RequestMakalModel
 import com.dd.domain.usecase.GetLocalMakalByCategoryIdUseCase
+import com.dd.domain.usecase.GetLocalMakalByFilteredQueryTextUseCase
 import com.dd.domain.usecase.GetLocalMakalByQueryTextUseCase
 import java.util.*
 
 class SearchViewModel(
         val resourceManager: ResourceManager,
         private val getLocalMakalByCategoryIdUseCase: GetLocalMakalByCategoryIdUseCase,
-        private val getLocalMakalByQueryTextUseCase: GetLocalMakalByQueryTextUseCase
+        private val getLocalMakalByQueryTextUseCase: GetLocalMakalByQueryTextUseCase,
+        private val getLocalMakalByFilteredQueryTextUseCase: GetLocalMakalByFilteredQueryTextUseCase
+
 ) : BaseToolbarsViewModel<SearchState, SearchNavigator.Navigation>() {
     /**
      * Default variables
@@ -44,14 +47,17 @@ class SearchViewModel(
 
     override fun onConfigureToolbars(mainToolbarsVm: MainToolbarsViewModel) {
         checkDataState { makalState ->
-            mainToolbarsVm.onActionUpdateToolbar {
-                it.copy(
+            mainToolbarsVm.onActionUpdateToolbar { toolbarModel ->
+                toolbarModel.copy(
                         toolbarTitle = makalState.categoryTitle,
                         telegramButton = ToolbarModel.TelegramButton(
                                 visibility = true
                         ),
                         searchButton = ToolbarModel.SearchButton(
-                                visibility = true
+                                visibility = true,
+                                setOnQueryTextFocusChangeListener = {
+                                    onActionToolbar(it)
+                                }
                         )
                 )
             }
@@ -61,29 +67,6 @@ class SearchViewModel(
     /**
      * Custom functions
      */
-    fun onActionItemClicked(makalModel: MakalModel) {
-    }
-
-    fun onActionQueryTextSubmit(query: String) {
-    }
-
-    fun onActionQueryTextChange(newText: String) {
-        checkDataState {
-            executeUseCaseWithException(
-                    {
-                        val responseMakalModel = getLocalMakalByQueryTextUseCase.execute(RequestMakalModel(queryText = newText))
-                        updateToNormalState {
-                            copy(
-                                    listMakals = filterMakalsByQueryText(newText, responseMakalModel.list)
-                            )
-                        }
-                    },
-                    { e ->
-                        updateToErrorState(e)
-                    })
-        }
-    }
-
     private fun filterMakalsByQueryText(queryText: String, list: List<MakalModel>): List<MakalModel> {
         if (queryText.isNotEmpty()) {
             val listMakalModels: MutableList<MakalModel> = mutableListOf()
@@ -109,6 +92,42 @@ class SearchViewModel(
                     .sortedBy { it.makal_text.length }
         } else {
             return listOf()
+        }
+    }
+
+    fun onActionToolbar(queryText: String) {
+        checkDataState {
+            executeUseCaseWithException(
+                    {
+                        val responseMakalModel = getLocalMakalByQueryTextUseCase.execute(RequestMakalModel(queryText = queryText))
+                        updateToNormalState {
+                            copy(
+                                    listMakals = filterMakalsByQueryText(queryText, responseMakalModel.list),
+                                    adapterType = SearchState.AdapterType.HINT
+                            )
+                        }
+                    },
+                    { e ->
+                        updateToErrorState(e)
+                    })
+        }
+    }
+
+    fun onActionToolbar2(queryText: String) {
+        checkDataState {
+            executeUseCaseWithException(
+                    {
+                        val responseMakalModel = getLocalMakalByFilteredQueryTextUseCase.execute(RequestMakalModel(queryText = queryText))
+                        updateToNormalState {
+                            copy(
+                                    listMakals = responseMakalModel.list,
+                                    adapterType = SearchState.AdapterType.MAKALS
+                            )
+                        }
+                    },
+                    { e ->
+                        updateToErrorState(e)
+                    })
         }
     }
 }
