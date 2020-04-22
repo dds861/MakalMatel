@@ -17,7 +17,7 @@
     <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
 
-        android:id="@+id/carviewSearch"
+        android:id="@+id/cardViewSearch"
         style="@style/MyCardViewStyleSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/adView"
-        android:layout_below="@id/carviewSearch"
+        android:layout_below="@id/cardViewSearch"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true" />
 

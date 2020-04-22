@@ -8,6 +8,7 @@ import com.dd.domain.manager.ResourceManager
 import com.dd.domain.model.CategoryModel
 import com.dd.domain.model.RequestCategoryModel
 import com.dd.domain.usecase.GetLocalCategoryUseCase
+import java.util.*
 
 class CategoryViewModel(
         private val resourceManager: ResourceManager,
@@ -73,5 +74,26 @@ class CategoryViewModel(
                         )
                 )
         )
+    }
+
+    fun onActionSearch(queryText: String) {
+        checkDataState {
+            executeUseCaseWithException(
+                    {
+                        val responseCategoryModel = getLocalCategoryUseCase.execute(RequestCategoryModel())
+                        updateToNormalState {
+                            copy(
+                                    listCategories = responseCategoryModel.list.filter {
+                                        it.category_text
+                                                .toLowerCase(Locale.ROOT)
+                                                .contains(queryText.toLowerCase(Locale.ROOT))
+                                    }
+                            )
+                        }
+                    },
+                    { e ->
+                        updateToErrorState(e)
+                    })
+        }
     }
 }

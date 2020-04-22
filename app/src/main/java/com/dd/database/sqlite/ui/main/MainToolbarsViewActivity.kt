@@ -12,6 +12,10 @@ import com.carmabs.ema.core.state.EmaExtraData
 import com.dd.database.sqlite.R
 import com.dd.database.sqlite.base.BaseActivity
 import com.dd.database.sqlite.model.ToolbarModel
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.MobileAds
+import kotlinx.android.synthetic.main.activity_base.*
 import kotlinx.android.synthetic.main.toolbar.*
 import org.kodein.di.generic.instance
 
@@ -23,7 +27,7 @@ class MainToolbarsViewActivity : BaseActivity(), EmaView<HomeToolbarState, MainT
     override var previousState: HomeToolbarState? = null
     override val viewModelSeed: MainToolbarsViewModel by instance()
     override val navigator: HomeNavigator by instance()
-    override val navGraph: Int = com.dd.database.sqlite.R.navigation.navigation_ema_home
+    override val navGraph: Int = R.navigation.navigation_ema_home
 
     /**
      * Customs variables
@@ -47,6 +51,10 @@ class MainToolbarsViewActivity : BaseActivity(), EmaView<HomeToolbarState, MainT
 
     override fun onViewModelInitialized(viewModel: MainToolbarsViewModel) {
         setupToolbar(viewModel)
+        //реклама от google
+        MobileAds.initialize(this)
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
     }
 
     override fun provideFixedToolbarTitle(): String? = null
@@ -58,14 +66,6 @@ class MainToolbarsViewActivity : BaseActivity(), EmaView<HomeToolbarState, MainT
         if (txtSearch.text.toString() != data.extraData.toString()) {
             txtSearch.setText(data.extraData.toString())
         }
-//        txtSearch.addTextChangedListener(object : TextWatcher {
-//            override fun afterTextChanged(s: Editable?) {}
-//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-//            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-//                if (txtSearch.hasFocus()) {
-//                }
-//            }
-//        })
     }
 
     override fun onStateError(error: Throwable) {
@@ -154,12 +154,12 @@ class MainToolbarsViewActivity : BaseActivity(), EmaView<HomeToolbarState, MainT
         data.searchButton?.let { searchButton ->
             ivToolbarSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String): Boolean {
-                    searchButton.setOnQueryTextFocusChangeListener?.invoke(query)
+                    searchButton.setOnQueryTextFocusChangeListener?.invoke(query.toLowerCase())
                     return false
                 }
 
                 override fun onQueryTextChange(newText: String): Boolean {
-                    searchButton.setOnQueryTextFocusChangeListener?.invoke(newText)
+                    searchButton.setOnQueryTextFocusChangeListener?.invoke(newText.toLowerCase())
                     return false
                 }
             })

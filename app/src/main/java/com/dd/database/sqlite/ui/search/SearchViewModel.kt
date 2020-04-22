@@ -111,6 +111,8 @@ class SearchViewModel(
     }
 
     private fun onActionFilterToolbarHintsByQueryText(queryText: String) {
+
+        //load results of hints by keyword
         checkDataState {
             executeUseCaseWithException(
                     {
@@ -129,8 +131,10 @@ class SearchViewModel(
     }
 
     fun onActionFilterToolbarMakalsByQueryText(queryText: String) {
+        //update text on searchView
         mainToolbarsVm.onActionSearchViewText(queryText)
 
+        //load makals to recyclerview
         checkDataState {
             executeUseCaseWithException(
                     {

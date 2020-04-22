@@ -7,6 +7,7 @@ import com.dd.domain.manager.ResourceManager
 import com.dd.domain.model.MakalModel
 import com.dd.domain.model.RequestMakalModel
 import com.dd.domain.usecase.GetLocalMakalByCategoryIdUseCase
+import java.util.*
 
 class MakalViewModel(
         val resourceManager: ResourceManager,
@@ -59,5 +60,27 @@ class MakalViewModel(
      * Custom functions
      */
     fun onActionItemClicked(makalModel: MakalModel) {
+    }
+
+    fun onActionSearch(queryText: String) {
+        checkDataState {
+            executeUseCaseWithException(
+                    {
+                        val responseMakalModel = getLocalMakalByCategoryIdUseCase.execute(RequestMakalModel(categoryId = it.categoryId))
+
+                        updateToNormalState {
+                            copy(
+                                    listMakals = responseMakalModel.list.filter {
+                                        it.makal_text
+                                                .toLowerCase(Locale.ROOT)
+                                                .contains(queryText.toLowerCase(Locale.ROOT))
+                                    }
+                            )
+                        }
+                    },
+                    { e ->
+                        updateToErrorState(e)
+                    })
+        }
     }
 }

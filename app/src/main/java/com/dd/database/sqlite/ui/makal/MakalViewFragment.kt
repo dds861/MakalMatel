@@ -1,16 +1,19 @@
 package com.dd.database.sqlite.ui.makal
 
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.net.Uri
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.carmabs.ema.core.constants.STRING_EMPTY
 import com.carmabs.ema.core.state.EmaExtraData
+import com.daimajia.androidanimations.library.Techniques
+import com.daimajia.androidanimations.library.YoYo
 import com.dd.database.sqlite.R
 import com.dd.database.sqlite.base.BaseToolbarsFragment
-import com.dd.database.sqlite.ui.category.CategoryViewModel
 import com.dd.database.sqlite.ui.main.MainToolbarsViewModel
+import kotlinx.android.synthetic.main.fragment_category.*
 import kotlinx.android.synthetic.main.fragment_makal.*
+import kotlinx.android.synthetic.main.fragment_makal.et_search
 import org.kodein.di.generic.instance
 
 class MakalViewFragment
@@ -40,6 +43,24 @@ class MakalViewFragment
 
     override fun onNormal(data: MakalState) {
         loadRecyclerViews(data)
+        setupListeners(data)
+    }
+
+    private fun setupListeners(data: MakalState) {
+        et_search.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
+            override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
+            override fun afterTextChanged(editable: Editable) {
+                vm.onActionSearch(editable.toString())
+            }
+        })
+
+        iv_makal_clear_search.setOnClickListener {
+            YoYo.with(Techniques.FadeOut).duration(150).repeat(0).playOn(it)
+            YoYo.with(Techniques.FadeIn).duration(350).repeat(0).playOn(it)
+
+            et_search.setText(STRING_EMPTY)
+        }
     }
 
     override fun onAlternative(data: EmaExtraData) {
