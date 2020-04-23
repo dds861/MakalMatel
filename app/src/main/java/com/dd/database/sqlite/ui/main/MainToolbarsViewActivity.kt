@@ -100,13 +100,9 @@ class MainToolbarsViewActivity : BaseActivity(), EmaView<HomeToolbarState, MainT
         adsView.adUnitId = resources.getString(R.string.banner_ad_unit_id)
 
         adsView.adSize = adSize
-        // Create an ad request. Check your logcat output for the hashed device ID to
-        // get test ads on a physical device, e.g.,
-        // "Use AdRequest.Builder.addTestDevice("ABCDE0123") to get test ads on this device."
         val adRequest = AdRequest
                 .Builder()
                 .build()
-        // Start loading the ad in the background.
         adsView.loadAd(adRequest)
     }
 

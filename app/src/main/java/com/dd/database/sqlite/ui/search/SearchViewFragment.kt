@@ -3,6 +3,7 @@ package com.dd.database.sqlite.ui.search
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.carmabs.ema.core.state.EmaExtraData
+import com.dd.data.utils.KeyboardUtils
 import com.dd.database.sqlite.R
 import com.dd.database.sqlite.base.BaseToolbarsFragment
 import com.dd.database.sqlite.ui.main.MainToolbarsViewModel
@@ -58,6 +59,9 @@ class SearchViewFragment
             SearchAdapter(context = requireContext(), listItems = it, adapterType = data.adapterType) {
                 when (data.adapterType) {
                     SearchState.AdapterType.HINT -> {
+
+
+                        activity?.let { KeyboardUtils.hideKeyboard(it, view) }
                         vm.onActionFilterToolbarMakalsByQueryText(it.makal_text)
                     }
 
