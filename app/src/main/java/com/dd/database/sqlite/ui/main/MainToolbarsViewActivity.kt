@@ -2,6 +2,7 @@ package com.dd.database.sqlite.ui.main
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.view.View
 import android.widget.EditText
 import androidx.appcompat.widget.SearchView
@@ -14,6 +15,7 @@ import com.dd.database.sqlite.base.BaseActivity
 import com.dd.database.sqlite.model.ToolbarModel
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 import kotlinx.android.synthetic.main.activity_base.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -34,6 +36,20 @@ class MainToolbarsViewActivity : BaseActivity(), EmaView<HomeToolbarState, MainT
      */
     lateinit var vm: MainToolbarsViewModel
     lateinit var txtSearch: EditText
+    private lateinit var adsView: AdView
+    private val adSize: AdSize
+        get() {
+            val display = windowManager.defaultDisplay
+            val outMetrics = DisplayMetrics()
+            display.getMetrics(outMetrics)
+            val density = outMetrics.density
+            var adWidthPixels = adView.width.toFloat()
+            if (adWidthPixels == 0f) {
+                adWidthPixels = outMetrics.widthPixels.toFloat()
+            }
+            val adWidth = (adWidthPixels / density).toInt()
+            return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(this, adWidth)
+        }
 
     /**
      * Default functions
@@ -41,6 +57,12 @@ class MainToolbarsViewActivity : BaseActivity(), EmaView<HomeToolbarState, MainT
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initializeViewModel(this)
+        // Initialize the Mobile Ads SDK.
+        MobileAds.initialize(this)
+
+        adsView = AdView(this)
+        adView.addView(adsView)
+        loadBanner()
     }
 
     override fun onResultReceiverInvokeEvent(emaReceiverModel: EmaReceiverModel) {
@@ -51,10 +73,6 @@ class MainToolbarsViewActivity : BaseActivity(), EmaView<HomeToolbarState, MainT
 
     override fun onViewModelInitialized(viewModel: MainToolbarsViewModel) {
         setupToolbar(viewModel)
-        //реклама от google
-        MobileAds.initialize(this)
-        val adRequest = AdRequest.Builder().build()
-        adView.loadAd(adRequest)
     }
 
     override fun provideFixedToolbarTitle(): String? = null
@@ -78,6 +96,20 @@ class MainToolbarsViewActivity : BaseActivity(), EmaView<HomeToolbarState, MainT
     /**
      * Customs functions
      */
+    private fun loadBanner() {
+        adsView.adUnitId = resources.getString(R.string.banner_ad_unit_id)
+
+        adsView.adSize = adSize
+        // Create an ad request. Check your logcat output for the hashed device ID to
+        // get test ads on a physical device, e.g.,
+        // "Use AdRequest.Builder.addTestDevice("ABCDE0123") to get test ads on this device."
+        val adRequest = AdRequest
+                .Builder()
+                .build()
+        // Start loading the ad in the background.
+        adsView.loadAd(adRequest)
+    }
+
     private fun setupToolbar(viewModel: MainToolbarsViewModel) {
         vm = viewModel
         ivToolbarTelegram.setOnClickListener { viewModel.onActionTelegramClicked() }

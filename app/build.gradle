@@ -68,12 +68,12 @@ dependencies {
     api appDependencies.cardview
     api appDependencies.easing
     api appDependencies.androidanimations
-    api appDependencies.firebase_core
+    api appDependencies.firebase_analytics
     api appDependencies.firebase_ads
     api appDependencies.recyclerview
+    api appDependencies.play_services
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 }
 
 
 apply plugin: 'com.google.gms.google-services'
-

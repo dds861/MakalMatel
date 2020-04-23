@@ -40,9 +40,9 @@ rootProject.ext {
 
     androidanimations = "2.3@aar"
 
-    firebase_core = "16.0.4"
+    firebase_analytics = "17.3.0"
 
-    firebase_ads = "16.0.1"
+    firebase_ads = "19.0.1"
 
     recyclerview = "1.0.0"
 
@@ -55,6 +55,8 @@ rootProject.ext {
     sqlcipherVersion = "4.3.0"
 
     androidxSqliteVersion = "2.0.1"
+
+    play_services = "19.1.0"
 
 
     ema = [
@@ -80,10 +82,12 @@ rootProject.ext {
             //https://github.com/daimajia/AndroidViewAnimations библиотека анимации
             easing              : "com.daimajia.easing:library:" + project.easing,
             androidanimations   : "com.daimajia.androidanimations:library:" + project.androidanimations,
-            firebase_core       : "com.google.firebase:firebase-core:" + project.firebase_core,
+            firebase_analytics  : "com.google.firebase:firebase-analytics:" + project.firebase_analytics,
             firebase_ads        : "com.google.firebase:firebase-ads:" + project.firebase_ads,
-            recyclerview        : "androidx.recyclerview:recyclerview:" + project.recyclerview
+            recyclerview        : "androidx.recyclerview:recyclerview:" + project.recyclerview,
+            play_services       : "com.google.android.gms:play-services-ads:" + project.play_services
     ]
+
 
     dataDependencies = [
             kotlin        : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:" + project.kotlin_version,
