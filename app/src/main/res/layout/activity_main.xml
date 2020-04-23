@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <com.google.android.gms.ads.AdView
-        android:id="@+id/adView"
+        android:id="@+id/avAdvertising"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -71,7 +71,7 @@
         android:id="@+id/rvCategory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/adView"
+        android:layout_above="@id/avAdvertising"
         android:layout_below="@id/cardViewSearch"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true" />
@@ -79,7 +79,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_above="@id/adView"
+        android:layout_above="@id/avAdvertising"
         android:background="@android:color/darker_gray" />
 
 </RelativeLayout>

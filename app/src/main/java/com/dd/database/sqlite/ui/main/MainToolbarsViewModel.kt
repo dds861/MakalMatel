@@ -1,5 +1,6 @@
 package com.dd.database.sqlite.ui.main
 
+import android.util.Log
 import com.carmabs.ema.core.state.EmaExtraData
 import com.dd.database.sqlite.base.BaseViewModel
 import com.dd.database.sqlite.model.ToolbarModel
@@ -31,11 +32,17 @@ class MainToolbarsViewModel : BaseViewModel<HomeToolbarState, HomeNavigator.Navi
         checkDataState {
             if (update)
                 updateToNormalState {
-                    copy(toolbarModel = updateToolbar.invoke(it.toolbarModel))
+                    copy(
+                            toolbarModel = updateToolbar.invoke(it.toolbarModel),
+                            step = HomeToolbarState.HomeToolbarStateStep.UPDATE_TOOLBAR
+                    )
                 }
             else
                 updateDataState {
-                    copy(toolbarModel = updateToolbar.invoke(it.toolbarModel))
+                    copy(
+                            toolbarModel = updateToolbar.invoke(it.toolbarModel),
+                            step = HomeToolbarState.HomeToolbarStateStep.UPDATE_TOOLBAR
+                    )
                 }
         }
     }
@@ -54,5 +61,15 @@ class MainToolbarsViewModel : BaseViewModel<HomeToolbarState, HomeNavigator.Navi
 
     fun onActionSearchClick() {
         navigate(HomeNavigator.Navigation.Search)
+    }
+
+    fun onActionShowInterstitialAd() {
+        checkDataState {
+            updateToNormalState {
+                copy(
+                        step = HomeToolbarState.HomeToolbarStateStep.SHOW_INTERSTITIAL
+                )
+            }
+        }
     }
 }

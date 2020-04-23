@@ -13,10 +13,7 @@ import com.carmabs.ema.core.state.EmaExtraData
 import com.dd.database.sqlite.R
 import com.dd.database.sqlite.base.BaseActivity
 import com.dd.database.sqlite.model.ToolbarModel
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdSize
-import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.*
 import kotlinx.android.synthetic.main.activity_base.*
 import kotlinx.android.synthetic.main.toolbar.*
 import org.kodein.di.generic.instance
@@ -35,15 +32,17 @@ class MainToolbarsViewActivity : BaseActivity(), EmaView<HomeToolbarState, MainT
      * Customs variables
      */
     lateinit var vm: MainToolbarsViewModel
-    lateinit var txtSearch: EditText
-    private lateinit var adsView: AdView
+    lateinit var etSearch: EditText
+    private lateinit var adView: AdView
+    private lateinit var mInterstitialAd: InterstitialAd
     private val adSize: AdSize
         get() {
+            //code from official Google Admobs
             val display = windowManager.defaultDisplay
             val outMetrics = DisplayMetrics()
             display.getMetrics(outMetrics)
             val density = outMetrics.density
-            var adWidthPixels = adView.width.toFloat()
+            var adWidthPixels = avAdvertising.width.toFloat()
             if (adWidthPixels == 0f) {
                 adWidthPixels = outMetrics.widthPixels.toFloat()
             }
@@ -57,12 +56,8 @@ class MainToolbarsViewActivity : BaseActivity(), EmaView<HomeToolbarState, MainT
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initializeViewModel(this)
-        // Initialize the Mobile Ads SDK.
-        MobileAds.initialize(this)
 
-        adsView = AdView(this)
-        adView.addView(adsView)
-        loadBanner()
+        setupMobileAds()
     }
 
     override fun onResultReceiverInvokeEvent(emaReceiverModel: EmaReceiverModel) {
@@ -81,8 +76,8 @@ class MainToolbarsViewActivity : BaseActivity(), EmaView<HomeToolbarState, MainT
     }
 
     override fun onSingleEvent(data: EmaExtraData) {
-        if (txtSearch.text.toString() != data.extraData.toString()) {
-            txtSearch.setText(data.extraData.toString())
+        if (etSearch.text.toString() != data.extraData.toString()) {
+            etSearch.setText(data.extraData.toString())
         }
     }
 
@@ -90,20 +85,54 @@ class MainToolbarsViewActivity : BaseActivity(), EmaView<HomeToolbarState, MainT
     }
 
     override fun onStateNormal(data: HomeToolbarState) {
-        updateToolbar(data.toolbarModel)
+        when (data.step) {
+            HomeToolbarState.HomeToolbarStateStep.UPDATE_TOOLBAR -> {
+                updateToolbar(data.toolbarModel)
+            }
+
+            HomeToolbarState.HomeToolbarStateStep.SHOW_INTERSTITIAL -> {
+                showInterstitial()
+            }
+        }
     }
 
     /**
      * Customs functions
      */
-    private fun loadBanner() {
-        adsView.adUnitId = resources.getString(R.string.banner_ad_unit_id)
+    private fun setupMobileAds() {
+        // Initialize the Mobile Ads SDK.
+        MobileAds.initialize(this)
 
-        adsView.adSize = adSize
+        adView = AdView(this)
+        avAdvertising.addView(adView)
+        loadBanner()
+
+        mInterstitialAd = InterstitialAd(this)
+        mInterstitialAd.adUnitId = resources.getString(R.string.interstitial_ad_unit_id)
+        mInterstitialAd.loadAd(AdRequest.Builder().build())
+
+        mInterstitialAd.adListener = object : AdListener() {
+            override fun onAdClosed() {
+                mInterstitialAd.loadAd(AdRequest.Builder().build())
+                etSearch.clearFocus()
+            }
+        }
+    }
+
+    private fun showInterstitial() {
+        if (mInterstitialAd.isLoaded) {
+            mInterstitialAd.show()
+        }
+    }
+
+    private fun loadBanner() {
+        adView.adUnitId = resources.getString(R.string.banner_ad_unit_id)
+
+        adView.adSize = adSize
         val adRequest = AdRequest
                 .Builder()
                 .build()
-        adsView.loadAd(adRequest)
+        adView.loadAd(adRequest)
     }
 
     private fun setupToolbar(viewModel: MainToolbarsViewModel) {
@@ -113,10 +142,10 @@ class MainToolbarsViewActivity : BaseActivity(), EmaView<HomeToolbarState, MainT
         ivToolbarSearch.setOnSearchClickListener(View.OnClickListener {
             viewModel.onActionSearchClick()
         })
-        txtSearch = ivToolbarSearch.findViewById(androidx.appcompat.R.id.search_src_text) as EditText
-        txtSearch.hint = resources.getString(R.string.hint_search)
-        txtSearch.setHintTextColor(Color.LTGRAY)
-        txtSearch.setTextColor(Color.WHITE)
+        etSearch = ivToolbarSearch.findViewById(androidx.appcompat.R.id.search_src_text) as EditText
+        etSearch.hint = resources.getString(R.string.hint_search)
+        etSearch.setHintTextColor(Color.LTGRAY)
+        etSearch.setTextColor(Color.WHITE)
     }
 
     private fun updateToolbar(data: ToolbarModel) {

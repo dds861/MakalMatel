@@ -55,14 +55,12 @@ class SearchViewFragment
     }
 
     private fun loadRecyclerViews(data: SearchState) {
-        rvSearch.adapter = data.listMakals.toMutableList().let { it ->
-            SearchAdapter(context = requireContext(), listItems = it, adapterType = data.adapterType) {
+        rvSearch.adapter = data.listMakals.toMutableList().let { mutableList ->
+            SearchAdapter(context = requireContext(), listItems = mutableList, adapterType = data.adapterType) { makalModel ->
                 when (data.adapterType) {
                     SearchState.AdapterType.HINT -> {
-
-
+                        vm.onActionFilterToolbarMakalsByQueryText(makalModel.makal_text)
                         activity?.let { KeyboardUtils.hideKeyboard(it, view) }
-                        vm.onActionFilterToolbarMakalsByQueryText(it.makal_text)
                     }
 
                     SearchState.AdapterType.MAKALS -> {

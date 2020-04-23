@@ -52,7 +52,7 @@ public class View extends AppCompatActivity implements IView, android.view.View.
         setLogoAndAppName();
 
         //реклама от google
-        mAdView = findViewById(R.id.adView);
+        mAdView = findViewById(R.id.avAdvertising);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
@@ -106,7 +106,7 @@ public class View extends AppCompatActivity implements IView, android.view.View.
     }
 
     private void initView() {
-        mAdView = findViewById(R.id.adView);
+        mAdView = findViewById(R.id.avAdvertising);
         mListview1 = findViewById(R.id.rvCategory);
         mSearchEt = findViewById(R.id.et_search);
         mDeleteSearchTextIv = findViewById(R.id.iv_clearSearch);

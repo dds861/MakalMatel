@@ -40,7 +40,7 @@ public class View2 extends AppCompatActivity implements IView2, View.OnClickList
         getSupportActionBar().setTitle(getClickedItemName());
 
         //реклама от google
-        mAdView = findViewById(R.id.adView);
+        mAdView = findViewById(R.id.avAdvertising);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
@@ -73,7 +73,7 @@ public class View2 extends AppCompatActivity implements IView2, View.OnClickList
     }
 
     private void initView() {
-        mAdView = findViewById(R.id.adView);
+        mAdView = findViewById(R.id.avAdvertising);
         mRecyclerview2 = findViewById(R.id.rvMakals);
         mSearchEt = findViewById(R.id.et_search);
         mClearSearch2Iv = findViewById(R.id.iv_clearSearch2);

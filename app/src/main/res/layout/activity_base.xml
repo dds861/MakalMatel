@@ -15,7 +15,8 @@
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <include
         android:id="@+id/emaAppBarLayout"
@@ -39,6 +40,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        tools:layout="@layout/fragment_category"
         app:layout_constraintTop_toBottomOf="@id/emaAppBarLayout" />
 
     <View
@@ -46,14 +48,14 @@
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:background="@android:color/darker_gray"
-        app:layout_constraintBottom_toTopOf="@id/adView"
+        app:layout_constraintBottom_toTopOf="@id/avAdvertising"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
 
         />
 
     <com.google.android.gms.ads.AdView
-        android:id="@+id/adView"
+        android:id="@+id/avAdvertising"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         ads:adSize="BANNER"
