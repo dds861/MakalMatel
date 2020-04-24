@@ -15,6 +15,7 @@ import com.dd.database.sqlite.base.BaseActivity
 import com.dd.database.sqlite.model.ToolbarModel
 import com.google.android.gms.ads.*
 import kotlinx.android.synthetic.main.activity_base.*
+import kotlinx.android.synthetic.main.item_banner_ad_container.*
 import kotlinx.android.synthetic.main.toolbar.*
 import org.kodein.di.generic.instance
 

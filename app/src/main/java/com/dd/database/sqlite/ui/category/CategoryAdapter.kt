@@ -20,3 +20,6 @@ class CategoryAdapter(override val listItems: MutableList<CategoryModel> = mutab
         }
     }
 }
+
+
+
