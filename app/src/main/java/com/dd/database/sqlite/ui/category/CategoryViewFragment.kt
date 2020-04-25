@@ -48,7 +48,6 @@ class CategoryViewFragment : BaseToolbarsFragment<CategoryState, CategoryViewMod
     }
 
     override fun onError(error: Throwable) {
-        Log.i("autolog", "error: " + error);
     }
 
     override fun onSingle(data: EmaExtraData) {

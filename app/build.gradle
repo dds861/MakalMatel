@@ -9,7 +9,7 @@ android {
         compileSdkVersion ema.compileSdk
         targetSdkVersion ema.targetSdk
         versionCode ema.versionCode
-        versionName ema.versionName
+        versionName ema.versionNameApplication
 
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

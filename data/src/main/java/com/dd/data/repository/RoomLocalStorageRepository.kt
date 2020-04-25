@@ -85,4 +85,8 @@ class RoomLocalStorageRepository(
     override fun getMakalsByQueryText(request: RequestMakalModel): ResponseMakalModel {
         return db.makalDao().getMakalsByQueryText(request.queryText).toDomainModel()
     }
+
+    override fun getRandomMakal(): ResponseMakalModel {
+        return db.makalDao().getRandomMakal().toDomainModel()
+    }
 }

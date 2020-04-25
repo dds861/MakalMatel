@@ -6,7 +6,9 @@ import com.carmabs.ema.core.state.EmaModel
 
 data class ResponseMakalModel(
         val result: String = STRING_EMPTY,
+        val randomMakal: String = STRING_EMPTY,
         val list: List<MakalModel> = listOf()
+
 )
 
 

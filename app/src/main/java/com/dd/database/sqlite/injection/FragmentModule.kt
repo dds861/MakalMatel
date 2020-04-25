@@ -10,6 +10,7 @@ import com.dd.database.sqlite.dialog.simple.SimpleDialogProvider
 import com.dd.database.sqlite.ui.category.CategoryViewModel
 import com.dd.database.sqlite.ui.makal.MakalViewModel
 import com.dd.database.sqlite.ui.search.SearchViewModel
+import com.dd.database.sqlite.ui.widget.WidgetViewModel
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
@@ -30,4 +31,6 @@ fun fragmentInjection(fragment: Fragment) = Kodein.Module(name = "FragmentModule
     bind<MakalViewModel>() with provider { MakalViewModel(instance(), instance()) }
 
     bind<SearchViewModel>() with provider { SearchViewModel(instance(), instance(), instance()) }
+
+    bind<WidgetViewModel>() with provider { WidgetViewModel(instance()) }
 }
