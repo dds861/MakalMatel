@@ -11,9 +11,7 @@ import com.daimajia.androidanimations.library.YoYo
 import com.dd.database.sqlite.R
 import com.dd.database.sqlite.base.BaseToolbarsFragment
 import com.dd.database.sqlite.ui.main.MainToolbarsViewModel
-import kotlinx.android.synthetic.main.fragment_category.*
 import kotlinx.android.synthetic.main.fragment_makal.*
-import kotlinx.android.synthetic.main.fragment_makal.et_search
 import org.kodein.di.generic.instance
 
 class MakalViewFragment
@@ -85,7 +83,5 @@ class MakalViewFragment
             }
         }
     }
-
-
 }
 

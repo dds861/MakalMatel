@@ -6,7 +6,6 @@ import android.content.Context
 import android.content.Intent
 import android.view.View
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import com.carmabs.ema.android.ui.EmaRecyclerAdapter
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
@@ -37,6 +36,11 @@ class MakalAdapter(private val context: Context,
             shareText(item.makal_text)
 
             itemListener.invoke(item)
+        }
+
+        ivLike.setOnClickListener {
+            YoYo.with(Techniques.FadeOut).duration(150).repeat(0).playOn(it)
+            YoYo.with(Techniques.FadeIn).duration(350).repeat(0).playOn(it)
         }
     }
 
