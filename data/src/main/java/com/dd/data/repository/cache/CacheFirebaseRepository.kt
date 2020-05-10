@@ -1,4 +1,4 @@
-package com.dd.data.repository
+package com.dd.data.repository.cache
 
 import com.dd.domain.model.RequestMakalModel
 import com.dd.domain.model.ResponseMakalModel

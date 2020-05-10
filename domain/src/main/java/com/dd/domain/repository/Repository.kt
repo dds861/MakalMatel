@@ -17,4 +17,18 @@ interface Repository {
         suspend fun writeToDb(requestMakalModel: RequestMakalModel): ResponseMakalModel
         suspend fun readFromDb(requestMakalModel: RequestMakalModel): ResponseMakalModel
     }
+
+    interface LocalStorageRepository {
+        suspend fun getAllCategories(request: RequestCategoryModel): ResponseCategoryModel
+
+        suspend fun getAllMakals(request: RequestMakalModel): ResponseMakalModel
+
+        suspend fun getMakalsByCategoryId(request: RequestMakalModel): ResponseMakalModel
+
+        suspend fun getMakalsByQueryText(request: RequestMakalModel): ResponseMakalModel
+
+        suspend fun getRandomMakal(): ResponseMakalModel
+
+        suspend fun setLikeOnMakalById(requestMakalModel: RequestMakalModel): ResponseMakalModel
+    }
 }

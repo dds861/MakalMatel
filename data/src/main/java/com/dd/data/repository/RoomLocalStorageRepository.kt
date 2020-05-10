@@ -11,7 +11,7 @@ import com.dd.domain.model.RequestCategoryModel
 import com.dd.domain.model.RequestMakalModel
 import com.dd.domain.model.ResponseCategoryModel
 import com.dd.domain.model.ResponseMakalModel
-import com.dd.domain.repository.LocalStorageRepository
+import com.dd.domain.repository.Repository
 import net.sqlcipher.database.SQLiteDatabase
 import net.sqlcipher.database.SQLiteException
 import net.sqlcipher.database.SupportFactory
@@ -20,7 +20,7 @@ import java.io.IOException
 
 class RoomLocalStorageRepository(
         private val context: Context
-) : LocalStorageRepository {
+) : Repository.LocalStorageRepository {
     private val dbSecretKey = BuildConfig.DB_SECRET_KEY
     private val passphrase: ByteArray = SQLiteDatabase.getBytes(dbSecretKey.toCharArray())
     private val factory = SupportFactory(passphrase)

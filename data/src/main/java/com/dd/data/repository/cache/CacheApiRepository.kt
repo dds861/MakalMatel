@@ -1,27 +1,19 @@
-package com.dd.data.repository
-
+package com.dd.data.repository.cache
 
 import com.dd.domain.model.RequestMakalModel
 import com.dd.domain.model.ResponseMakalModel
 import com.dd.domain.model.RequestCategoryModel
 import com.dd.domain.model.ResponseCategoryModel
 import com.dd.domain.repository.Repository
-import kotlinx.coroutines.delay
-import javax.security.auth.login.LoginException
 
-
-
-class MockRepository : Repository {
+class CacheApiRepository(private val repository: Repository) : Repository {
 
     override suspend fun getCategory(requestCategoryModel: RequestCategoryModel): ResponseCategoryModel {
-        return ResponseCategoryModel(
-                result = "AnyText"
-        )
+        return repository.getCategory(requestCategoryModel)
     }
 
     override suspend fun getMakal(requestMakalModel: RequestMakalModel): ResponseMakalModel {
-        return ResponseMakalModel(
-                result = "AnyText"
-        )
+        return repository.getMakal(requestMakalModel)
     }
 }
+
