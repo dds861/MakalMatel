@@ -5,9 +5,11 @@ import com.dd.domain.model.RequestMakalModel
 import com.dd.domain.model.ResponseMakalModel
 import com.dd.domain.repository.Repository
 
-class PostFirebaseMakalLikeUseCase(private val repository: Repository.FirebaseRepository)
+class UpdateLikeOnMakalByIdUseCase(private val repository: Repository.LocalStorageRepository)
     : EmaUseCase<RequestMakalModel, ResponseMakalModel>() {
     override suspend fun useCaseFunction(input: RequestMakalModel): ResponseMakalModel {
-        return repository.writeToDb(input)
+        return repository.updateLikeOnMakalById(input)
     }
 }
+
+

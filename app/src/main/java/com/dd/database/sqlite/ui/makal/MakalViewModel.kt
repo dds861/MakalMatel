@@ -9,13 +9,13 @@ import com.dd.domain.model.MakalModel
 import com.dd.domain.model.RequestMakalModel
 import com.dd.domain.usecase.GetFirebaseMakalLikeUseCase
 import com.dd.domain.usecase.GetLocalMakalByCategoryIdUseCase
-import com.dd.domain.usecase.PostFirebaseMakalLikeUseCase
+import com.dd.domain.usecase.UpdateFirebaseMakalLikeUseCase
 import java.util.*
 
 class MakalViewModel(
         val resourceManager: ResourceManager,
         private val getFirebaseMakalLikeUseCase: GetFirebaseMakalLikeUseCase,
-        private val postFirebaseMakalLikeUseCase: PostFirebaseMakalLikeUseCase,
+        private val updateFirebaseMakalLikeUseCase: UpdateFirebaseMakalLikeUseCase,
         private val getLocalMakalByCategoryIdUseCase: GetLocalMakalByCategoryIdUseCase
 ) : BaseToolbarsViewModel<MakalState, MakalNavigator.Navigation>() {
     /**
@@ -70,7 +70,7 @@ class MakalViewModel(
             executeUseCaseWithException(
                     {
 //                        val responseMakalModel = getFirebaseMakalLikeUseCase.execute(RequestMakalModel())
-                        val responseMakalModel = postFirebaseMakalLikeUseCase.execute(RequestMakalModel(makalModel = makalModel))
+                        val responseMakalModel = updateFirebaseMakalLikeUseCase.execute(RequestMakalModel(makalModel = makalModel))
 
                         updateToNormalState {
                             copy(

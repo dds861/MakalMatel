@@ -17,4 +17,8 @@ interface MakalDbDao : BaseDbDao<MakalDbData> {
 
     @Query("SELECT ${MakalDbData.MAKAL_TEXT} FROM ${MakalDbData.TABLE_NAME} ORDER BY RANDOM() LIMIT 1")
     fun getRandomMakal(): String
+
+    @Query("UPDATE ${MakalDbData.TABLE_NAME} SET ${MakalDbData.MAKAL_LIKE} = :makalLike WHERE ${MakalDbData.ID} = :makal_id")
+    fun updateLikeOnMakalById(makal_id: Long, makalLike: Int): Int
 }
+

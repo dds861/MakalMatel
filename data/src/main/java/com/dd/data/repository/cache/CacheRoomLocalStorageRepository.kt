@@ -27,8 +27,8 @@ class CacheRoomLocalStorageRepository(private val repository: Repository.LocalSt
         return repository.getRandomMakal()
     }
 
-    override suspend fun setLikeOnMakalById(requestMakalModel: RequestMakalModel): ResponseMakalModel {
-        return repository.setLikeOnMakalById(requestMakalModel)
+    override suspend fun updateLikeOnMakalById(requestMakalModel: RequestMakalModel): ResponseMakalModel {
+        return repository.updateLikeOnMakalById(requestMakalModel)
     }
 }
 

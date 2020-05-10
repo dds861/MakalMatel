@@ -39,7 +39,8 @@ class RoomLocalStorageRepository(
             // Since we didn't alter the table, there's nothing else to do here.
         }
     }
-//    val MIGRATION_2_3 = object : Migration(2, 3) {
+
+    //    val MIGRATION_2_3 = object : Migration(2, 3) {
 //        override fun migrate(database: SupportSQLiteDatabase) {
 //            database.execSQL("ALTER TABLE ${MakalDbData.TABLE_NAME} ADD COLUMN ${MakalDbData.MAKAL_LIKE} INTEGER")
 //        }
@@ -93,7 +94,10 @@ class RoomLocalStorageRepository(
         return db.makalDao().getRandomMakal().toDomainModel()
     }
 
-    override suspend fun setLikeOnMakalById(requestMakalModel: RequestMakalModel): ResponseMakalModel {
-        return ResponseMakalModel()
+    override suspend fun updateLikeOnMakalById(requestMakalModel: RequestMakalModel): ResponseMakalModel {
+        return db.makalDao().updateLikeOnMakalById(
+                requestMakalModel.makalModel.makal_id,
+                requestMakalModel.makalModel.makal_like)
+                .toDomainModel()
     }
 }

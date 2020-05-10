@@ -29,6 +29,6 @@ interface Repository {
 
         suspend fun getRandomMakal(): ResponseMakalModel
 
-        suspend fun setLikeOnMakalById(requestMakalModel: RequestMakalModel): ResponseMakalModel
+        suspend fun updateLikeOnMakalById(requestMakalModel: RequestMakalModel): ResponseMakalModel
     }
 }

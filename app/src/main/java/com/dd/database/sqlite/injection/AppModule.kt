@@ -27,5 +27,6 @@ fun appInjection(application: Application) = Kodein.Module(name = "AppModule") {
 
     bind<GetFirebaseMakalLikeUseCase>() with provider { GetFirebaseMakalLikeUseCase(instance()) }
 
-    bind<PostFirebaseMakalLikeUseCase>() with provider { PostFirebaseMakalLikeUseCase(instance()) }
+    bind<UpdateFirebaseMakalLikeUseCase>() with provider { UpdateFirebaseMakalLikeUseCase(instance()) }
+    bind<UpdateLikeOnMakalByIdUseCase>() with provider { UpdateLikeOnMakalByIdUseCase(instance()) }
 }

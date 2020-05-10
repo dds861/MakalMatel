@@ -34,3 +34,7 @@ fun String.toDomainModel(): ResponseMakalModel {
             randomMakal = this.replace("\\\\n".toRegex(), "\n")
     )
 }
+
+fun Int.toDomainModel(): ResponseMakalModel {
+    return ResponseMakalModel()
+}
