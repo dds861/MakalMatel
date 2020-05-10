@@ -7,13 +7,25 @@ import com.dd.domain.model.ResponseMakalModel
 
 fun List<CategoryDbData>.toDomainModel(): ResponseCategoryModel {
     return ResponseCategoryModel(
-            list = this.map { CategoryModel(category_id = it.category_id, category_text = it.category_text) }
+            list = this.map {
+                CategoryModel(
+                        category_id = it.category_id,
+                        category_text = it.category_text
+                )
+            }
     )
 }
 
 fun List<MakalDbData>.toDomainModel(): ResponseMakalModel {
     return ResponseMakalModel(
-            list = this.map { MakalModel(makal_id = it.category_id, makal_text = it.makal_text.replace("\\\\n".toRegex(), "\n")) }
+            list = this.map {
+                MakalModel(
+                        makal_category_id = it.category_id,
+                        makal_text = it.makal_text.replace("\\\\n".toRegex(), "\n"),
+                        makal_like = it.makal_like,
+                        makal_id = it.id
+                )
+            }
     )
 }
 

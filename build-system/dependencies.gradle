@@ -58,6 +58,10 @@ rootProject.ext {
 
     play_services = "19.1.0"
 
+    legacy_support = "1.0.0"
+
+    firebase_database = "19.3.0"
+
 
 
     ema = [
@@ -81,20 +85,24 @@ rootProject.ext {
             firebase_analytics  : "com.google.firebase:firebase-analytics:" + project.firebase_analytics,
             firebase_ads        : "com.google.firebase:firebase-ads:" + project.firebase_ads,
             recyclerview        : "androidx.recyclerview:recyclerview:" + project.recyclerview,
-            play_services       : "com.google.android.gms:play-services-ads:" + project.play_services
+            play_services       : "com.google.android.gms:play-services-ads:" + project.play_services,
+            legacy_support      : "androidx.legacy:legacy-support-v4:" + project.legacy_support
+
+
     ]
 
 
     dataDependencies = [
-            kotlin        : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:" + project.kotlin_version,
-            coroutines    : 'org.jetbrains.kotlinx:kotlinx-coroutines-android:' + project.coroutinesVersion,
-            retrofit      : 'com.squareup.retrofit2:retrofit:' + project.retrofit,
-            converter_gson: 'com.squareup.retrofit2:converter-gson:' + project.converter_gson,
-            room          : "androidx.room:room-runtime:" + project.roomVersion,
-            roomKt        : "androidx.room:room-ktx:" + project.roomVersion,
-            roomCompiler  : "androidx.room:room-compiler:" + project.roomVersion,
-            sqlcipher     : "net.zetetic:android-database-sqlcipher:" + project.sqlcipherVersion,
-            androidxSqlite: "androidx.sqlite:sqlite:" + project.androidxSqliteVersion
+            kotlin           : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:" + project.kotlin_version,
+            coroutines       : 'org.jetbrains.kotlinx:kotlinx-coroutines-android:' + project.coroutinesVersion,
+            retrofit         : 'com.squareup.retrofit2:retrofit:' + project.retrofit,
+            converter_gson   : 'com.squareup.retrofit2:converter-gson:' + project.converter_gson,
+            room             : "androidx.room:room-runtime:" + project.roomVersion,
+            roomKt           : "androidx.room:room-ktx:" + project.roomVersion,
+            roomCompiler     : "androidx.room:room-compiler:" + project.roomVersion,
+            sqlcipher        : "net.zetetic:android-database-sqlcipher:" + project.sqlcipherVersion,
+            androidxSqlite   : "androidx.sqlite:sqlite:" + project.androidxSqliteVersion,
+            firebase_database: "com.google.firebase:firebase-database-ktx:" + project.firebase_database
     ]
 
     domainDependencies = [

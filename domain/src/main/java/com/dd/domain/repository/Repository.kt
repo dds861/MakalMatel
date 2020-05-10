@@ -11,4 +11,10 @@ interface Repository {
     suspend fun getCategory(requestCategoryModel: RequestCategoryModel): ResponseCategoryModel
 
     suspend fun getMakal(requestMakalModel: RequestMakalModel): ResponseMakalModel
+
+
+    interface FirebaseRepository {
+        suspend fun writeToDb(requestMakalModel: RequestMakalModel): ResponseMakalModel
+        suspend fun readFromDb(requestMakalModel: RequestMakalModel): ResponseMakalModel
+    }
 }

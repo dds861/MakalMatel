@@ -69,10 +69,10 @@
                 app:layout_constraintLeft_toLeftOf="parent" />
 
             <TextView
+                android:id="@+id/tvLike"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="0"
                 android:layout_marginBottom="16dp"
                 android:textColor="@color/primary_light"
                 app:layout_constraintBottom_toBottomOf="@id/ivLike"
