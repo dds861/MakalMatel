@@ -8,6 +8,7 @@ import com.carmabs.ema.core.state.EmaModel
 data class ResponseMakalModel(
         val result: String = STRING_EMPTY,
         val randomMakal: String = STRING_EMPTY,
+        val makalIdAndLikeMap: HashMap<String, String> = HashMap(),
         val list: List<MakalModel> = listOf()
 )
 

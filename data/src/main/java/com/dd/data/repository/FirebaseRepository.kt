@@ -9,6 +9,7 @@ import com.google.firebase.database.*
 class FirebaseRepository : Repository.FirebaseRepository {
     private var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
     private var databaseReference: DatabaseReference
+    var value: Any? = null
 
     companion object {
         private const val FIREBASE_LIKE_TABLE_NAME = "makal_like"
@@ -30,8 +31,9 @@ class FirebaseRepository : Repository.FirebaseRepository {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                val value = dataSnapshot.value
+                value = dataSnapshot.value
                 Log.i("autolog", "Value is: $value")
+
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -40,6 +42,7 @@ class FirebaseRepository : Repository.FirebaseRepository {
             }
         })
 
-        return ResponseMakalModel()
+
+        return ResponseMakalModel(makalIdAndLikeMap = value as HashMap<String, String>)
     }
 }
