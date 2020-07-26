@@ -75,6 +75,8 @@ dependencies {
     api appDependencies.recyclerview
     api appDependencies.play_services
     api appDependencies.legacy_support
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.0'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.0'
 }
 
 
