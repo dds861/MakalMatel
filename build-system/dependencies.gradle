@@ -64,7 +64,7 @@ rootProject.ext {
             minSdk                : 21,
             compileSdk            : 29,
             targetSdk             : 29,
-            versionCode           : 12,
+            versionCode           : 13,
             versionName           : "2.3.0",
             versionNameApplication: "4.0.1"
     ]
