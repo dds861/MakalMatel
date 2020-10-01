@@ -5,11 +5,12 @@ apply plugin: 'kotlin-android-extensions'
 android {
     defaultConfig {
         applicationId "com.dd.database.sqlite"
-        minSdkVersion ema.minSdk
-        compileSdkVersion ema.compileSdk
-        targetSdkVersion ema.targetSdk
-        versionCode ema.versionCode
-        versionName ema.versionNameApplication
+
+        minSdkVersion project.minSdk
+        compileSdkVersion project.compileSdk
+        targetSdkVersion project.targetSdk
+        versionCode project.versionCode
+        versionName project.versionName
 
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

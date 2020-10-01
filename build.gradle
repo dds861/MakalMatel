@@ -7,6 +7,13 @@ buildscript {
     ext.safeArgsVersion = "1.0.0"
     ext.publishJitPackVersion = "2.1"
 
+    ext.buildTools = "28.0.3"
+    ext.minSdk = 21
+    ext.compileSdk = 30
+    ext.targetSdk = 30
+    ext.versionCode = 14
+    ext.versionName = "3"
+
     repositories {
         google()
         jcenter()
