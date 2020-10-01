@@ -1,16 +1,14 @@
-package com.dd.database.sqlite.ui.makal
+package com.dd.database.sqlite.ui.search
 
 import android.app.Activity
 import androidx.navigation.NavController
-import com.carmabs.ema.core.navigator.EmaBaseNavigator
 import com.carmabs.ema.core.navigator.EmaNavigationState
 import com.dd.database.sqlite.base.BaseNavigator
-import com.dd.database.sqlite.ui.category.CategoryNavigator
 
-class MakalNavigator(
+class SearchNavigator(
         override val navController: NavController,
         private val activity: Activity)
-    : BaseNavigator<MakalNavigator.Navigation>() {
+    : BaseNavigator<SearchNavigator.Navigation>() {
     sealed class Navigation : EmaNavigationState {
 
     }

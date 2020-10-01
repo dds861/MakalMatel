@@ -5,11 +5,12 @@ apply plugin: 'kotlin-android-extensions'
 android {
     defaultConfig {
         applicationId "com.dd.database.sqlite"
-        minSdkVersion ema.minSdk
-        compileSdkVersion ema.compileSdk
-        targetSdkVersion ema.targetSdk
-        versionCode ema.versionCode
-        versionName ema.versionName
+
+        minSdkVersion project.minSdk
+        compileSdkVersion project.compileSdk
+        targetSdkVersion project.targetSdk
+        versionCode project.versionCode
+        versionName project.versionName
 
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -56,6 +57,7 @@ dependencies {
     implementation project(path: ':domain')
     implementation project(path: ':common')
     implementation project(path: ':injection')
+    implementation project(path: ':data')
 
     api appDependencies.ema
     api appDependencies.emaCore
@@ -68,12 +70,12 @@ dependencies {
     api appDependencies.cardview
     api appDependencies.easing
     api appDependencies.androidanimations
-    api appDependencies.firebase_core
+    api appDependencies.firebase_analytics
     api appDependencies.firebase_ads
     api appDependencies.recyclerview
+    api appDependencies.play_services
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 }
 
 
-//apply plugin: 'com.google.gms.google-services'
-
+apply plugin: 'com.google.gms.google-services'

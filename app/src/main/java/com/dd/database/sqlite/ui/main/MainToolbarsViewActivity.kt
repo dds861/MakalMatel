@@ -1,15 +1,21 @@
 package com.dd.database.sqlite.ui.main
 
+import android.graphics.Color
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.view.View
+import android.widget.EditText
+import androidx.appcompat.widget.SearchView
 import com.carmabs.ema.android.extra.EmaReceiverModel
 import com.carmabs.ema.android.extra.EmaResultModel
 import com.carmabs.ema.android.ui.EmaView
-import com.carmabs.ema.core.constants.STRING_EMPTY
 import com.carmabs.ema.core.state.EmaExtraData
 import com.dd.database.sqlite.R
 import com.dd.database.sqlite.base.BaseActivity
 import com.dd.database.sqlite.model.ToolbarModel
+import com.google.android.gms.ads.*
+import kotlinx.android.synthetic.main.activity_base.*
+import kotlinx.android.synthetic.main.item_banner_ad_container.*
 import kotlinx.android.synthetic.main.toolbar.*
 import org.kodein.di.generic.instance
 
@@ -22,15 +28,37 @@ class MainToolbarsViewActivity : BaseActivity(), EmaView<HomeToolbarState, MainT
     override val viewModelSeed: MainToolbarsViewModel by instance()
     override val navigator: HomeNavigator by instance()
     override val navGraph: Int = R.navigation.navigation_ema_home
+
     /**
      * Customs variables
      */
+    lateinit var vm: MainToolbarsViewModel
+    lateinit var etSearch: EditText
+    private lateinit var adView: AdView
+    private lateinit var mInterstitialAd: InterstitialAd
+    private val adSize: AdSize
+        get() {
+            //code from official Google Admobs
+            val display = windowManager.defaultDisplay
+            val outMetrics = DisplayMetrics()
+            display.getMetrics(outMetrics)
+            val density = outMetrics.density
+            var adWidthPixels = avAdvertising.width.toFloat()
+            if (adWidthPixels == 0f) {
+                adWidthPixels = outMetrics.widthPixels.toFloat()
+            }
+            val adWidth = (adWidthPixels / density).toInt()
+            return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(this, adWidth)
+        }
+
     /**
      * Default functions
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initializeViewModel(this)
+
+        setupMobileAds()
     }
 
     override fun onResultReceiverInvokeEvent(emaReceiverModel: EmaReceiverModel) {
@@ -49,33 +77,100 @@ class MainToolbarsViewActivity : BaseActivity(), EmaView<HomeToolbarState, MainT
     }
 
     override fun onSingleEvent(data: EmaExtraData) {
+        if (etSearch.text.toString() != data.extraData.toString()) {
+            etSearch.setText(data.extraData.toString())
+        }
     }
 
     override fun onStateError(error: Throwable) {
     }
 
     override fun onStateNormal(data: HomeToolbarState) {
-        updateToolbar(data.toolbarModel)
+        when (data.step) {
+            HomeToolbarState.HomeToolbarStateStep.UPDATE_TOOLBAR -> {
+                updateToolbar(data.toolbarModel)
+            }
+
+            HomeToolbarState.HomeToolbarStateStep.SHOW_INTERSTITIAL -> {
+                showInterstitial()
+            }
+        }
     }
 
     /**
      * Customs functions
      */
-    private fun setupToolbar(viewModel: MainToolbarsViewModel) {
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            val backVisibility = destination.id != R.id.categoryViewFragment
-            viewModel.onActionUpdateToolbar(false) {
-                it.copy(
-                        backButton = ToolbarModel.BackButton(visibility = backVisibility, onClickListener = {}),
-                        toolbarTitle = destination.label?.toString() ?: STRING_EMPTY
-                )
+    private fun setupMobileAds() {
+        // Initialize the Mobile Ads SDK.
+        MobileAds.initialize(this)
+
+        adView = AdView(this)
+        avAdvertising.addView(adView)
+        loadBanner()
+
+        mInterstitialAd = InterstitialAd(this)
+        mInterstitialAd.adUnitId = resources.getString(R.string.interstitial_ad_unit_id)
+        mInterstitialAd.loadAd(AdRequest.Builder().build())
+
+        mInterstitialAd.adListener = object : AdListener() {
+            override fun onAdClosed() {
+                mInterstitialAd.loadAd(AdRequest.Builder().build())
+                etSearch.clearFocus()
             }
         }
-        clToolbarBack.setOnClickListener { viewModel.onActionBackClicked() }
-        ivToolbarTelegram.setOnClickListener { viewModel.onActionCloseSessionClicked() }
+    }
+
+    private fun showInterstitial() {
+        if (mInterstitialAd.isLoaded) {
+            mInterstitialAd.show()
+        }
+    }
+
+    private fun loadBanner() {
+        adView.adUnitId = resources.getString(R.string.banner_ad_unit_id)
+
+        adView.adSize = adSize
+        val adRequest = AdRequest
+                .Builder()
+                .build()
+        adView.loadAd(adRequest)
+    }
+
+    private fun setupToolbar(viewModel: MainToolbarsViewModel) {
+        vm = viewModel
+        ivToolbarTelegram.setOnClickListener { viewModel.onActionTelegramClicked() }
+
+        ivToolbarSearch.setOnSearchClickListener(View.OnClickListener {
+            viewModel.onActionSearchClick()
+        })
+        etSearch = ivToolbarSearch.findViewById(androidx.appcompat.R.id.search_src_text) as EditText
+        etSearch.hint = resources.getString(R.string.hint_search)
+        etSearch.setHintTextColor(Color.LTGRAY)
+        etSearch.setTextColor(Color.WHITE)
     }
 
     private fun updateToolbar(data: ToolbarModel) {
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id == R.id.categoryViewFragment) {
+                //Logo pressed
+                true -> {
+                    ivToolbarLogoOrBack.setImageDrawable(resources.getDrawable(R.mipmap.ic_launcher_pen, null))
+                    ivToolbarLogoOrBack.setOnClickListener { }
+                }
+                //Back pressed
+                false -> {
+                    ivToolbarLogoOrBack.setImageDrawable(resources.getDrawable(R.drawable.ic_keyboard_arrow_left_black_24dp, null))
+                    ivToolbarLogoOrBack.setOnClickListener {
+                        //hide/show searchView on Back press
+                        ivToolbarSearch.onActionViewCollapsed()
+
+                        vm.onActionBackClicked()
+                    }
+                }
+            }
+        }
+
+
         data.toolbarTitle.let {
             tvToolbarTitle.text = data.toolbarTitle
         }
@@ -88,11 +183,11 @@ class MainToolbarsViewActivity : BaseActivity(), EmaView<HomeToolbarState, MainT
             }
         }
 
-        data.toolbarLogoVisibility.let {
+        data.toolbarLogoOrBackVisibility.let {
             if (it) {
-                ivToolbarLogo.visibility = View.VISIBLE
+                ivToolbarLogoOrBack.visibility = View.VISIBLE
             } else {
-                ivToolbarLogo.visibility = View.GONE
+                ivToolbarLogoOrBack.visibility = View.GONE
             }
         }
 
@@ -112,33 +207,27 @@ class MainToolbarsViewActivity : BaseActivity(), EmaView<HomeToolbarState, MainT
             } else {
                 ivToolbarTelegram.visibility = View.GONE
             }
-
-            ivToolbarTelegram.setOnClickListener {
-                telegramButton.onClickListener.invoke()
-            }
         }
 
         data.searchButton?.let { searchButton ->
+            ivToolbarSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String): Boolean {
+                    searchButton.setOnQueryTextFocusChangeListener?.invoke(query.toLowerCase())
+                    return false
+                }
+
+                override fun onQueryTextChange(newText: String): Boolean {
+                    searchButton.setOnQueryTextFocusChangeListener?.invoke(newText.toLowerCase())
+                    return false
+                }
+            })
+
+
+
             if (searchButton.visibility) {
                 ivToolbarSearch.visibility = View.VISIBLE
             } else {
                 ivToolbarSearch.visibility = View.GONE
-            }
-
-            ivToolbarSearch.setOnClickListener {
-                searchButton.onClickListener.invoke()
-            }
-        }
-
-        data.backButton?.let { backButton ->
-            if (backButton.visibility) {
-                ivToolbarBack.visibility = View.VISIBLE
-            } else {
-                ivToolbarBack.visibility = View.GONE
-            }
-
-            ivToolbarBack.setOnClickListener {
-                backButton.onClickListener.invoke()
             }
         }
     }
