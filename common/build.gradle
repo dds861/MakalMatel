@@ -3,14 +3,14 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion ema.compileSdk
-    buildToolsVersion ema.buildTools
+    compileSdkVersion project.compileSdk
+    buildToolsVersion project.buildTools
 
     defaultConfig {
-        minSdkVersion ema.minSdk
-        targetSdkVersion ema.targetSdk
-        versionCode ema.versionCode
-        versionName ema.versionName
+        minSdkVersion project.minSdk
+        targetSdkVersion project.targetSdk
+        versionCode project.versionCode
+        versionName project.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'

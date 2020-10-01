@@ -1,15 +1,23 @@
 package com.dd.database.sqlite.ui.makal
 
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.carmabs.ema.core.constants.STRING_EMPTY
 import com.carmabs.ema.core.state.EmaExtraData
+import com.daimajia.androidanimations.library.Techniques
+import com.daimajia.androidanimations.library.YoYo
 import com.dd.database.sqlite.R
-import com.dd.database.sqlite.base.BaseFragment
+import com.dd.database.sqlite.base.BaseToolbarsFragment
+import com.dd.database.sqlite.ui.main.MainToolbarsViewModel
+import kotlinx.android.synthetic.main.fragment_category.*
 import kotlinx.android.synthetic.main.fragment_makal.*
+import kotlinx.android.synthetic.main.fragment_makal.et_search
 import org.kodein.di.generic.instance
 
 class MakalViewFragment
-    : BaseFragment<MakalState, MakalViewModel, MakalNavigator.Navigation>() {
+    : BaseToolbarsFragment<MakalState, MakalViewModel, MakalNavigator.Navigation>() {
     /**
      * Default variables
      */
@@ -18,25 +26,49 @@ class MakalViewFragment
     override val viewModelSeed: MakalViewModel by instance()
 
     /**
+     * Custom variables
+     */
+    private lateinit var vm: MakalViewModel
+
+    /**
      * Default functions
      */
-    override fun onAlternative(data: EmaExtraData) {
+    override fun onInitializedWithToolbarsManagement(viewModel: MakalViewModel, mainToolbarViewModel: MainToolbarsViewModel) {
+        vm = viewModel
+        setupRecycler()
     }
-
-    override fun onNormal(data: MakalState) {
-        loadRecyclerViews(data)
-    }
-
-    override fun onError(error: Throwable) {}
 
     override fun onSingleEvent(data: EmaExtraData) {
     }
 
-    override fun onSingle(data: EmaExtraData) {
+    override fun onNormal(data: MakalState) {
+        loadRecyclerViews(data)
+        setupListeners(data)
     }
 
-    override fun onInitialized(viewModel: MakalViewModel) {
-        setupRecycler()
+    private fun setupListeners(data: MakalState) {
+        et_search.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
+            override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
+            override fun afterTextChanged(editable: Editable) {
+                vm.onActionSearch(editable.toString())
+            }
+        })
+
+        iv_makal_clear_search.setOnClickListener {
+            YoYo.with(Techniques.FadeOut).duration(150).repeat(0).playOn(it)
+            YoYo.with(Techniques.FadeIn).duration(350).repeat(0).playOn(it)
+
+            et_search.setText(STRING_EMPTY)
+        }
+    }
+
+    override fun onAlternative(data: EmaExtraData) {
+    }
+
+    override fun onError(error: Throwable) {}
+
+    override fun onSingle(data: EmaExtraData) {
     }
 
     /**
@@ -53,5 +85,7 @@ class MakalViewFragment
             }
         }
     }
+
+
 }
 

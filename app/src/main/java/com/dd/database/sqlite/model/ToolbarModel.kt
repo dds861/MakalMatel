@@ -13,26 +13,20 @@ import com.carmabs.ema.core.constants.STRING_EMPTY
  */
 data class ToolbarModel(
         val telegramButton: TelegramButton? = null,
-        val backButton: BackButton? = null,
         val searchButton: SearchButton? = null,
         val toolbarTitle: String = STRING_EMPTY,
-        val toolbarTitleVisibility: Boolean = false,
-        val toolbarLogoVisibility: Boolean = false,
+        val toolbarTitleVisibility: Boolean = true,
+        val toolbarLogoOrBackVisibility: Boolean = true,
         val toolbarVisibility: Boolean = true,
         val toolbarElevation: Boolean = false
 ) {
     data class SearchButton(
-            val onClickListener: (() -> Unit),
-            val visibility: Boolean = true
+            val visibility: Boolean = true,
+            val searchViewText: String = STRING_EMPTY,
+            val setOnQueryTextFocusChangeListener: ((queryText: String) -> Unit)? = null
     )
 
     data class TelegramButton(
-            val onClickListener: (() -> Unit),
             val visibility: Boolean = true
-    )
-
-    data class BackButton(
-            val onClickListener: (() -> Unit),
-            val visibility: Boolean = false
     )
 }

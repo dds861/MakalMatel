@@ -8,11 +8,19 @@ import com.dd.domain.manager.ResourceManager
 import com.dd.domain.model.CategoryModel
 import com.dd.domain.model.RequestCategoryModel
 import com.dd.domain.usecase.GetLocalCategoryUseCase
+import java.util.*
 
 class CategoryViewModel(
         private val resourceManager: ResourceManager,
         private val getLocalCategoryUseCase: GetLocalCategoryUseCase
 ) : BaseToolbarsViewModel<CategoryState, CategoryNavigator.Navigation>() {
+    /**
+     * Constants
+     */
+    companion object {
+        const val TELEGRAM_CLICKED = 1
+    }
+
     /**
      * Default variables
      */
@@ -28,20 +36,16 @@ class CategoryViewModel(
             it.copy(
                     toolbarTitle = resourceManager.getToolbarTitle(),
                     toolbarTitleVisibility = true,
-                    toolbarLogoVisibility = true,
+                    toolbarLogoOrBackVisibility = true,
                     telegramButton = ToolbarModel.TelegramButton(
-                            visibility = true,
-                            onClickListener = {}
+                            visibility = true
                     ),
                     searchButton = ToolbarModel.SearchButton(
-                            visibility = true,
-                            onClickListener = {}
+                            visibility = true
                     )
             )
         }
     }
-
-
 
     override fun onStartFirstTime(statePreloaded: Boolean) {
         executeUseCaseWithException(
@@ -65,9 +69,31 @@ class CategoryViewModel(
         navigate(
                 CategoryNavigator.Navigation.Makal(
                         MakalState(
-                                categoryId = categoryModel.category_id
+                                categoryId = categoryModel.category_id,
+                                categoryTitle = categoryModel.category_text
                         )
                 )
         )
+    }
+
+    fun onActionSearch(queryText: String) {
+        checkDataState {
+            executeUseCaseWithException(
+                    {
+                        val responseCategoryModel = getLocalCategoryUseCase.execute(RequestCategoryModel())
+                        updateToNormalState {
+                            copy(
+                                    listCategories = responseCategoryModel.list.filter {
+                                        it.category_text
+                                                .toLowerCase(Locale.ROOT)
+                                                .contains(queryText.toLowerCase(Locale.ROOT))
+                                    }
+                            )
+                        }
+                    },
+                    { e ->
+                        updateToErrorState(e)
+                    })
+        }
     }
 }
