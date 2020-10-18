@@ -11,6 +11,10 @@ import com.dd.domain.usecase.GetFirebaseMakalLikeUseCase
 import com.dd.domain.usecase.GetLocalMakalByCategoryIdUseCase
 import com.dd.domain.usecase.UpdateFirebaseMakalLikeUseCase
 import com.dd.domain.usecase.UpdateLocalMakalLikeByIdUseCase
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.getValue
 import java.util.*
 
 class MakalViewModel(
@@ -67,14 +71,17 @@ class MakalViewModel(
      * Custom functions
      */
     fun onActionItemClicked(makalModel: MakalModel) {
-        Log.i("autolog", "makalModel: " + makalModel.makal_id);
         checkDataState {
             executeUseCaseWithException(
                     {
-//                        val responseMakalModel = getFirebaseMakalLikeUseCase.execute(RequestMakalModel())
+
+
+                        getFirebaseMakalLikeUseCase.execute(RequestMakalModel(makalModel = makalModel))
+//                        val likesCount = responseMakalModel.list
 //                        Log.i("autolog", "responseMakalModel: " + responseMakalModel.makalIdAndLikeMap);
-                        val responseUpdateFirebaseMakalLikeUseCase = updateFirebaseMakalLikeUseCase.execute(RequestMakalModel(makalModel = makalModel))
-                        val responseUpdateLocalMakalLikeByIdUseCase = updateLocalMakalLikeByIdUseCase.execute(RequestMakalModel(makalModel = makalModel))
+//                        val responseUpdateFirebaseMakalLikeUseCase = updateFirebaseMakalLikeUseCase.execute(RequestMakalModel(makalModel = makalModel))
+
+//                        val responseUpdateLocalMakalLikeByIdUseCase = updateLocalMakalLikeByIdUseCase.execute(RequestMakalModel(makalModel = makalModel))
 
                         updateToNormalState {
                             copy(

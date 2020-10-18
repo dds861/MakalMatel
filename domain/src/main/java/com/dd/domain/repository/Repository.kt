@@ -12,8 +12,9 @@ interface Repository {
 
     interface FirebaseRepository {
         suspend fun writeToDb(requestMakalModel: RequestMakalModel): ResponseMakalModel
-
-        suspend fun readFromDb(requestMakalModel: RequestMakalModel): ResponseMakalModel
+        suspend fun readFromDb(requestMakalModel: RequestMakalModel)
+        suspend fun updateDb(requestMakalModel: RequestMakalModel)
+        suspend fun onLikeClicked(requestMakalModel: RequestMakalModel)
     }
 
     interface LocalStorageRepository {
