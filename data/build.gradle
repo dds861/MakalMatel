@@ -71,4 +71,6 @@ dependencies {
     kapt dataDependencies.roomCompiler
     implementation dataDependencies.sqlcipher
     implementation dataDependencies.androidxSqlite
+
+    api dataDependencies.firebase_database
 }

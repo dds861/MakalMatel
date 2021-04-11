@@ -74,7 +74,9 @@ dependencies {
     api appDependencies.firebase_ads
     api appDependencies.recyclerview
     api appDependencies.play_services
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    api appDependencies.legacy_support
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.0'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.0'
 }
 
 
