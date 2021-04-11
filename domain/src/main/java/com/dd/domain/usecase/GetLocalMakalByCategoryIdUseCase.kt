@@ -5,10 +5,9 @@ import com.dd.domain.model.RequestCategoryModel
 import com.dd.domain.model.RequestMakalModel
 import com.dd.domain.model.ResponseCategoryModel
 import com.dd.domain.model.ResponseMakalModel
-import com.dd.domain.repository.LocalStorageRepository
 import com.dd.domain.repository.Repository
 
-class GetLocalMakalByCategoryIdUseCase(private val repository: LocalStorageRepository)
+class GetLocalMakalByCategoryIdUseCase(private val repository: Repository.LocalStorageRepository)
     : EmaUseCase<RequestMakalModel, ResponseMakalModel>() {
 
     override suspend fun useCaseFunction(input: RequestMakalModel): ResponseMakalModel {

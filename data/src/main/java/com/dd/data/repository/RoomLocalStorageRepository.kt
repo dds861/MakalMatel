@@ -11,7 +11,7 @@ import com.dd.domain.model.RequestCategoryModel
 import com.dd.domain.model.RequestMakalModel
 import com.dd.domain.model.ResponseCategoryModel
 import com.dd.domain.model.ResponseMakalModel
-import com.dd.domain.repository.LocalStorageRepository
+import com.dd.domain.repository.Repository
 import net.sqlcipher.database.SQLiteDatabase
 import net.sqlcipher.database.SQLiteException
 import net.sqlcipher.database.SupportFactory
@@ -20,7 +20,7 @@ import java.io.IOException
 
 class RoomLocalStorageRepository(
         private val context: Context
-) : LocalStorageRepository {
+) : Repository.LocalStorageRepository {
     private val dbSecretKey = BuildConfig.DB_SECRET_KEY
     private val passphrase: ByteArray = SQLiteDatabase.getBytes(dbSecretKey.toCharArray())
     private val factory = SupportFactory(passphrase)
@@ -30,9 +30,8 @@ class RoomLocalStorageRepository(
                 MakalDatabase::class.java,
                 BuildConfig.DB_NAME)
         build.createFromAsset("database/makal.db")
-//        build.fallbackToDestructiveMigration()
-        build.addMigrations(MIGRATION_1_2)
         build.fallbackToDestructiveMigration()
+        build.addMigrations(MIGRATION_1_2)
         build.build()
     }
     private val MIGRATION_1_2: Migration = object : Migration(1, 2) {
@@ -41,6 +40,11 @@ class RoomLocalStorageRepository(
         }
     }
 
+    //    val MIGRATION_2_3 = object : Migration(2, 3) {
+//        override fun migrate(database: SupportSQLiteDatabase) {
+//            database.execSQL("ALTER TABLE ${MakalDbData.TABLE_NAME} ADD COLUMN ${MakalDbData.MAKAL_LIKE} INTEGER")
+//        }
+//    }
     init {
         encrypt(context.applicationContext, BuildConfig.DB_NAME, dbSecretKey)
     }
@@ -70,23 +74,30 @@ class RoomLocalStorageRepository(
         }
     }
 
-    override fun getAllCategories(request: RequestCategoryModel): ResponseCategoryModel {
+    override suspend fun getAllCategories(request: RequestCategoryModel): ResponseCategoryModel {
         return db.categoryDao().getAllCategories().toDomainModel()
     }
 
-    override fun getAllMakals(request: RequestMakalModel): ResponseMakalModel {
+    override suspend fun getAllMakals(request: RequestMakalModel): ResponseMakalModel {
         return db.makalDao().getAllMakals().toDomainModel()
     }
 
-    override fun getMakalsByCategoryId(request: RequestMakalModel): ResponseMakalModel {
+    override suspend fun getMakalsByCategoryId(request: RequestMakalModel): ResponseMakalModel {
         return db.makalDao().getMakalsByCategoryId(request.categoryId).toDomainModel()
     }
 
-    override fun getMakalsByQueryText(request: RequestMakalModel): ResponseMakalModel {
+    override suspend fun getMakalsByQueryText(request: RequestMakalModel): ResponseMakalModel {
         return db.makalDao().getMakalsByQueryText(request.queryText).toDomainModel()
     }
 
-    override fun getRandomMakal(): ResponseMakalModel {
+    override suspend fun getRandomMakal(): ResponseMakalModel {
         return db.makalDao().getRandomMakal().toDomainModel()
+    }
+
+    override suspend fun updateLikeOnMakalById(requestMakalModel: RequestMakalModel): ResponseMakalModel {
+        return db.makalDao().updateLikeOnMakalById(
+                requestMakalModel.makalModel.makal_id,
+                requestMakalModel.makalModel.makal_like)
+                .toDomainModel()
     }
 }

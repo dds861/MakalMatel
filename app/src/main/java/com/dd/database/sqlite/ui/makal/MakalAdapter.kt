@@ -6,7 +6,6 @@ import android.content.Context
 import android.content.Intent
 import android.view.View
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import com.carmabs.ema.android.ui.EmaRecyclerAdapter
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
@@ -21,20 +20,24 @@ class MakalAdapter(private val context: Context,
 
     override fun View.bind(item: MakalModel, viewType: Int) {
         text2.text = item.makal_text
+        tvLike.text = item.makal_like.toString()
 
         ivCopy.setOnClickListener {
             YoYo.with(Techniques.FadeOut).duration(150).repeat(0).playOn(ivCopy)
             YoYo.with(Techniques.FadeIn).duration(350).repeat(0).playOn(ivCopy)
 
             copyToClipboard(item.makal_text)
-
-            itemListener.invoke(item)
         }
         ivShare.setOnClickListener {
             YoYo.with(Techniques.FadeOut).duration(150).repeat(0).playOn(ivShare)
             YoYo.with(Techniques.FadeIn).duration(350).repeat(0).playOn(ivShare)
 
             shareText(item.makal_text)
+        }
+
+        ivLike.setOnClickListener {
+            YoYo.with(Techniques.FadeOut).duration(150).repeat(0).playOn(it)
+            YoYo.with(Techniques.FadeIn).duration(350).repeat(0).playOn(it)
 
             itemListener.invoke(item)
         }
@@ -52,6 +55,6 @@ class MakalAdapter(private val context: Context,
         sharingIntent.type = "text/plain"
         sharingIntent.putExtra(Intent.EXTRA_SUBJECT, text)
         sharingIntent.putExtra(Intent.EXTRA_TEXT, text)
-       context.startActivity(Intent.createChooser(sharingIntent, context.resources.getString(R.string.share_using)))
+        context.startActivity(Intent.createChooser(sharingIntent, context.resources.getString(R.string.share_using)))
     }
 }
